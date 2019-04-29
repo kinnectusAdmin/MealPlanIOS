@@ -11,11 +11,11 @@ import CleanModelViewIntent
 
 struct TransferPresenter: PresenterLink {
     typealias Link = TransferViewModelLink
-    typealias View = TransferView
+    typealias View = TransferViewType
     static var action: (Link.ViewStateType?, Link.ViewStateType?, View) -> Void = { state, _, view in
         
     }
-    static var interaction: (TransferView, Box<Link.IntentType?>) -> Void = { view, interactor in
+    static var interaction: (TransferViewType, Box<Link.IntentType?>) -> Void = { view, interactor in
         
     }
 }

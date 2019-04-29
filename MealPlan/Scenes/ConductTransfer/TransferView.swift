@@ -8,7 +8,10 @@
 
 import UIKit
 import CleanModelViewIntent
-class TransferView: UIViewController, Presentation {
+protocol  TransferViewType: Presentation, Controller {
+    
+}
+class TransferView: UIViewController, TransferViewType {
     
     
 }

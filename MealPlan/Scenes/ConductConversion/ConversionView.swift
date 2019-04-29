@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 import CleanModelViewIntent
-
-class ConversionView: UIViewController, Presentation {
+protocol ConversionViewType: Presentation, Controller {
+    
+}
+class ConversionView: UIViewController, ConversionViewType {
     
 }

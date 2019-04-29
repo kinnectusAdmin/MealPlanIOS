@@ -16,4 +16,7 @@ final class OnboardCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<OnboardRouter>!
+    func controller() -> Controller {
+        return OnboardView()
+    }
 }

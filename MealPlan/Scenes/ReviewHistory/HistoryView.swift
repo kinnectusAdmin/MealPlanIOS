@@ -8,5 +8,8 @@
 
 import UIKit
 import CleanModelViewIntent
-class HistoryView: UIViewController, Presentation  {
+protocol HistoryViewType: Presentation, Controller {
+    
+}
+class HistoryView: UIViewController, HistoryViewType  {
 }

@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 import CleanModelViewIntent
-
-class MenuView: UIViewController, Presentation {
+protocol MenuViewType: Presentation, Controller {
+    
+}
+class MenuView: UIViewController, MenuViewType {
     
 }

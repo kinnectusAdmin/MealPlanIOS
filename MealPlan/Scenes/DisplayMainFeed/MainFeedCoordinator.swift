@@ -16,4 +16,7 @@ final class MainFeedCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MainFeedRouter>!
+    func controller() -> Controller {
+        return MainFeedView()
+    }
 }

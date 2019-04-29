@@ -16,4 +16,7 @@ final class HistoryCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<HistoryRouter>!
+    func controller() -> Controller {
+        return HistoryView()
+    }
 }

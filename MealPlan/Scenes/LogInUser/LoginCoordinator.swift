@@ -16,4 +16,7 @@ final class LoginCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<LoginRouter>!
+    func controller() -> Controller {
+        return LoginView()
+    }
 }

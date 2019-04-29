@@ -10,11 +10,11 @@ import Foundation
 import CleanModelViewIntent
 struct CreateAccountPresenter: PresenterLink {
     typealias Link = CreateAccountViewModelLink
-    typealias View = CreateAccountView
-    static var action: (Link.ViewStateType?, Link.ViewStateType?, View) -> Void = { state, _, view in
+    typealias View = CreateAccountViewType
+    static var action: (Link.ViewStateType?, Link.ViewStateType?, CreateAccountViewType) -> Void = { state, _, view in
     
     }
-    static var interaction: (CreateAccountView, Box<Link.IntentType?>) -> Void = { view, interactor in
+    static var interaction: (CreateAccountViewType, Box<Link.IntentType?>) -> Void = { view, interactor in
         view.emailField.textValue.bindListener { text, _ in
             interactor.accept(Link.IntentType.didUpdateEmail(text))
         }

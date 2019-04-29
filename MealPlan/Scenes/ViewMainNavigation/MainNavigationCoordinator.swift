@@ -16,4 +16,7 @@ final class MainNavigationCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MainNavigationRouter>!
+    func controller() -> Controller {
+        return MainNavigationView()
+    }
 }

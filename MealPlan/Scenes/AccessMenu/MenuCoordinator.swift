@@ -16,4 +16,7 @@ final class MenuCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MenuRouter>!
+    func controller() -> Controller {
+        return MenuView()
+    }
 }

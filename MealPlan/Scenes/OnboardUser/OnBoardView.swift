@@ -9,25 +9,25 @@
 import UIKit
 import CleanModelViewIntent
 import Utilities
-protocol OnboardViewType: ViewType {
+protocol OnboardViewType: Presentation, Controller {
     var loginButton: UXButton { get set}
     var signUpButton: UXButton { get set}
     var onboardCollection: UXCollectionView<OnboardSectionModel> { get set}
     var indicator: UIPageControl { get set}
 }
-class OnboardView: UIViewController, Presentation {
+class OnboardView: UIViewController, OnboardViewType {
     private let appIcon: UIImageView = UIImageView.image()
     private let appTitle: UILabel = UILabel.labelWith(font: ViewProperties.appTitleFont, txtColor: ViewProperties.appTitleColor, background: ViewProperties.appTitleBackground, text: ViewProperties.appTitle, alignment: .center)
     var loginButton = UXButton.button(font: ViewProperties.loginButtonFont, color: ViewProperties.loginButtonTitleColor, title: ViewProperties.loginButtonTitle)
-    let signUpButton = UXButton.button(font: ViewProperties.signUpButtonFont, color: ViewProperties.signUpButtonTitleColor, background: ViewProperties.signUpButtonColor, title: ViewProperties.signUpButtonTitle, radius: ViewProperties.signUpButtonRadius)
-    let backgroundImage: UIImageView = Backgrounds.backgroundImage()
-    let onboardCollection = UXCollectionView<OnboardSectionModel>(model: OnboardSectionModel(viewState: nil), direction: .horizontal, frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-    let indicator: UIPageControl = UIPageControl.view(count: ViewProperties.indicatorCount, firstIndex: 0, tint: ViewProperties.indicatorTints.0, currentTint: ViewProperties.indicatorTints.1)
+    var signUpButton = UXButton.button(font: ViewProperties.signUpButtonFont, color: ViewProperties.signUpButtonTitleColor, background: ViewProperties.signUpButtonColor, title: ViewProperties.signUpButtonTitle, radius: ViewProperties.signUpButtonRadius)
+    private let backgroundImage: UIImageView = Backgrounds.backgroundImage()
+    var onboardCollection = UXCollectionView<OnboardSectionModel>(model: OnboardSectionModel(viewState: nil), direction: .horizontal, frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    var indicator: UIPageControl = UIPageControl.view(count: ViewProperties.indicatorCount, firstIndex: 0, tint: ViewProperties.indicatorTints.0, currentTint: ViewProperties.indicatorTints.1)
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
     }
-    func setViews() {
+    private func setViews() {
         /// TODO: Draw layout
         view.add(views: backgroundImage, loginButton, appIcon, appTitle, signUpButton,onboardCollection, indicator)
         backgroundImage.constrainInView(view: self.view, top: -50, left: 0, right: 0, bottom: 0)

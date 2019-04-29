@@ -9,17 +9,26 @@
 import Foundation
 import CleanModelViewIntent
 import Utilities
-
-class CreateAccountView: UIViewController, Presentation {
-    private let accountTitle: UILabel = UILabel.labelWith(font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: ViewProperties.titleBackground, text: ViewProperties.title, alignment: .center)
-    let emailField = UXTextField.field(textColor: ViewProperties.emailColor, background: ViewProperties.emailBackground, font: ViewProperties.emailFont, placeholder: ViewProperties.emailPlaceholder, dismissOnEnter: true)
-    let passwordField = UXTextField.field(textColor: ViewProperties.passwordColor, background: ViewProperties.passwordBackground, font: ViewProperties.passwordFont, placeholder: ViewProperties.passwordPlaceholder, dismissOnEnter: true)
-    let emailSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
-    let passwordSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
+protocol CreateAccountViewType: Presentation, Controller {
+    var emailField: UXTextField { get set}
+    var passwordField: UXTextField { get set}
+    var loginButton: UXButton { get set}
+    var createButton: UXButton {get set}
+    var backButton: UXButton { get set}
+}
+class CreateAccountView: UIViewController, CreateAccountViewType {
+    // MARK: - Create Account ViewType Properties
+    var emailField = UXTextField.field(textColor: ViewProperties.emailColor, background: ViewProperties.emailBackground, font: ViewProperties.emailFont, placeholder: ViewProperties.emailPlaceholder, dismissOnEnter: true)
+    var passwordField = UXTextField.field(textColor: ViewProperties.passwordColor, background: ViewProperties.passwordBackground, font: ViewProperties.passwordFont, placeholder: ViewProperties.passwordPlaceholder, dismissOnEnter: true)
     var loginButton = UXButton.button(font: ViewProperties.loginButtonFont, color: ViewProperties.loginButtonTitleColor, title: ViewProperties.loginButtonTitle)
-    let createButton = UXButton.button(font: ViewProperties.createButtonFont, color: ViewProperties.createButtonTitleColor, background: ViewProperties.createButtonColor, title: ViewProperties.createButtonTitle, radius: ViewProperties.createButtonRadius)
-    let backgroundImage: UIImageView = Backgrounds.backgroundImage()
-    let backButton = Icons.backButton
+    var createButton = UXButton.button(font: ViewProperties.createButtonFont, color: ViewProperties.createButtonTitleColor, background: ViewProperties.createButtonColor, title: ViewProperties.createButtonTitle, radius: ViewProperties.createButtonRadius)
+    var backButton = Icons.backButton
+    ///
+    private let accountTitle: UILabel = UILabel.labelWith(font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: ViewProperties.titleBackground, text: ViewProperties.title, alignment: .center)
+    private let emailSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
+    private let passwordSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
+    private let backgroundImage: UIImageView = Backgrounds.backgroundImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()

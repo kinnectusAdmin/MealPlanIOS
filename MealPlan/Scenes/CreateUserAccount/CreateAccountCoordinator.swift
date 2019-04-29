@@ -16,4 +16,7 @@ final class CreateAccountCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<CreateAccountRouter>!
+    func controller() -> Controller {
+        return CreateAccountView()
+    }
 }

@@ -16,4 +16,8 @@ final class TransferCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<TransferPresenter>!
     var router: Router<TransferRouter>!
+    func controller() -> Controller {
+        return TransferView()
+    }
+    
 }

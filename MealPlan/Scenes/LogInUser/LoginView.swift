@@ -9,23 +9,31 @@
 import UIKit
 import CleanModelViewIntent
 import Utilities
-class LoginView: UIViewController, Presentation {
+protocol LoginViewType: Presentation, Controller {
+    var backButton: UXButton { get set}
+    var emailField: UXTextField { get set}
+    var loginButton: UXButton { get set}
+    var signUpButton: UXButton {get set}
+}
+class LoginView: UIViewController, LoginViewType {
     private let appIcon: UIImageView = UIImageView.image()
     private let loginTitle: UILabel = UILabel.labelWith(font: ViewProperties.loginTitleFont, txtColor: ViewProperties.loginTitleColor, background: ViewProperties.titleBackground, text: ViewProperties.loginTitle, alignment: .center)
-    let backButton = Icons.backButton
-    let emailField = UXTextField.field(textColor: ViewProperties.emailColor, background: ViewProperties.emailBackground, font: ViewProperties.emailFont, placeholder: ViewProperties.emailPlaceholder, dismissOnEnter: true)
-    let passwordField = UXTextField.field(textColor: ViewProperties.passwordColor, background: ViewProperties.passwordBackground, font: ViewProperties.passwordFont, placeholder: ViewProperties.passwordPlaceholder, dismissOnEnter: true)
-    let loginButton = UXButton.button(font: ViewProperties.loginButtonFont, color: ViewProperties.loginButtonTitleColor, background: ViewProperties.loginButtonColor, title: ViewProperties.loginButtonTitle, radius: ViewProperties.loginButtonRadius)
-    let signUpButton = UXButton.button(font: ViewProperties.signUpButtonFont, color: ViewProperties.signUpButtonColor, background: ViewProperties.signUpButtonBackground, title: ViewProperties.signUpButtonTitle)
-    let loginContainer: UIView = UIView.container(background: ViewProperties.loginContainerColor, radius: ViewProperties.loginContainerRadius).addingShadow(4, dy: 4, color: .black, radius: 10, opacity: 0.8)
-    let emailSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
-    let passwordSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
-    let backgroundImage: UIImageView = Backgrounds.backgroundImage()
+    // MARK: - LoginViewType Properties
+    var backButton = Icons.backButton
+    var emailField = UXTextField.field(textColor: ViewProperties.emailColor, background: ViewProperties.emailBackground, font: ViewProperties.emailFont, placeholder: ViewProperties.emailPlaceholder, dismissOnEnter: true)
+    var passwordField = UXTextField.field(textColor: ViewProperties.passwordColor, background: ViewProperties.passwordBackground, font: ViewProperties.passwordFont, placeholder: ViewProperties.passwordPlaceholder, dismissOnEnter: true)
+    var loginButton = UXButton.button(font: ViewProperties.loginButtonFont, color: ViewProperties.loginButtonTitleColor, background: ViewProperties.loginButtonColor, title: ViewProperties.loginButtonTitle, radius: ViewProperties.loginButtonRadius)
+    var signUpButton = UXButton.button(font: ViewProperties.signUpButtonFont, color: ViewProperties.signUpButtonColor, background: ViewProperties.signUpButtonBackground, title: ViewProperties.signUpButtonTitle)
+    ////
+    private let loginContainer: UIView = UIView.container(background: ViewProperties.loginContainerColor, radius: ViewProperties.loginContainerRadius).addingShadow(4, dy: 4, color: .black, radius: 10, opacity: 0.8)
+    private let emailSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
+    private let passwordSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
+    private let backgroundImage: UIImageView = Backgrounds.backgroundImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
     }
-    func setViews() {
+    private func setViews() {
         //TODO: Draw layout
         view.add(views: backgroundImage, loginTitle, backButton, signUpButton, loginContainer)
         loginContainer.add(views: emailField, emailSeparatingBar, passwordField, passwordSeparatingBar, loginButton)

@@ -10,11 +10,11 @@ import Foundation
 import CleanModelViewIntent
 struct MainFeedPresenter: PresenterLink {
     typealias Link = MainFeedViewModelLink
-    typealias View = MainFeedView
-    static var action: (MainFeedViewModelLink.ViewStateType?, MainFeedViewModelLink.ViewStateType?, MainFeedView) -> Void = { viewState, _, view in
+    typealias View = MainFeedViewType
+    static var action: (MainFeedViewModelLink.ViewStateType?, MainFeedViewModelLink.ViewStateType?, MainFeedViewType) -> Void = { viewState, _, view in
         
     }
-    static var interaction: (MainFeedView, Box<MainFeedViewModelLink.IntentType?>) -> Void = { view, interactor in
+    static var interaction: (MainFeedViewType, Box<MainFeedViewModelLink.IntentType?>) -> Void = { view, interactor in
         
     }
 }

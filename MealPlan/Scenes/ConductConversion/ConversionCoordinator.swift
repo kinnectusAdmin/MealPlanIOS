@@ -16,4 +16,7 @@ final class ConversionCoordinator: SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<ConversionRouter>!
+    func controller() -> Controller {
+        return ConversionView()
+    }
 }

@@ -11,11 +11,11 @@ import Foundation
 import CleanModelViewIntent
 struct MainNavigationPresenter: PresenterLink {
     typealias Link = MainNavigationViewModelLink
-    typealias View = MainNavigationView
+    typealias View = MainNavigationViewType
     static var action: (Link.ViewStateType?, Link.ViewStateType?, View) -> Void = { state, _,view in
         
     }
-    static var interaction: (MainNavigationView, Box<Link.IntentType?>) -> Void = { view, interactor in
+    static var interaction: (MainNavigationViewType, Box<Link.IntentType?>) -> Void = { view, interactor in
         
     }
 }

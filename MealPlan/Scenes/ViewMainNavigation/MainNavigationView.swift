@@ -8,6 +8,9 @@
 
 import UIKit
 import CleanModelViewIntent
-class MainNavigationView: UIViewController, Presentation {
+protocol MainNavigationViewType: Presentation, Controller {
+    
+}
+class MainNavigationView: UIViewController, MainNavigationViewType {
     
 }
