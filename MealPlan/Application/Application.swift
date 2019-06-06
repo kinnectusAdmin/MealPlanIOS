@@ -12,7 +12,7 @@ class Application {
     private var window: UIWindow?
     func configureApp(window: UIWindow?) {
         self.window = window
-        let coordinator = CoordinatorProvider.makeOnboardCoordinator()
+        let coordinator = CoordinatorProvider.makeMainFeedCoordinator()
         window?.rootViewController = coordinator.router.controller as? UIViewController
         window?.makeKeyAndVisible()
     }

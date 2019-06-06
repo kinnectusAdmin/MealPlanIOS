@@ -28,8 +28,5 @@ struct OnboardItemPresenter: ItemPresenterLink {
             interactor.accept(OnboardItemViewModelLink.IntentType.didSelectPage)
         })
     }
-    
-    
-
 }
 

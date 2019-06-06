@@ -25,7 +25,7 @@ struct OnboardPresenter: PresenterLink {
         }
         view.onboardCollection.parentInteractor.bind({ intent , _ in
             guard let intent = intent else { return }
-            interactor.accept(intent)
+            interactor.accept(intent as? OnboardViewModelLink.IntentType)
         })
     }
 }

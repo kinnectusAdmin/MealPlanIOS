@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CleanModelViewIntent
 import Utilities
+
 protocol MainFeedTrendItemType: Item {
     var swipesTrendLabel: UILabel { get set}
     var flexTrendLabel: UILabel { get set}
@@ -18,7 +19,10 @@ protocol MainFeedTrendItemType: Item {
     init()
 }
 class MainFeedTrendItem: UICollectionViewCell, MainFeedTrendItemType {
-    var presenter: PresenterType?
+    typealias Link = MainFeedTrendItemViewModel
+    typealias ItemLink = MainFeedTrendItemPresenter
+    var viewModel: MVIViewModelType!
+    var presenter: PresenterType!
     var swipesTrendLabel: UILabel = UILabel.labelWith(font: ViewProperties.trendFont, txtColor: ViewProperties.trendColor, background: ViewProperties.trendBackground)
     var flexTrendLabel: UILabel = UILabel.labelWith(font: ViewProperties.trendFont, txtColor: ViewProperties.trendColor, background: ViewProperties.trendBackground)
     var trendLabel: UILabel = UILabel.labelWith(font: ViewProperties.trendFont, txtColor: ViewProperties.trendColor, background: ViewProperties.trendBackground)

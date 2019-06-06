@@ -32,13 +32,29 @@ enum Backgrounds: String {
         let image = UIImageView.image(image: Backgrounds.current.image, mode: .scaleAspectFill).withScreen(view: screen)
         return image
     }
-
+}
+extension UIFont {
+    enum App {
+        case bodoni
+        var fonts: (large: UIFont, medium: UIFont, small: UIFont, tiny: UIFont) {
+            switch self {
+            case .bodoni:
+                return (UIFont(name: "Bodoni 72", size: App.baseSize) ?? .systemFont(ofSize: App.baseSize),
+                        UIFont(name: "Bodoni 72", size: App.baseSize-2) ?? .systemFont(ofSize: App.baseSize-2),
+                        UIFont(name: "Bodoni 72", size: App.baseSize-4) ?? .systemFont(ofSize: App.baseSize-4),
+                        UIFont(name: "Bodoni 72", size: App.baseSize-6) ?? .systemFont(ofSize: App.baseSize-6))
+            }
+        }
+        static var baseSize: CGFloat = 18
+        static let currentFont: App = .bodoni
+    }
 }
 extension UIColor {
     enum App {
         case blueScheme
         case greenSceme
         case redScheme
+        case greyScheme
         var colors: (dark: UIColor, light: UIColor, lightest: UIColor) {
             switch self {
             case .blueScheme:
@@ -47,6 +63,8 @@ extension UIColor {
                 return (App.darkGreen, App.lightGreen, App.lightestGreen)
             case .redScheme:
                 return (App.darkRed, App.lightRed, App.lightestRed)
+            case .greyScheme:
+                return (App.darkGrey, App.lightGrey, App.lightestGrey)
             }
         }
         var gradient: [UIColor] {
@@ -57,42 +75,45 @@ extension UIColor {
                 return [App.darkGreen, App.lightGreen, App.lightestGreen]
             case .redScheme:
                 return [App.darkRed, App.lightRed, App.lightestRed]
+            case .greyScheme:
+                return [App.darkGrey, App.lightGrey, App.lightestGrey]
             }
         }
-        static var currentScheme: App {
-            return .blueScheme
-        }
-        static var lightBlue: UIColor {
-            return UIColor.createColor(43, 110, 155)
-        }
-        static var lightestBlue: UIColor {
-            return UIColor.createColor(97, 156, 204)
-        }
-        static var darkBlue: UIColor {
-            return UIColor.createColor(0, 67, 109)
-        }
-        static var lightGreen: UIColor {
-            return UIColor.createColor(28, 155, 109)
-        }
-        static var lightestGreen: UIColor {
-            return UIColor.createColor(90, 205, 155)
-        }
-        static var darkGreen: UIColor {
-            return UIColor.createColor(0, 108, 66)
-        }
-        static var lightRed: UIColor {
-            return UIColor.createColor(147, 26, 34)
-        }
-        static var lightestRed: UIColor {
-            return UIColor.createColor(201, 78, 74)
-        }
-        static var darkRed: UIColor {
-            return UIColor.createColor(95, 0, 0)
-        }
+        static let currentScheme: App = .greyScheme
+        
+        static let accentColor: UIColor = roseGold
+        
+        static let lightBlue: UIColor = UIColor.createColor(43, 110, 155)
+        
+        static let lightestBlue: UIColor = UIColor.createColor(97, 156, 204)
+        
+        static let darkBlue: UIColor = UIColor.createColor(0, 67, 109)
+        
+        static let lightGreen: UIColor = UIColor.createColor(28, 155, 109)
+        
+        static let lightestGreen: UIColor = UIColor.createColor(90, 205, 155)
+        
+        static let darkGreen: UIColor = UIColor.createColor(0, 108, 66)
+        
+        static let lightRed: UIColor = UIColor.createColor(147, 26, 34)
+        
+        static let lightestRed: UIColor = UIColor.createColor(201, 78, 74)
+        
+        static let darkRed: UIColor = UIColor.createColor(95, 0, 0)
+        
+        static let lightGrey: UIColor = UIColor.createColor(247, 247, 247)
+    
+        static let darkGrey: UIColor = UIColor.createColor(139, 137, 137)
+        
+        static let lightestGrey: UIColor = UIColor.createColor(228, 222, 221, 0.86)
+        
+        static let sunGold: UIColor = UIColor.createColor(177, 110, 52, 0.34)
+        
+        static let roseGold: UIColor = UIColor.createColor(245, 137, 137, 0.34)
     }
 }
 struct Icons {
-    static let backButton: UXButton = UXButton.icon(icon: .leftOpenBig, size: .normal, tint: .white)
+    static let backButton: UXButton = UXButton.icon(icon: .leftOpenBig, size: .normal, tint: UIColor.App.currentScheme.colors.dark)
     static let backLabelButton: UILabel = FontelloIcons.leftOpenBig.iconLabel(size: .normal, tint: .white)
     static func iconForTrend(trend: Objects.BalanceTrendType) -> UIImage {
         switch trend {
@@ -186,6 +207,15 @@ enum IconSize: CGFloat {
     case large = 24.0
     case xlarge = 28.0
     case xxlarge = 32.0
+}
+enum AppImages {
+    case person
+    func image() -> UIImage? {
+        switch self {
+        case .person:
+            return UIImage(named: "person")
+        }
+    }
 }
 extension UXButton {
     static func icon(icon: FontelloIcons, size: IconSize = .normal, tint: UIColor) -> UXButton {

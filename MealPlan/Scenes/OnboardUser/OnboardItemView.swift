@@ -14,7 +14,10 @@ protocol OnboardItemType: Item {
     init()
 }
 class OnboardItemView: UICollectionViewCell, OnboardItemType {
-    var presenter: PresenterType?
+    typealias Link = OnboardItemViewModel
+    typealias ItemLink = OnboardItemPresenter
+    var viewModel: MVIViewModelType!
+    var presenter: PresenterType!
     var featureLabel: UILabel = UILabel.labelWith(font: ViewProperties.featureLabelFont, txtColor: ViewProperties.featureLabelColor, background: .clear, alignment: .center)
     override func layoutSubviews() {
         super.layoutSubviews()

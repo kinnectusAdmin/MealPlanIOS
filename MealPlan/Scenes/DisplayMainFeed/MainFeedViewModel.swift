@@ -18,12 +18,14 @@ struct MainFeedViewModel: ViewModelLink {
 
     static var delegateHandler: ((DelegateIntent?, MainFeedViewModelLink.ViewStateType) -> Void)?
 
-    static var initialIntent: MainFeedViewModelLink.MainFeedIntent?
+    static var initialIntent: MainFeedViewModelLink.MainFeedIntent? = .initial(user: MealPlanUser.local)
     
     static var intentHandler: (MainFeedViewModelLink.MainFeedIntent) -> MainFeedViewModelLink.MainFeedResult =
     {
         intent in
         switch intent {
+        case let .initial(user):
+            return ResultType.initial(user: user)
         default: return ResultType.notSet
         }
     }
@@ -31,7 +33,11 @@ struct MainFeedViewModel: ViewModelLink {
     static var partialResultHandler: (Result) -> MainFeedViewModelLink.MainFeedResult? = { _ in return nil}
     
     static func reduce(viewState: MainFeedViewModelLink.MainFeedViewState?, result: MainFeedViewModelLink.MainFeedResult?) -> MainFeedViewModelLink.MainFeedViewState? {
-        return viewState
+        switch result {
+        case let .initial(user)?:
+            return Link.ViewStateType(events: [], transferEvents: [], account: StudentAccount.empty, user: user)
+        default: return viewState
+        }
     }
     
     
@@ -48,11 +54,13 @@ struct MainFeedViewModelLink: ViewStateIntentLink {
         let account: StudentAccount
         let user: MealPlanUser
     }
-    enum MainFeedIntent: Intent {
+    enum MainFeedIntent: Intent, ActionIntent {
+        case initial(user: MealPlanUser)
         case didSelectTransactionDetails
         case didSelectSpendingDetails
     }
     enum MainFeedResult: Result {
         case notSet
+        case initial(user: MealPlanUser)
     }
 }
