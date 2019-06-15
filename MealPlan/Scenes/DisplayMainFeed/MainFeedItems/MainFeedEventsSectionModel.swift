@@ -11,12 +11,16 @@ import MealPlanDomain
 import Utilities
 
 struct MainFeedEventsSectionModel: SectionModel {
+    
     typealias ParentViewState = MainFeedEventsItemViewModelLink.ItemViewState
+    
     static var isPaging: Bool = false
     
     static var numberOfSections: Int! = 1
     
     static var interItemSpacing: CGFloat! = 0
+    
+    static var minimumLineSpacing: CGFloat = 0
     
     static var registrationItems: [(AnyClass?, String)] = [(MainFeedEventItem.self, MainFeedEventItem.identifier)]
     
@@ -25,23 +29,20 @@ struct MainFeedEventsSectionModel: SectionModel {
     }
     var viewState: MainFeedEventsItemViewModelLink.ItemViewState!
     
-    func numberOfItems(section: Int) -> Int { return 3}//viewState?.events.count ?? 0 }
+    func numberOfItems(section: Int) -> Int { return viewState?.events.count ?? 0 }
     
     func headerSize(path: IndexPath) -> CGSize { return .zero }
     
     func itemSize(reference: CGSize, indexPath: IndexPath) -> CGSize {
-        return CGSize(width: reference.width, height: 50)
+        return CGSize(width: reference.width, height: MainFeedEventItem.Layout.itemHeight)
     }
-    
-    func implementCell<Listener>(for item: ItemType, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
-        guard var item = item as? MainFeedEventItem else { return }//, let events = viewState?.events else { return }
-//        let event = events[indexPath.item]
-        let event = DiningEvent(event: "",
-                                venue: "",
-                                value: 20,
-                                date: Date().timeIntervalSince1970,
-                                description: "Dined somewhere",
-                                user: EventUser())
+    func item(collection: UIView, indexPath: IndexPath) -> UIView {
+        guard let collection = collection as? UICollectionView else { return UICollectionViewCell()}
+        return collection.dequeueReusableCell(withReuseIdentifier: MainFeedEventItem.identifier, for: indexPath)
+    }
+    func implementCell<Listener>(for item: UIView, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
+        guard var item = item as? MainFeedEventItem, let events = viewState?.events else { return }
+        let event = events[indexPath.item]
         let viewModel = ViewModel<MainFeedEventItemViewModel>()
         viewModel.intent.accept(.initial(event: event))
         let presenter = ItemPresenter<MainFeedEventItemPresenter>(item: item)

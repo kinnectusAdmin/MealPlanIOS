@@ -18,22 +18,24 @@ struct TransferViewModel: ViewModelLink {
     
     static var delegateHandler: ((DelegateIntent?, TransferViewModelLink.ViewStateType) -> Void)?
     
-    static var initialIntent: TransferViewModelLink.TransferIntent?
+    static var initialIntent: TransferViewModelLink.TransferIntent? = .initial
 
     static var intentHandler: (TransferViewModelLink.TransferIntent) -> TransferViewModelLink.TransferResult =
     {
         intent in
         switch intent {
+        case .initial:
+            return ResultType.initial
         case .didSelectSwapTransferMode:
             return ResultType.swapTransferMode
         case let .didSelectTransferType(transferType):
-            return ResultType.transferType(transferType)
+            return ResultType.updateTransferType(transferType)
         case .didSelectSearch:
             return ResultType.showSearch
         case .didDismissSearch:
             return ResultType.dismissSearch
-        case let .didUpdateTransferAmounts(localUser, externalUser):
-            return ResultType.updateTransferAmounts(localUser: localUser, externalUser: externalUser)
+        case let .didUpdateTransferAmounts(value):
+            return ResultType.updateTransferAmounts(value: value)
         case let .didSelectRequestUser(user):
             return ResultType.requestUser(user)
         case let .didUpdateSearchField(text):
@@ -44,7 +46,26 @@ struct TransferViewModel: ViewModelLink {
     static var partialResultHandler: (Result) -> TransferViewModelLink.TransferResult? = { _ in return nil}
     
     static func reduce(viewState: TransferViewModelLink.TransferViewState?, result: TransferViewModelLink.TransferResult?) -> TransferViewModelLink.TransferViewState? {
-        return viewState
+        let state = viewState ?? Link.TransferViewState.empty
+        switch result {
+        case .initial?:
+            return Link.TransferViewState.empty
+        case .swapTransferMode?:
+            return Link.TransferViewState(transferIntention: state.transferIntention.alternate, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        case let .updateTransferType(type)?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: type, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        case .showSearch?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: .display, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        case .dismissSearch?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: .notDisplayed, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        case let .updateTransferAmounts(value)?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: String(value), selectedTransactee: state.selectedTransactee)
+        case let .requestUser(user)?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: user)
+        case let .updateSearchField(searchText)?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: searchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        default: return viewState
+        }
     }
 }
 struct TransferViewModelLink: ViewStateIntentLink {
@@ -53,39 +74,39 @@ struct TransferViewModelLink: ViewStateIntentLink {
     typealias ResultType = TransferResult
     
     struct TransferViewState: ViewState {
-        let proposedTransfer: TransferEvent
         let transferIntention: TransferMode
         let transferType: TransferType
         let pastTransfers: [TransferEvent]
         let userSearchText: String
+        let userSearchResults: [MealPlanUser]
+        let searchViewState: DisplayState
+        let transferValue: String
+        let selectedTransactee: MealPlanUser
+        static var empty: TransferViewState {
+            return TransferViewState(transferIntention: .sending, transferType: .swipes, pastTransfers: [], userSearchText: "", userSearchResults: [MealPlanUser.local, MealPlanUser.local, MealPlanUser.local], searchViewState: .notDisplayed, transferValue: "0", selectedTransactee: MealPlanUser.local)
+        }
     }
     enum TransferIntent: Intent, ActionIntent, ServiceIntent {
+        case initial
         case didInitiateTransfer
         case didSelectSwapTransferMode
         case didSelectTransferType(TransferType)
         case didSelectSearch
         case didDismissSearch
-        case didUpdateTransferAmounts(localUser: Int, externalUser: Int)
+        case didUpdateTransferAmounts(value: Double)
         case didSelectViewUser(MealPlanUser)
         case didSelectRequestUser(MealPlanUser)
         case didUpdateSearchField(String)
     }
     enum TransferResult: Result {
         case notSet
+        case initial
         case swapTransferMode
-        case transferType(TransferType)
+        case updateTransferType(TransferType)
         case showSearch
         case dismissSearch
-        case updateTransferAmounts(localUser: Int, externalUser: Int)
+        case updateTransferAmounts(value: Double)
         case requestUser(MealPlanUser)
         case updateSearchField(String)
-    }
-    enum TransferMode{
-        case requesting
-        case sending
-    }
-    enum TransferType {
-        case swipes
-        case flex
     }
 }

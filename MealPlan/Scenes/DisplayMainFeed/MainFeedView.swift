@@ -27,8 +27,8 @@ extension MainFeedView {
         mainFeedCollectionView.constrainInView(view: self.view, top: 0, left: 0, right: 0, bottom: 0)
         navigationView.constrainInView(view: self.view, left: 0, right: 0, bottom: 0)
         navigationView.setHeightTo(constant: Layout.navigationViewHeight)
-        welcomeLabel.constrainInView(view: self.view, left: 0, right: 0)
-        welcomeLabel.setHeightTo(constant: Layout.welcomeLabelHeight)
-        welcomeLabel.setBottomTo(con: navigationView.top(), by: Layout.welcomeLabelBottomOffset)
+        navigationView.addSubview(welcomeLabel)
+        welcomeLabel.constrainCenterXTo(view: navigationView, constant: 0)
+        welcomeLabel.constrainTopToTop(of: navigationView, constant: Layout.welcomeLabelTopOffset)
     }
 }

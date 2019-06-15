@@ -35,7 +35,11 @@ struct TransferEventItemViewModel: ViewModelLink {
     }
     
     static func reduce(viewState: TransferEventItemViewModelLink.ItemViewState?, result: TransferEventItemViewModelLink.ItemResult?) -> TransferEventItemViewModelLink.ItemViewState? {
-        return viewState
+        switch result {
+        case let .initial(event)?:
+            return Link.ItemViewState(event: event)
+        default: return viewState
+        }
     }
 }
 struct TransferEventItemViewModelLink: ViewStateIntentLink {
@@ -47,7 +51,6 @@ struct TransferEventItemViewModelLink: ViewStateIntentLink {
         case initial(event: TransferEvent)
     }
     enum ItemResult: Result {
-        case notSet
         case initial(event: TransferEvent)
     }
     struct ItemViewState: ViewState {

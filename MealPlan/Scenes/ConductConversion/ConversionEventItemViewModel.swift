@@ -31,7 +31,11 @@ struct ConversionEventItemViewModel: ViewModelLink {
     static var partialResultHandler: (Result) -> ConversionEventItemViewModelLink.ItemResult? = { _ in return nil}
     
     static func reduce(viewState: ConversionEventItemViewModelLink.ItemViewState?, result: ConversionEventItemViewModelLink.ItemResult?) -> ConversionEventItemViewModelLink.ItemViewState? {
-        return viewState
+        switch result {
+        case let .initial(event)?:
+            return Link.ItemViewState.init(event: event)
+        default: return viewState
+        }
     }
 }
 struct ConversionEventItemViewModelLink: ViewStateIntentLink {

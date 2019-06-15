@@ -19,5 +19,4 @@ final class TransferCoordinator: SceneCoordinator {
     func controller() -> Controller {
         return TransferView()
     }
-    
 }

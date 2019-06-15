@@ -17,7 +17,7 @@ class MainFeedEventsItem: UICollectionViewCell, MainFeedEventsItemType {
     var viewModel: MVIViewModelType!
     var presenter: PresenterType!
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
-    private let container: UIView = UIView.container(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius)
+    private let container: UIView = UIView.container(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
     var eventsCollection = UXCollectionView<MainFeedEventsSectionModel>(model: MainFeedEventsSectionModel(viewState: nil), direction: .vertical, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
 }
 extension MainFeedEventsItem {
@@ -33,20 +33,5 @@ extension MainFeedEventsItem {
         container.constrainInView(view: contentView, left: Layout.containerEdgeOffset.left, right: Layout.containerEdgeOffset.right, bottom: Layout.containerEdgeOffset.bottom)
         container.setTopTo(con: titleLabel.bottom(), by: Layout.containerEdgeOffset.top)
         eventsCollection.constrainInView(view: container, top: Layout.collectionEdgeOffset.top, left: Layout.collectionEdgeOffset.left, right: Layout.collectionEdgeOffset.right, bottom: Layout.collectionEdgeOffset.bottom)
-    }
-}
-extension MainFeedEventsItem {
-    struct ViewProperties {
-        static let containerBackgroundColor: UIColor = .white
-        static let backgroundColor: UIColor = .clear
-        static let contentRadius: CGFloat = 10.0
-        static let title: String = "History"
-        static let titleFont: UIFont = UIFont.App.currentFont.fonts.large
-        static let titleColor: UIColor = UIColor.App.currentScheme.colors.dark
-    }
-    struct Layout {
-        static let titleEdgeOffset: EdgeOffsets = (0, 5, 0, 0)
-        static let containerEdgeOffset: EdgeOffsets = (10, 10, -10, 0)
-        static let collectionEdgeOffset: EdgeOffsets = (10, 10, -10, 0)
     }
 }

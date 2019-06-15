@@ -10,12 +10,16 @@ import Foundation
 import CleanModelViewIntent
 
 struct TransferEventItemPresenter: ItemPresenterLink {
-    typealias View = TransferEventItemType
+    typealias View = EventItemType
     typealias Link = TransferEventItemViewModelLink
-    static var action: (TransferEventItemViewModelLink.ItemViewState?, TransferEventItemViewModelLink.ItemViewState?, TransferEventItemType) -> Void
+    static var action: (TransferEventItemViewModelLink.ItemViewState?, TransferEventItemViewModelLink.ItemViewState?, EventItemType) -> Void
         = { viewState, _, view in
-        
+            guard let state  = viewState else { return }
+            view.avatar.loadImageWithURL(url: state.userImage, defaultImage: AppImages.person.image())
+//            view.descriptionLabel.text = state.eventDescription
+//            view.dateLabel.text = state.eventDate
     }
-    static var interaction: (TransferEventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
+    static var interaction: (EventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
+        
     }
 }

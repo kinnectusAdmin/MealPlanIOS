@@ -18,8 +18,7 @@
 		DA0B087122A738E1001F180D /* TransferEventItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087022A738E1001F180D /* TransferEventItemViewModel.swift */; };
 		DA0B087322A73B20001F180D /* TransferEventItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087222A73B20001F180D /* TransferEventItemPresenter.swift */; };
 		DA0B087522A73BC4001F180D /* ConversionEventItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087422A73BC4001F180D /* ConversionEventItemPresenter.swift */; };
-		DA0B087722A73C1B001F180D /* ConversionEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087622A73C1B001F180D /* ConversionEventItem.swift */; };
-		DA0B087922A73C6B001F180D /* TransferEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087822A73C6B001F180D /* TransferEventItem.swift */; };
+		DA0B087922A73C6B001F180D /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087822A73C6B001F180D /* EventItem.swift */; };
 		DA0B087B22A75296001F180D /* MainFeedEventsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087A22A75296001F180D /* MainFeedEventsSectionModel.swift */; };
 		DA0B087D22A75374001F180D /* MainFeedEventsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087C22A75374001F180D /* MainFeedEventsItem.swift */; };
 		DA0B087F22A780A3001F180D /* MainFeedEventItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B087E22A780A3001F180D /* MainFeedEventItemViewModel.swift */; };
@@ -34,16 +33,22 @@
 		DA0CB2392229BB80009C23FB /* OnboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CB2382229BB80009C23FB /* OnboardViewModel.swift */; };
 		DA0CB23B2229BB8A009C23FB /* OnboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CB23A2229BB8A009C23FB /* OnboardPresenter.swift */; };
 		DA0CB23D2229BB9D009C23FB /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CB23C2229BB9D009C23FB /* OnBoardView.swift */; };
+		DA0F68AE22AC7A6B00866977 /* PadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68AD22AC7A6B00866977 /* PadButton.swift */; };
+		DA0F68B822AC8B6500866977 /* UserSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68B722AC8B6500866977 /* UserSearchView.swift */; };
+		DA0F68BA22AC8E5700866977 /* UserSearchViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68B922AC8E5700866977 /* UserSearchViewSectionModel.swift */; };
+		DA0F68BC22AC8E6A00866977 /* UserSearchViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68BB22AC8E6A00866977 /* UserSearchViewItem.swift */; };
+		DA0F68BE22AC8E7600866977 /* UserSearchViewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68BD22AC8E7600866977 /* UserSearchViewItemViewModel.swift */; };
+		DA0F68C022AC8E8200866977 /* UserSeachViewItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68BF22AC8E8200866977 /* UserSeachViewItemPresenter.swift */; };
+		DA0F68C222AF2FC600866977 /* TransferViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C122AF2FC600866977 /* TransferViewType.swift */; };
+		DA0F68C422AF4DB200866977 /* ConversionViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C322AF4DB200866977 /* ConversionViewType.swift */; };
+		DA0F68C622AF4E7A00866977 /* ConversionEventSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C522AF4E7A00866977 /* ConversionEventSectionModel.swift */; };
+		DA0F68C822AF5C4B00866977 /* ConversionViewViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C722AF5C4B00866977 /* ConversionViewViewProperties.swift */; };
 		DA31110E22A5C65C002F851C /* MainFeedSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31110D22A5C65C002F851C /* MainFeedSectionModel.swift */; };
-		DA9754F622446732002D1ADC /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA9754F522446732002D1ADC /* fontello.ttf */; };
 		DA9754F822471F0C002D1ADC /* MainFeedViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754F722471F0C002D1ADC /* MainFeedViewProperties.swift */; };
 		DA9754FA22472509002D1ADC /* MainFeedEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754F922472509002D1ADC /* MainFeedEventItem.swift */; };
 		DA9754FC22472545002D1ADC /* MainFeedEventsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754FB22472545002D1ADC /* MainFeedEventsItemViewModel.swift */; };
 		DA9754FE22472567002D1ADC /* MainFeedEventsItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754FD22472567002D1ADC /* MainFeedEventsItemPresenter.swift */; };
 		DA975502224864C1002D1ADC /* MainFeedEventItemViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA975501224864C1002D1ADC /* MainFeedEventItemViewProperties.swift */; };
-		DA9755052248798A002D1ADC /* MainFeedTrendItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9755042248798A002D1ADC /* MainFeedTrendItemViewModel.swift */; };
-		DA97550722487D83002D1ADC /* MainFeedTrendItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97550622487D83002D1ADC /* MainFeedTrendItemPresenter.swift */; };
-		DA97550922487DCB002D1ADC /* MainFeedTrendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97550822487DCB002D1ADC /* MainFeedTrendItem.swift */; };
 		DA97551622490A24002D1ADC /* SwiftCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA97551122490A01002D1ADC /* SwiftCharts.framework */; };
 		DA97551722490A24002D1ADC /* SwiftCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA97551122490A01002D1ADC /* SwiftCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA97551B22490A50002D1ADC /* MainFeedGraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97551A22490A50002D1ADC /* MainFeedGraphItem.swift */; };
@@ -102,6 +107,21 @@
 		DAA04CFA222D761F00DACE77 /* MenuUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CF9222D761F00DACE77 /* MenuUseCase.swift */; };
 		DAB1B1F622A956A900A8FD5F /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB1B1F322A955AF00A8FD5F /* Utilities.framework */; };
 		DAB1B1F722A956A900A8FD5F /* Utilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAB1B1F322A955AF00A8FD5F /* Utilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DAB1B20B22A98AA600A8FD5F /* MainFeedAccountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B20A22A98AA600A8FD5F /* MainFeedAccountItem.swift */; };
+		DAB1B20D22A993E800A8FD5F /* MainFeedAccountViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B20C22A993E800A8FD5F /* MainFeedAccountViewProperties.swift */; };
+		DAB1B20F22A994F500A8FD5F /* MainFeedEventsItemViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B20E22A994F500A8FD5F /* MainFeedEventsItemViewProperties.swift */; };
+		DAB1B21322A9D05C00A8FD5F /* MainFeedAccountItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B21222A9D05C00A8FD5F /* MainFeedAccountItemViewModel.swift */; };
+		DAB1B21522A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B21422A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift */; };
+		DAB1B21C22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B21B22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift */; };
+		DAB1B22422AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B22322AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift */; };
+		DAB1B22622AA9BF800A8FD5F /* EventItemViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B22522AA9BF800A8FD5F /* EventItemViewProperties.swift */; };
+		DAB1B22822AA9E0A00A8FD5F /* TransferIndicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B22722AA9E0A00A8FD5F /* TransferIndicationView.swift */; };
+		DAB1B22A22AAAF3300A8FD5F /* TransferEventSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B22922AAAF3300A8FD5F /* TransferEventSectionModel.swift */; };
+		DAB1B23022AAD4FC00A8FD5F /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB1B22F22AAD4FC00A8FD5F /* fontello.ttf */; };
+		DAB1B23422AC0C4900A8FD5F /* TransferViewViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B23322AC0C4900A8FD5F /* TransferViewViewProperties.swift */; };
+		DAB1B23622AC462B00A8FD5F /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1B23522AC462B00A8FD5F /* NumberPadView.swift */; };
+		DAC886EC22B3DE880096ECDF /* MenuViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC886EB22B3DE880096ECDF /* MenuViewProperties.swift */; };
+		DAC886EE22B3DF940096ECDF /* MenuViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC886ED22B3DF940096ECDF /* MenuViewType.swift */; };
 		DAEB07562291DD1200415220 /* OnboardViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB07552291DD1200415220 /* OnboardViewType.swift */; };
 		DAEB075E2291DD3D00415220 /* LoginViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB075D2291DD3D00415220 /* LoginViewType.swift */; };
 		DAEB07602291DD6B00415220 /* CreateAccountViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB075F2291DD6B00415220 /* CreateAccountViewType.swift */; };
@@ -273,8 +293,7 @@
 		DA0B087022A738E1001F180D /* TransferEventItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEventItemViewModel.swift; sourceTree = "<group>"; };
 		DA0B087222A73B20001F180D /* TransferEventItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEventItemPresenter.swift; sourceTree = "<group>"; };
 		DA0B087422A73BC4001F180D /* ConversionEventItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEventItemPresenter.swift; sourceTree = "<group>"; };
-		DA0B087622A73C1B001F180D /* ConversionEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEventItem.swift; sourceTree = "<group>"; };
-		DA0B087822A73C6B001F180D /* TransferEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEventItem.swift; sourceTree = "<group>"; };
+		DA0B087822A73C6B001F180D /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
 		DA0B087A22A75296001F180D /* MainFeedEventsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsSectionModel.swift; sourceTree = "<group>"; };
 		DA0B087C22A75374001F180D /* MainFeedEventsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsItem.swift; sourceTree = "<group>"; };
 		DA0B087E22A780A3001F180D /* MainFeedEventItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventItemViewModel.swift; sourceTree = "<group>"; };
@@ -287,17 +306,23 @@
 		DA0CB2382229BB80009C23FB /* OnboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewModel.swift; sourceTree = "<group>"; };
 		DA0CB23A2229BB8A009C23FB /* OnboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardPresenter.swift; sourceTree = "<group>"; };
 		DA0CB23C2229BB9D009C23FB /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
+		DA0F68AD22AC7A6B00866977 /* PadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadButton.swift; sourceTree = "<group>"; };
+		DA0F68B722AC8B6500866977 /* UserSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchView.swift; sourceTree = "<group>"; };
+		DA0F68B922AC8E5700866977 /* UserSearchViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewSectionModel.swift; sourceTree = "<group>"; };
+		DA0F68BB22AC8E6A00866977 /* UserSearchViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewItem.swift; sourceTree = "<group>"; };
+		DA0F68BD22AC8E7600866977 /* UserSearchViewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewItemViewModel.swift; sourceTree = "<group>"; };
+		DA0F68BF22AC8E8200866977 /* UserSeachViewItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSeachViewItemPresenter.swift; sourceTree = "<group>"; };
+		DA0F68C122AF2FC600866977 /* TransferViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewType.swift; sourceTree = "<group>"; };
+		DA0F68C322AF4DB200866977 /* ConversionViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewType.swift; sourceTree = "<group>"; };
+		DA0F68C522AF4E7A00866977 /* ConversionEventSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEventSectionModel.swift; sourceTree = "<group>"; };
+		DA0F68C722AF5C4B00866977 /* ConversionViewViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewViewProperties.swift; sourceTree = "<group>"; };
 		DA1107A02242955A00171899 /* CleanModelViewIntent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CleanModelViewIntent.xcodeproj; path = ../CleanModelViewIntent/CleanModelViewIntent.xcodeproj; sourceTree = "<group>"; };
 		DA31110D22A5C65C002F851C /* MainFeedSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedSectionModel.swift; sourceTree = "<group>"; };
-		DA9754F522446732002D1ADC /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.ttf; sourceTree = "<group>"; };
 		DA9754F722471F0C002D1ADC /* MainFeedViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedViewProperties.swift; sourceTree = "<group>"; };
 		DA9754F922472509002D1ADC /* MainFeedEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventItem.swift; sourceTree = "<group>"; };
 		DA9754FB22472545002D1ADC /* MainFeedEventsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsItemViewModel.swift; sourceTree = "<group>"; };
 		DA9754FD22472567002D1ADC /* MainFeedEventsItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsItemPresenter.swift; sourceTree = "<group>"; };
 		DA975501224864C1002D1ADC /* MainFeedEventItemViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventItemViewProperties.swift; sourceTree = "<group>"; };
-		DA9755042248798A002D1ADC /* MainFeedTrendItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedTrendItemViewModel.swift; sourceTree = "<group>"; };
-		DA97550622487D83002D1ADC /* MainFeedTrendItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedTrendItemPresenter.swift; sourceTree = "<group>"; };
-		DA97550822487DCB002D1ADC /* MainFeedTrendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedTrendItem.swift; sourceTree = "<group>"; };
 		DA97550A22490A01002D1ADC /* SwiftCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCharts.xcodeproj; path = "../SwiftCharts-master/SwiftCharts.xcodeproj"; sourceTree = "<group>"; };
 		DA97551A22490A50002D1ADC /* MainFeedGraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedGraphItem.swift; sourceTree = "<group>"; };
 		DA97551C22490B6D002D1ADC /* MainFeedGraphItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedGraphItemViewModel.swift; sourceTree = "<group>"; };
@@ -354,6 +379,21 @@
 		DAA04CF7222D761600DACE77 /* MenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
 		DAA04CF9222D761F00DACE77 /* MenuUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuUseCase.swift; sourceTree = "<group>"; };
 		DAB1B1ED22A955AF00A8FD5F /* Utilities.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Utilities.xcodeproj; path = ../Utilities/Utilities.xcodeproj; sourceTree = "<group>"; };
+		DAB1B20A22A98AA600A8FD5F /* MainFeedAccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedAccountItem.swift; sourceTree = "<group>"; };
+		DAB1B20C22A993E800A8FD5F /* MainFeedAccountViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedAccountViewProperties.swift; sourceTree = "<group>"; };
+		DAB1B20E22A994F500A8FD5F /* MainFeedEventsItemViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsItemViewProperties.swift; sourceTree = "<group>"; };
+		DAB1B21222A9D05C00A8FD5F /* MainFeedAccountItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedAccountItemViewModel.swift; sourceTree = "<group>"; };
+		DAB1B21422A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedAccountItemPresenter.swift; sourceTree = "<group>"; };
+		DAB1B21B22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedGraphItemPresenter.swift; sourceTree = "<group>"; };
+		DAB1B22322AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedGraphItemViewProperties.swift; sourceTree = "<group>"; };
+		DAB1B22522AA9BF800A8FD5F /* EventItemViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemViewProperties.swift; sourceTree = "<group>"; };
+		DAB1B22722AA9E0A00A8FD5F /* TransferIndicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferIndicationView.swift; sourceTree = "<group>"; };
+		DAB1B22922AAAF3300A8FD5F /* TransferEventSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEventSectionModel.swift; sourceTree = "<group>"; };
+		DAB1B22F22AAD4FC00A8FD5F /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.ttf; sourceTree = "<group>"; };
+		DAB1B23322AC0C4900A8FD5F /* TransferViewViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewViewProperties.swift; sourceTree = "<group>"; };
+		DAB1B23522AC462B00A8FD5F /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
+		DAC886EB22B3DE880096ECDF /* MenuViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewProperties.swift; sourceTree = "<group>"; };
+		DAC886ED22B3DF940096ECDF /* MenuViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewType.swift; sourceTree = "<group>"; };
 		DAEB07552291DD1200415220 /* OnboardViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewType.swift; sourceTree = "<group>"; };
 		DAEB075D2291DD3D00415220 /* LoginViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewType.swift; sourceTree = "<group>"; };
 		DAEB075F2291DD6B00415220 /* CreateAccountViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewType.swift; sourceTree = "<group>"; };
@@ -407,9 +447,9 @@
 			isa = PBXGroup;
 			children = (
 				DAF3A8E322262B0600FFF4E5 /* Assets.xcassets */,
+				DAB1B22F22AAD4FC00A8FD5F /* fontello.ttf */,
 				DA0C7E1A2242F099006C26BD /* Resources.swift */,
 				DAF3A8DC22262B0400FFF4E5 /* AppDelegate.swift */,
-				DA9754F522446732002D1ADC /* fontello.ttf */,
 				DAF3A8E522262B0600FFF4E5 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -448,16 +488,20 @@
 			children = (
 				DA0B087A22A75296001F180D /* MainFeedEventsSectionModel.swift */,
 				DA0B087C22A75374001F180D /* MainFeedEventsItem.swift */,
-				DA9754F922472509002D1ADC /* MainFeedEventItem.swift */,
-				DA97550822487DCB002D1ADC /* MainFeedTrendItem.swift */,
-				DA97551A22490A50002D1ADC /* MainFeedGraphItem.swift */,
-				DA975501224864C1002D1ADC /* MainFeedEventItemViewProperties.swift */,
 				DA9754FB22472545002D1ADC /* MainFeedEventsItemViewModel.swift */,
-				DA0B087E22A780A3001F180D /* MainFeedEventItemViewModel.swift */,
+				DAB1B20E22A994F500A8FD5F /* MainFeedEventsItemViewProperties.swift */,
 				DA9754FD22472567002D1ADC /* MainFeedEventsItemPresenter.swift */,
-				DA9755042248798A002D1ADC /* MainFeedTrendItemViewModel.swift */,
-				DA97550622487D83002D1ADC /* MainFeedTrendItemPresenter.swift */,
+				DA9754F922472509002D1ADC /* MainFeedEventItem.swift */,
+				DA975501224864C1002D1ADC /* MainFeedEventItemViewProperties.swift */,
+				DA0B087E22A780A3001F180D /* MainFeedEventItemViewModel.swift */,
+				DA97551A22490A50002D1ADC /* MainFeedGraphItem.swift */,
+				DAB1B22322AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift */,
 				DA97551C22490B6D002D1ADC /* MainFeedGraphItemViewModel.swift */,
+				DAB1B21B22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift */,
+				DAB1B20A22A98AA600A8FD5F /* MainFeedAccountItem.swift */,
+				DAB1B21222A9D05C00A8FD5F /* MainFeedAccountItemViewModel.swift */,
+				DAB1B21422A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift */,
+				DAB1B20C22A993E800A8FD5F /* MainFeedAccountViewProperties.swift */,
 			);
 			path = MainFeedItems;
 			sourceTree = "<group>";
@@ -661,11 +705,23 @@
 				DAA04CD9222D6B2000DACE77 /* TransferViewModel.swift */,
 				DAA04CDB222D6B2800DACE77 /* TransferPresenter.swift */,
 				DAA04CDD222D6B2F00DACE77 /* TransferView.swift */,
+				DA0F68C122AF2FC600866977 /* TransferViewType.swift */,
+				DAB1B23322AC0C4900A8FD5F /* TransferViewViewProperties.swift */,
 				DAA04CE1222D6B4E00DACE77 /* TransferRouter.swift */,
 				DAA04CDF222D6B4100DACE77 /* TransferUseCase.swift */,
+				DA0B087822A73C6B001F180D /* EventItem.swift */,
+				DAB1B22522AA9BF800A8FD5F /* EventItemViewProperties.swift */,
 				DA0B087022A738E1001F180D /* TransferEventItemViewModel.swift */,
 				DA0B087222A73B20001F180D /* TransferEventItemPresenter.swift */,
-				DA0B087822A73C6B001F180D /* TransferEventItem.swift */,
+				DAB1B22722AA9E0A00A8FD5F /* TransferIndicationView.swift */,
+				DAB1B22922AAAF3300A8FD5F /* TransferEventSectionModel.swift */,
+				DAB1B23522AC462B00A8FD5F /* NumberPadView.swift */,
+				DA0F68AD22AC7A6B00866977 /* PadButton.swift */,
+				DA0F68B722AC8B6500866977 /* UserSearchView.swift */,
+				DA0F68B922AC8E5700866977 /* UserSearchViewSectionModel.swift */,
+				DA0F68BB22AC8E6A00866977 /* UserSearchViewItem.swift */,
+				DA0F68BD22AC8E7600866977 /* UserSearchViewItemViewModel.swift */,
+				DA0F68BF22AC8E8200866977 /* UserSeachViewItemPresenter.swift */,
 			);
 			path = ConductTransfer;
 			sourceTree = "<group>";
@@ -677,11 +733,13 @@
 				DAA04CE5222D75B200DACE77 /* ConversionViewModel.swift */,
 				DAA04CE7222D75CB00DACE77 /* ConversionPresenter.swift */,
 				DAA04CE9222D75D500DACE77 /* ConversionView.swift */,
+				DA0F68C722AF5C4B00866977 /* ConversionViewViewProperties.swift */,
+				DA0F68C322AF4DB200866977 /* ConversionViewType.swift */,
 				DAA04CEB222D75DB00DACE77 /* ConversionRouter.swift */,
 				DAA04CED222D75E400DACE77 /* ConversionUseCase.swift */,
 				DA0B086E22A7384A001F180D /* ConversionEventItemViewModel.swift */,
 				DA0B087422A73BC4001F180D /* ConversionEventItemPresenter.swift */,
-				DA0B087622A73C1B001F180D /* ConversionEventItem.swift */,
+				DA0F68C522AF4E7A00866977 /* ConversionEventSectionModel.swift */,
 			);
 			path = ConductConversion;
 			sourceTree = "<group>";
@@ -691,8 +749,10 @@
 			children = (
 				DAA04CEF222D75F000DACE77 /* MenuCoordinator.swift */,
 				DAA04CF1222D75F600DACE77 /* MenuViewModel.swift */,
+				DAC886ED22B3DF940096ECDF /* MenuViewType.swift */,
 				DAA04CF3222D760200DACE77 /* MenuPresenter.swift */,
 				DAA04CF5222D760C00DACE77 /* MenuView.swift */,
+				DAC886EB22B3DE880096ECDF /* MenuViewProperties.swift */,
 				DAA04CF7222D761600DACE77 /* MenuRouter.swift */,
 				DAA04CF9222D761F00DACE77 /* MenuUseCase.swift */,
 			);
@@ -937,7 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF3A8E722262B0600FFF4E5 /* LaunchScreen.storyboard in Resources */,
-				DA9754F622446732002D1ADC /* fontello.ttf in Resources */,
+				DAB1B23022AAD4FC00A8FD5F /* fontello.ttf in Resources */,
 				DAF3A8E422262B0600FFF4E5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -967,27 +1027,35 @@
 				DAA04C95222C8CBB00DACE77 /* Application.swift in Sources */,
 				DAA04CF8222D761600DACE77 /* MenuRouter.swift in Sources */,
 				DAA04CBB222CA68000DACE77 /* HistoryCoordinator.swift in Sources */,
-				DA0B087922A73C6B001F180D /* TransferEventItem.swift in Sources */,
+				DAB1B23622AC462B00A8FD5F /* NumberPadView.swift in Sources */,
+				DA0B087922A73C6B001F180D /* EventItem.swift in Sources */,
 				DAA04CE8222D75CB00DACE77 /* ConversionPresenter.swift in Sources */,
 				DA975502224864C1002D1ADC /* MainFeedEventItemViewProperties.swift in Sources */,
+				DA0F68C022AC8E8200866977 /* UserSeachViewItemPresenter.swift in Sources */,
 				DAA04CC8222D649400DACE77 /* MainNavigationCoordinator.swift in Sources */,
 				DAA04CEC222D75DB00DACE77 /* ConversionRouter.swift in Sources */,
 				DA0792402231BC4E006A0E66 /* OnboardItemViewModel.swift in Sources */,
+				DAB1B21322A9D05C00A8FD5F /* MainFeedAccountItemViewModel.swift in Sources */,
+				DA0F68C422AF4DB200866977 /* ConversionViewType.swift in Sources */,
 				DAA04CCE222D64E100DACE77 /* MainNavigationRouter.swift in Sources */,
 				DAA04CE6222D75B200DACE77 /* ConversionViewModel.swift in Sources */,
 				DAA04CD6222D6A3600DACE77 /* HistoryRouter.swift in Sources */,
 				DA31110E22A5C65C002F851C /* MainFeedSectionModel.swift in Sources */,
 				DAA04CEE222D75E400DACE77 /* ConversionUseCase.swift in Sources */,
+				DAB1B23422AC0C4900A8FD5F /* TransferViewViewProperties.swift in Sources */,
 				DAA04CB1222CA0B700DACE77 /* MainFeedViewModel.swift in Sources */,
 				DAA04CA1222C985C00DACE77 /* CreateAccountRouter.swift in Sources */,
 				DAEB07622291DE7000415220 /* MainFeedViewType.swift in Sources */,
 				DAA04CB3222CA0C000DACE77 /* MainFeedPresenter.swift in Sources */,
 				DAA04C8F222C630600DACE77 /* CoordinatorProviders.swift in Sources */,
+				DAB1B20B22A98AA600A8FD5F /* MainFeedAccountItem.swift in Sources */,
 				DAA04CDC222D6B2800DACE77 /* TransferPresenter.swift in Sources */,
 				DA0CB2342229BB77009C23FB /* OnboardCoordinator.swift in Sources */,
+				DA0F68C822AF5C4B00866977 /* ConversionViewViewProperties.swift in Sources */,
+				DAC886EC22B3DE880096ECDF /* MenuViewProperties.swift in Sources */,
+				DAB1B21522A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift in Sources */,
 				DAEB07602291DD6B00415220 /* CreateAccountViewType.swift in Sources */,
 				DA0B087122A738E1001F180D /* TransferEventItemViewModel.swift in Sources */,
-				DA97550922487DCB002D1ADC /* MainFeedTrendItem.swift in Sources */,
 				DAA04CBD222CA68800DACE77 /* HistoryViewModel.swift in Sources */,
 				DAEB075E2291DD3D00415220 /* LoginViewType.swift in Sources */,
 				DA07924A2231BE3B006A0E66 /* OnboardItemPresenter.swift in Sources */,
@@ -1000,16 +1068,22 @@
 				DAA04C9D222C956000DACE77 /* CreateAccountView.swift in Sources */,
 				DAA04CC3222CA6A600DACE77 /* HistoryUseCase.swift in Sources */,
 				DA0CB2392229BB80009C23FB /* OnboardViewModel.swift in Sources */,
+				DAB1B22622AA9BF800A8FD5F /* EventItemViewProperties.swift in Sources */,
 				DAA04CF0222D75F000DACE77 /* MenuCoordinator.swift in Sources */,
 				DAA04CDE222D6B2F00DACE77 /* TransferView.swift in Sources */,
 				DA0CB23B2229BB8A009C23FB /* OnboardPresenter.swift in Sources */,
+				DA0F68BE22AC8E7600866977 /* UserSearchViewItemViewModel.swift in Sources */,
 				DAA04C99222C954A00DACE77 /* CreateAccountViewModel.swift in Sources */,
 				DA07924C2231BE78006A0E66 /* OnboardItemView.swift in Sources */,
+				DA0F68C622AF4E7A00866977 /* ConversionEventSectionModel.swift in Sources */,
 				DAA04C9F222C956B00DACE77 /* CreateAccountUseCase.swift in Sources */,
 				DAA04CA5222C9CC400DACE77 /* LoginViewModel.swift in Sources */,
 				DAA04CAD222C9CE500DACE77 /* LoginUseCase.swift in Sources */,
+				DA0F68BA22AC8E5700866977 /* UserSearchViewSectionModel.swift in Sources */,
+				DAB1B21C22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift in Sources */,
 				DAA04CC1222CA6A000DACE77 /* HistoryView.swift in Sources */,
 				DAA04CCA222D64A700DACE77 /* MainNavigationViewModel.swift in Sources */,
+				DAB1B22422AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift in Sources */,
 				DA07923622304E40006A0E66 /* CreateAccountViewProperties.swift in Sources */,
 				DA0792302230461F006A0E66 /* LoginViewProperties.swift in Sources */,
 				DA07924E2232BA11006A0E66 /* OnboardSectionModel.swift in Sources */,
@@ -1022,6 +1096,7 @@
 				DA9754FC22472545002D1ADC /* MainFeedEventsItemViewModel.swift in Sources */,
 				DAA04CB5222CA0C700DACE77 /* MainFeedRouter.swift in Sources */,
 				DA0B087522A73BC4001F180D /* ConversionEventItemPresenter.swift in Sources */,
+				DA0F68C222AF2FC600866977 /* TransferViewType.swift in Sources */,
 				DA9754FA22472509002D1ADC /* MainFeedEventItem.swift in Sources */,
 				DAA04CA7222C9CCE00DACE77 /* LoginPresenter.swift in Sources */,
 				DAA04CEA222D75D500DACE77 /* ConversionView.swift in Sources */,
@@ -1032,27 +1107,32 @@
 				DAA04CD4222D654C00DACE77 /* MainNavigationUseCase.swift in Sources */,
 				DAA04CB7222CA0CE00DACE77 /* MainFeedView.swift in Sources */,
 				DA97551D22490B6D002D1ADC /* MainFeedGraphItemViewModel.swift in Sources */,
-				DA9755052248798A002D1ADC /* MainFeedTrendItemViewModel.swift in Sources */,
+				DAB1B20F22A994F500A8FD5F /* MainFeedEventsItemViewProperties.swift in Sources */,
 				DA07923822306420006A0E66 /* OnboardViewProperties.swift in Sources */,
 				DAA04CE2222D6B4E00DACE77 /* TransferRouter.swift in Sources */,
-				DA0B087722A73C1B001F180D /* ConversionEventItem.swift in Sources */,
 				DAA04CF2222D75F600DACE77 /* MenuViewModel.swift in Sources */,
 				DAA04CA9222C9CD500DACE77 /* LoginRouter.swift in Sources */,
 				DAA04C97222C953B00DACE77 /* CreateAccountCoordinator.swift in Sources */,
 				DAA04CE4222D75AB00DACE77 /* ConversionCoordinator.swift in Sources */,
-				DA97550722487D83002D1ADC /* MainFeedTrendItemPresenter.swift in Sources */,
 				DAA04C88222C2EC000DACE77 /* OnboardRouter.swift in Sources */,
 				DAA04CA3222C9CBC00DACE77 /* LoginCoordinator.swift in Sources */,
 				DA0B087F22A780A3001F180D /* MainFeedEventItemViewModel.swift in Sources */,
 				DAEB07562291DD1200415220 /* OnboardViewType.swift in Sources */,
+				DAC886EE22B3DF940096ECDF /* MenuViewType.swift in Sources */,
+				DA0F68B822AC8B6500866977 /* UserSearchView.swift in Sources */,
 				DA9754FE22472567002D1ADC /* MainFeedEventsItemPresenter.swift in Sources */,
+				DAB1B20D22A993E800A8FD5F /* MainFeedAccountViewProperties.swift in Sources */,
 				DAA04CD8222D6B1900DACE77 /* TransferCoordinator.swift in Sources */,
+				DAB1B22822AA9E0A00A8FD5F /* TransferIndicationView.swift in Sources */,
+				DA0F68BC22AC8E6A00866977 /* UserSearchViewItem.swift in Sources */,
 				DAA04CDA222D6B2000DACE77 /* TransferViewModel.swift in Sources */,
 				DAA04CAB222C9CDC00DACE77 /* LoginView.swift in Sources */,
 				DA0B086F22A7384A001F180D /* ConversionEventItemViewModel.swift in Sources */,
 				DA0C7E1B2242F099006C26BD /* Resources.swift in Sources */,
 				DAA04CE0222D6B4100DACE77 /* TransferUseCase.swift in Sources */,
 				DAF3A8DD22262B0400FFF4E5 /* AppDelegate.swift in Sources */,
+				DAB1B22A22AAAF3300A8FD5F /* TransferEventSectionModel.swift in Sources */,
+				DA0F68AE22AC7A6B00866977 /* PadButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

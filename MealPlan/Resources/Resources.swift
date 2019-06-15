@@ -36,10 +36,13 @@ enum Backgrounds: String {
 extension UIFont {
     enum App {
         case bodoni
-        var fonts: (large: UIFont, medium: UIFont, small: UIFont, tiny: UIFont) {
+        var fonts: (gigantic: UIFont, huge: UIFont, veryLarge: UIFont, large: UIFont, medium: UIFont, small: UIFont, tiny: UIFont) {
             switch self {
             case .bodoni:
-                return (UIFont(name: "Bodoni 72", size: App.baseSize) ?? .systemFont(ofSize: App.baseSize),
+                return (UIFont(name: "Bodoni 72", size: App.baseSize+42) ?? .systemFont(ofSize: App.baseSize+42),
+                        UIFont(name: "Bodoni 72", size: App.baseSize+12) ?? .systemFont(ofSize: App.baseSize+12),
+                        UIFont(name: "Bodoni 72", size: App.baseSize+6) ?? .systemFont(ofSize: App.baseSize+6),
+                        UIFont(name: "Bodoni 72", size: App.baseSize) ?? .systemFont(ofSize: App.baseSize),
                         UIFont(name: "Bodoni 72", size: App.baseSize-2) ?? .systemFont(ofSize: App.baseSize-2),
                         UIFont(name: "Bodoni 72", size: App.baseSize-4) ?? .systemFont(ofSize: App.baseSize-4),
                         UIFont(name: "Bodoni 72", size: App.baseSize-6) ?? .systemFont(ofSize: App.baseSize-6))
@@ -52,14 +55,14 @@ extension UIFont {
 extension UIColor {
     enum App {
         case blueScheme
-        case greenSceme
+        case greenScheme
         case redScheme
         case greyScheme
         var colors: (dark: UIColor, light: UIColor, lightest: UIColor) {
             switch self {
             case .blueScheme:
                 return (App.darkBlue, App.lightBlue, App.lightestBlue)
-            case .greenSceme:
+            case .greenScheme:
                 return (App.darkGreen, App.lightGreen, App.lightestGreen)
             case .redScheme:
                 return (App.darkRed, App.lightRed, App.lightestRed)
@@ -71,7 +74,7 @@ extension UIColor {
             switch self {
             case .blueScheme:
                 return [App.darkBlue, App.lightBlue, App.lightestBlue]
-            case .greenSceme:
+            case .greenScheme:
                 return [App.darkGreen, App.lightGreen, App.lightestGreen]
             case .redScheme:
                 return [App.darkRed, App.lightRed, App.lightestRed]
@@ -113,8 +116,12 @@ extension UIColor {
     }
 }
 struct Icons {
+    static let dropDownButton: UXButton = UXButton.icon(icon: .downOpenBig, size: IconSize.normal, tint: UIColor.App.currentScheme.colors.dark)
     static let backButton: UXButton = UXButton.icon(icon: .leftOpenBig, size: .normal, tint: UIColor.App.currentScheme.colors.dark)
+    static let menuButton: UXButton = UXButton.icon(icon: .cog, size: .medium, tint: UIColor.App.currentScheme.colors.dark)
     static let backLabelButton: UILabel = FontelloIcons.leftOpenBig.iconLabel(size: .normal, tint: .white)
+    static let transferControlButton: UXButton = UXButton.icon(icon: .exchange, size: .medium, tint: UIColor.App.currentScheme.colors.dark)
+    static let searchButton: UXButton = UXButton.icon(icon: .search, size: .small, tint: UIColor.App.currentScheme.colors.dark)
     static func iconForTrend(trend: Objects.BalanceTrendType) -> UIImage {
         switch trend {
         case .conversion:
@@ -126,6 +133,10 @@ struct Icons {
         case .received:
             return FontelloIcons.balanceScale.image(size: .normal, color: UIColor.App.currentScheme.colors.light)
         }
+    }
+    static let trendIcon: (IconSize, UIColor) -> UILabel = {
+        size, color in
+        return FontelloIcons.chart.iconLabel(size: size, tint: color)
     }
 }
 enum FontelloIcons: UInt32 {
@@ -154,7 +165,9 @@ enum FontelloIcons: UInt32 {
     case flowCross = 0xe815
     case chart = 0xe816
     case chartBar1 = 0xe817
+    case search = 0xe818
     case money = 0xf0d6
+    case exchange = 0xf0ec
     case bullseye = 0xf140
     case ticket = 0xf145
     case dollar = 0xf155
@@ -218,9 +231,12 @@ enum AppImages {
     }
 }
 extension UXButton {
-    static func icon(icon: FontelloIcons, size: IconSize = .normal, tint: UIColor) -> UXButton {
+    static func icon(icon: FontelloIcons, size: IconSize = .normal, tint: UIColor, borderWidth: CGFloat = 1.0, borderColor: UIColor = .clear, radius: CGFloat = 0) -> UXButton {
         let button = UXButton()
         button.tintColor = tint
+        button.layer.borderColor = borderColor.cgColor
+        button.layer.borderWidth = borderWidth
+        button.layer.cornerRadius = radius
         button.setImage(icon.image(size: size, color: tint), for: .normal)
         button.adjustsImageWhenHighlighted = false
         button.translatesAutoresizingMaskIntoConstraints = false

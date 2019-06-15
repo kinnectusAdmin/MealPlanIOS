@@ -23,6 +23,7 @@ struct OnboardSectionModel: SectionModel {
     static var isPaging: Bool = true
     static var numberOfSections: Int! = 1
     static var interItemSpacing: CGFloat! = 0
+    static var minimumLineSpacing: CGFloat = 0
     static var registrationItems: [(AnyClass?, String)] = [(OnboardItemView.self, OnboardItemView.identifier)]
     static var actionForViewState: (OnboardViewModelLink.OnboardViewState, OnboardViewModelLink.OnboardViewState?, UICollectionView) -> Void = {
         viewState, prevViewState, collection in
@@ -32,7 +33,11 @@ struct OnboardSectionModel: SectionModel {
     func numberOfItems(section: Int) -> Int { return 3 }
     func headerSize(path: IndexPath) -> CGSize { return .zero }
     func itemSize(reference: CGSize, indexPath: IndexPath) -> CGSize { return reference }
-    func implementCell<Listener: ItemListener>(for item: ItemType, indexPath: IndexPath, listener: Listener) {
+    func item(collection: UIView, indexPath: IndexPath) -> UIView {
+        guard let collection = collection as? UICollectionView else { return UICollectionViewCell()}
+        return collection.dequeueReusableCell(withReuseIdentifier: OnboardItemView.identifier, for: indexPath)
+    }
+    func implementCell<Listener: ItemListener>(for item: UIView, indexPath: IndexPath, listener: Listener) {
         let page = Items(rawValue: indexPath.item) ?? .first
         let viewModel = ViewModel<OnboardItemViewModel>()
         viewModel.intent.accept(OnboardItemViewModelLink.IntentType.initial(page: page.page))

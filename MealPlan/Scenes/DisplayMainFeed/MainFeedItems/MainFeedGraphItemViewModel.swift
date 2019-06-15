@@ -9,8 +9,46 @@
 import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
-struct MainFeedGraphItemViewModel {
-    enum ItemIntent: Intent {
+struct MainFeedGraphItemViewModel: ViewModelLink {
+    
+    typealias Link = MainFeedGraphItemViewModelLink
+    
+    static var intentHandler: (MainFeedGraphItemViewModelLink.ItemIntent) -> MainFeedGraphItemViewModelLink.ItemResult =
+    {
+        intent in
+        switch intent {
+        case let .initial(balances):
+            return MainFeedGraphItemViewModelLink.ResultType.initial(balances: balances)
+        }
+    }
+    
+    static var partialResultHandler: (Result) -> MainFeedGraphItemViewModelLink.ItemResult?  = {
+        _ in
+        return nil
+    }
+    
+    static var serviceHandler: ((ServiceIntent?, MainFeedGraphItemViewModelLink.ViewStateType) -> Void)? = nil
+    
+    static var delegateHandler: ((DelegateIntent?, MainFeedGraphItemViewModelLink.ViewStateType) -> Void)? = nil
+    
+    static var initialIntent: MainFeedGraphItemViewModelLink.ItemIntent?
+    
+    static func reduce(viewState: MainFeedGraphItemViewModelLink.ItemViewState?, result: MainFeedGraphItemViewModelLink.ItemResult?) -> MainFeedGraphItemViewModelLink.ItemViewState? {
+        switch result {
+        case let .initial(balances)?:
+            return MainFeedGraphItemViewModelLink.ViewStateType.init(balances: balances, trendType: .spent)
+        default: return viewState
+        }
+    }
+}
+struct MainFeedGraphItemViewModelLink: ViewStateIntentLink {
+    typealias ViewStateType = ItemViewState
+    
+    typealias IntentType = ItemIntent
+    
+    typealias ResultType = ItemResult
+    
+    enum ItemIntent: Intent, ActionIntent {
         case initial(balances: [Balance])
     }
     enum ItemResult: Result {

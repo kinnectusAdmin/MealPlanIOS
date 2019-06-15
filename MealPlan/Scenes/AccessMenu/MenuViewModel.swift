@@ -18,35 +18,28 @@ struct MenuViewModel: ViewModelLink {
     
     static var delegateHandler: ((DelegateIntent?, MenuViewModelLink.ViewStateType) -> Void)? = nil
     
-    static var initialIntent: MenuViewModelLink.MenuIntent? = nil
+    static var initialIntent: MenuViewModelLink.MenuIntent? = .initial
     
     static var intentHandler: (MenuViewModelLink.MenuIntent) -> MenuViewModelLink.MenuResult =
     {
         intent in
         switch intent {
-        case .didSelectProfile:
-            return ResultType.displayProfile
-        case .didSelectSettings:
-            return ResultType.displaySettings
-        case .didSelectSupport:
-            return ResultType.displaySupport
-        case .didSelectFeedback:
-            return ResultType.displayFeedback
+        case .initial:
+            return ResultType.initial
         case .didSelectLegal:
             return ResultType.displayLegal
-        case .didSelectTutorial:
-            return ResultType.displayTutorial
         case .didSelectInvite:
             return ResultType.displayInvite
-        case .didSelectDone:
-            return ResultType.dismissDisplayedMenu
-        default: return ResultType.notSet
+        default:
+            return ResultType.notSet
         }
     }
     static var partialResultHandler: (Result) -> MenuViewModelLink.MenuResult? = { _ in return nil}
     
     static func reduce(viewState: MenuViewModelLink.MenuViewState?, result: MenuViewModelLink.MenuResult?) -> MenuViewModelLink.MenuViewState? {
         switch result {
+        case .initial?:
+            return Link.MenuViewState()
         default:
             return viewState
         }
@@ -58,41 +51,25 @@ struct MenuViewModelLink: ViewStateIntentLink {
     typealias IntentType = MenuIntent
     typealias ResultType = MenuResult
     
-    enum MenuMode {
+    enum MenuIntent: Intent, ActionIntent {
         case initial
-        case profile
-        case settings
-        case feedback
-        case legal
+        case didSelectLegal
+        case didSelectInvite
+        case didSelectLogout
+        case didDismissMenu
+    }
+    enum MenuResult: Result {
+        case notSet
+        case initial
+        case displayLegal
+        case displayInvite
     }
     struct MenuViewState: ViewState {
-        let user: MealPlanUser
-        let menuMode: MenuMode
+        let user: MealPlanUser = MealPlanUser.local
         var userName: String { return user.name }
         var userImage: String { return user.imageURL }
         var mealPlan: String  { return user.mealPlan.type}
         var school: String { return user.school.name}
-    }
-    enum MenuIntent: Intent, ActionIntent {
-        case didSelectProfile
-        case didSelectSettings
-        case didSelectSupport
-        case didSelectFeedback
-        case didSelectLegal
-        case didSelectTutorial
-        case didSelectInvite
-        case didSelectLogout
-        case didSelectDone
-    }
-    enum MenuResult: Result {
-        case notSet
-        case displayProfile
-        case displaySettings
-        case displaySupport
-        case displayFeedback
-        case displayLegal
-        case displayTutorial
-        case displayInvite
-        case dismissDisplayedMenu
+        var email: String { return user.email}
     }
 }

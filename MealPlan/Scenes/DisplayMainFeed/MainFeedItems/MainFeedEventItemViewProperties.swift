@@ -25,5 +25,6 @@ extension MainFeedEventItem {
         static let imageLeftOffset: CGFloat = 10
         static let descriptionLeftOffset: CGFloat = 30
         static let dateRightOffset: CGFloat = -8
+        static let itemHeight: CGFloat = 50
     }
 }

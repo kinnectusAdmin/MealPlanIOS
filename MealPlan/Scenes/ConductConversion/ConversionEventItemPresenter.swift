@@ -9,13 +9,13 @@
 import Foundation
 import CleanModelViewIntent
 
-struct ConversionEvenItemPresenter: ItemPresenterLink {
+struct ConversionEventItemPresenter: ItemPresenterLink {
     typealias Link = ConversionEventItemViewModelLink
-    typealias View = ConversionEventItemType
-    static var action: (Link.ViewStateType?, Link.ViewStateType?, ConversionEventItemType) -> Void = { viewState, _, view in
+    typealias View = EventItemType
+    static var action: (Link.ViewStateType?, Link.ViewStateType?, EventItemType) -> Void = { viewState, _, view in
       
     }
-    static var interaction: (ConversionEventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
+    static var interaction: (EventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
         
     }
 }
