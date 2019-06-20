@@ -14,14 +14,16 @@ struct LoginViewModel: ViewModelLink {
     typealias Link = LoginViewModelLink
     typealias ViewState = Link.ViewStateType
     typealias ResultType = Link.LoginResult
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((ServiceIntent?, LoginViewModelLink.ViewStateType) -> Void)?
+    static var serviceHandler: ((LoginViewModelLink.LoginIntent, LoginViewModelLink.LoginViewState, NilServiceType?) -> Void)?
     
-    static var delegateHandler: ((DelegateIntent?, LoginViewModelLink.ViewStateType) -> Void)?
+    static var delegateHandler: ((LoginViewModelLink.LoginIntent, LoginViewModelLink.LoginViewState, NilDelegateType?) -> Void)?
     
     static var initialIntent: LoginViewModelLink.LoginIntent?
     
-    static var intentHandler: (LoginViewModelLink.LoginIntent) -> LoginViewModelLink.LoginResult =
+    static var intentHandler: ((LoginViewModelLink.LoginIntent) -> LoginViewModelLink.LoginResult)? =
     {
         intent in
         switch intent {
@@ -32,7 +34,7 @@ struct LoginViewModel: ViewModelLink {
         default: return ResultType.notSet
         }
     }
-    static var partialResultHandler: (Result) -> LoginViewModelLink.LoginResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> LoginViewModelLink.LoginResult?)?
     
     static func reduce(viewState: LoginViewModelLink.LoginViewState?, result: LoginViewModelLink.LoginResult?) -> LoginViewModelLink.LoginViewState? {
         let state = viewState.otherwise(ViewState.empty)

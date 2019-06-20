@@ -9,7 +9,7 @@
 import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
-struct MainFeedGraphItemViewModel: ViewModelLink {
+struct MainFeedGraphItemViewModel: ItemViewModelLink {
     
     typealias Link = MainFeedGraphItemViewModelLink
     
@@ -26,10 +26,6 @@ struct MainFeedGraphItemViewModel: ViewModelLink {
         _ in
         return nil
     }
-    
-    static var serviceHandler: ((ServiceIntent?, MainFeedGraphItemViewModelLink.ViewStateType) -> Void)? = nil
-    
-    static var delegateHandler: ((DelegateIntent?, MainFeedGraphItemViewModelLink.ViewStateType) -> Void)? = nil
     
     static var initialIntent: MainFeedGraphItemViewModelLink.ItemIntent?
     

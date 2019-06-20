@@ -9,14 +9,10 @@
 import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
-struct MainFeedEventItemViewModel: ViewModelLink {
+struct MainFeedEventItemViewModel: ItemViewModelLink {
     
     typealias Link = MainFeedEventItemViewModelLink
     typealias ResultType = Link.ItemResult
-    
-    static var serviceHandler: ((ServiceIntent?, MainFeedEventItemViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, MainFeedEventItemViewModelLink.ViewStateType) -> Void)?
     
     static var initialIntent: MainFeedEventItemViewModelLink.ItemIntent?
     

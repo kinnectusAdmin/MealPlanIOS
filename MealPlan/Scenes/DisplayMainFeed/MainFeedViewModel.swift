@@ -13,14 +13,14 @@ struct MainFeedViewModel: ViewModelLink {
     
     typealias Link = MainFeedViewModelLink
     typealias ResultType = Link.ResultType
-    
-    static var serviceHandler: ((ServiceIntent?, MainFeedViewModelLink.ViewStateType) -> Void)?
-
-    static var delegateHandler: ((DelegateIntent?, MainFeedViewModelLink.ViewStateType) -> Void)?
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
+    static var serviceHandler: ((MainFeedViewModelLink.MainFeedIntent, MainFeedViewModelLink.MainFeedViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((MainFeedViewModelLink.MainFeedIntent, MainFeedViewModelLink.MainFeedViewState, NilDelegateType?) -> Void)?
 
     static var initialIntent: MainFeedViewModelLink.MainFeedIntent? = .initial(user: MealPlanUser.local)
     
-    static var intentHandler: (MainFeedViewModelLink.MainFeedIntent) -> MainFeedViewModelLink.MainFeedResult =
+    static var intentHandler: ((MainFeedViewModelLink.MainFeedIntent) -> MainFeedViewModelLink.MainFeedResult)? =
     {
         intent in
         switch intent {
@@ -30,7 +30,7 @@ struct MainFeedViewModel: ViewModelLink {
         }
     }
     
-    static var partialResultHandler: (Result) -> MainFeedViewModelLink.MainFeedResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> MainFeedViewModelLink.MainFeedResult?)? 
     
     static func reduce(viewState: MainFeedViewModelLink.MainFeedViewState?, result: MainFeedViewModelLink.MainFeedResult?) -> MainFeedViewModelLink.MainFeedViewState? {
         switch result {

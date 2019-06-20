@@ -13,14 +13,15 @@ struct MenuViewModel: ViewModelLink {
 
     typealias Link = MenuViewModelLink
     typealias ResultType = Link.MenuResult
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((ServiceIntent?, MenuViewModelLink.ViewStateType) -> Void)? = nil
-    
-    static var delegateHandler: ((DelegateIntent?, MenuViewModelLink.ViewStateType) -> Void)? = nil
+    static var serviceHandler: ((MenuViewModelLink.MenuIntent, MenuViewModelLink.MenuViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((MenuViewModelLink.MenuIntent, MenuViewModelLink.MenuViewState, NilDelegateType?) -> Void)?
     
     static var initialIntent: MenuViewModelLink.MenuIntent? = .initial
     
-    static var intentHandler: (MenuViewModelLink.MenuIntent) -> MenuViewModelLink.MenuResult =
+    static var intentHandler: ((MenuViewModelLink.MenuIntent) -> MenuViewModelLink.MenuResult)? =
     {
         intent in
         switch intent {
@@ -34,7 +35,7 @@ struct MenuViewModel: ViewModelLink {
             return ResultType.notSet
         }
     }
-    static var partialResultHandler: (Result) -> MenuViewModelLink.MenuResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> MenuViewModelLink.MenuResult?)?
     
     static func reduce(viewState: MenuViewModelLink.MenuViewState?, result: MenuViewModelLink.MenuResult?) -> MenuViewModelLink.MenuViewState? {
         switch result {

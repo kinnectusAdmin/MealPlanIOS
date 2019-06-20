@@ -48,7 +48,7 @@ struct ConversionEventSectionModel: SectionModel {
     func implementCell<Listener>(for item: UIView, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
         guard let item = item as? EventItem else { return }
         let event = viewState.pastConversions[indexPath.item]
-        let viewModel = ViewModel<ConversionEventItemViewModel>()
+        let viewModel = ItemViewModel<ConversionEventItemViewModel>()
         viewModel.intent.accept(.initial(event: event))
         let presenter = ItemPresenter<ConversionEventItemPresenter>(item: item)
         item.viewModel = viewModel

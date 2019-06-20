@@ -47,7 +47,7 @@ struct UserSearchViewSectionModel: SectionModel {
     
     func implementCell<Listener>(for item: UIView, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
         guard let item = item as? UserSearchItem else { return }
-        let viewModel = ViewModel<UserSearchItemViewModel>()
+        let viewModel = ItemViewModel<UserSearchItemViewModel>()
         let user = viewState.userSearchResults[indexPath.item]
         viewModel.intent.accept(.initial(user: user))
         let presenter = ItemPresenter<UserSearchViewItemPresenter>(item: item)

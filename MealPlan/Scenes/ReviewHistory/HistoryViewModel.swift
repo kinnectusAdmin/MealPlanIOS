@@ -13,21 +13,23 @@ struct HistoryViewModel: ViewModelLink {
     
     typealias Link = HistoryViewModelLink
     typealias ResultType = Link.ResultType
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((ServiceIntent?, HistoryViewModelLink.ViewStateType) -> Void)?
+    static var serviceHandler: ((HistoryViewModelLink.HistoryIntent, HistoryViewModelLink.HistoryViewState, NilServiceType?) -> Void)?
     
-    static var delegateHandler: ((DelegateIntent?, HistoryViewModelLink.ViewStateType) -> Void)?
+    static var delegateHandler: ((HistoryViewModelLink.HistoryIntent, HistoryViewModelLink.HistoryViewState, NilDelegateType?) -> Void)?
     
     static var initialIntent: HistoryViewModelLink.HistoryIntent?
     
-    static var intentHandler: (HistoryViewModelLink.HistoryIntent) -> HistoryViewModelLink.HistoryResult =
+    static var intentHandler: ((HistoryViewModelLink.HistoryIntent) -> HistoryViewModelLink.HistoryResult)? =
     {
         intent in
         switch intent {
         default: return ResultType.notSet
         }
     }
-    static var partialResultHandler: (Result) -> HistoryViewModelLink.HistoryResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> HistoryViewModelLink.HistoryResult?)?
     
     static func reduce(viewState: HistoryViewModelLink.HistoryViewState?, result: HistoryViewModelLink.HistoryResult?) -> HistoryViewModelLink.HistoryViewState? {
         return viewState

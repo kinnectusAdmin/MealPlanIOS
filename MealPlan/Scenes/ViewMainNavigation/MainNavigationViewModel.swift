@@ -14,14 +14,15 @@ struct MainNavigationViewModel: ViewModelLink {
     
     typealias Link = MainNavigationViewModelLink
     typealias ResultType = Link.MainNavigationResult
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((ServiceIntent?, MainNavigationViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, MainNavigationViewModelLink.ViewStateType) -> Void)?
+    static var serviceHandler: ((MainNavigationViewModelLink.MainNavigationIntent, MainNavigationViewModelLink.MainNavigationViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((MainNavigationViewModelLink.MainNavigationIntent, MainNavigationViewModelLink.MainNavigationViewState, NilDelegateType?) -> Void)?
     
     static var initialIntent: MainNavigationViewModelLink.MainNavigationIntent?
     
-    static var intentHandler: (MainNavigationViewModelLink.MainNavigationIntent) -> MainNavigationViewModelLink.MainNavigationResult =
+    static var intentHandler: ((MainNavigationViewModelLink.MainNavigationIntent) -> MainNavigationViewModelLink.MainNavigationResult)? =
     {
         intent in
         switch intent {
@@ -35,7 +36,7 @@ struct MainNavigationViewModel: ViewModelLink {
         }
     }
     
-    static var partialResultHandler: (Result) -> MainNavigationViewModelLink.MainNavigationResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> MainNavigationViewModelLink.MainNavigationResult?)?
     
     static func reduce(viewState: MainNavigationViewModelLink.MainNavigationViewState?, result: MainNavigationViewModelLink.MainNavigationResult?) -> MainNavigationViewModelLink.MainNavigationViewState?
     {

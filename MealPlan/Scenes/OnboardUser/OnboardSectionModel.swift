@@ -39,7 +39,7 @@ struct OnboardSectionModel: SectionModel {
     }
     func implementCell<Listener: ItemListener>(for item: UIView, indexPath: IndexPath, listener: Listener) {
         let page = Items(rawValue: indexPath.item) ?? .first
-        let viewModel = ViewModel<OnboardItemViewModel>()
+        let viewModel = ItemViewModel<OnboardItemViewModel>()
         viewModel.intent.accept(OnboardItemViewModelLink.IntentType.initial(page: page.page))
         let presenter = ItemPresenter<OnboardItemPresenter>(item: item as? OnboardItemView)
         (item as? OnboardItemView)?.presenter = presenter

@@ -14,9 +14,14 @@ struct OnboardViewModel: ViewModelLink {
     typealias Link = OnboardViewModelLink
     typealias ViewState = Link.ViewStateType
     typealias ResultType = Link.ResultType
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
+    static var serviceHandler: ((OnboardViewModelLink.OnboardIntent, OnboardViewModelLink.OnboardViewState, NilServiceType?) -> Void)?
     
-    static var intentHandler: (OnboardViewModelLink.OnboardIntent) -> OnboardViewModelLink.OnboardResult =
+    static var delegateHandler: ((OnboardViewModelLink.OnboardIntent, OnboardViewModelLink.OnboardViewState, NilDelegateType?) -> Void)?
+    
+    static var intentHandler: ((OnboardViewModelLink.OnboardIntent) -> OnboardViewModelLink.OnboardResult)? =
     {
         intent in
         switch intent {
@@ -31,13 +36,10 @@ struct OnboardViewModel: ViewModelLink {
         default: return ResultType.notSet
         }
     }
-    static var serviceHandler: ((ServiceIntent?, OnboardViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, OnboardViewModelLink.ViewStateType) -> Void)?
     
     static var initialIntent: OnboardViewModelLink.OnboardIntent? = .initial(page: .first)
     
-    static var partialResultHandler: (Result) -> OnboardViewModelLink.OnboardResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> OnboardViewModelLink.OnboardResult?)?
     
     static func reduce(viewState: OnboardViewModelLink.OnboardViewState?, result: OnboardViewModelLink.OnboardResult?) -> OnboardViewModelLink.OnboardViewState? {
             switch result {

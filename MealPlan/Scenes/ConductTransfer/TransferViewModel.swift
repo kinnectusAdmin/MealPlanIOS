@@ -13,14 +13,14 @@ struct TransferViewModel: ViewModelLink {
     
     typealias Link = TransferViewModelLink
     typealias ResultType = Link.TransferResult
-        
-    static var serviceHandler: ((ServiceIntent?, TransferViewModelLink.ViewStateType) -> Void)?
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var delegateHandler: ((DelegateIntent?, TransferViewModelLink.ViewStateType) -> Void)?
-    
+    static var serviceHandler: ((TransferViewModelLink.TransferIntent, TransferViewModelLink.TransferViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((TransferViewModelLink.TransferIntent, TransferViewModelLink.TransferViewState, NilDelegateType?) -> Void)?
     static var initialIntent: TransferViewModelLink.TransferIntent? = .initial
 
-    static var intentHandler: (TransferViewModelLink.TransferIntent) -> TransferViewModelLink.TransferResult =
+    static var intentHandler: ((TransferViewModelLink.TransferIntent) -> TransferViewModelLink.TransferResult)? =
     {
         intent in
         switch intent {
@@ -43,7 +43,7 @@ struct TransferViewModel: ViewModelLink {
         default: return ResultType.notSet
         }
     }
-    static var partialResultHandler: (Result) -> TransferViewModelLink.TransferResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> TransferViewModelLink.TransferResult?)? = { _ in return nil}
     
     static func reduce(viewState: TransferViewModelLink.TransferViewState?, result: TransferViewModelLink.TransferResult?) -> TransferViewModelLink.TransferViewState? {
         let state = viewState ?? Link.TransferViewState.empty

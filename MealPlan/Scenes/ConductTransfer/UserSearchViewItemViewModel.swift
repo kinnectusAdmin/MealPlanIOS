@@ -10,7 +10,7 @@ import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
 
-struct UserSearchItemViewModel: ViewModelLink {
+struct UserSearchItemViewModel: ItemViewModelLink {
     
     typealias Link = UserSearchViewItemViewModelLink
     
@@ -28,10 +28,6 @@ struct UserSearchItemViewModel: ViewModelLink {
         _ in
         return nil
     }
-    
-    static var serviceHandler: ((ServiceIntent?, UserSearchViewItemViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, UserSearchViewItemViewModelLink.ViewStateType) -> Void)?
     
     static var initialIntent: UserSearchViewItemViewModelLink.ItemIntent?
     

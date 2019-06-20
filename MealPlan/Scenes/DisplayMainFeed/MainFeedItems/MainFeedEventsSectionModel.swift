@@ -43,7 +43,7 @@ struct MainFeedEventsSectionModel: SectionModel {
     func implementCell<Listener>(for item: UIView, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
         guard var item = item as? MainFeedEventItem, let events = viewState?.events else { return }
         let event = events[indexPath.item]
-        let viewModel = ViewModel<MainFeedEventItemViewModel>()
+        let viewModel = ItemViewModel<MainFeedEventItemViewModel>()
         viewModel.intent.accept(.initial(event: event))
         let presenter = ItemPresenter<MainFeedEventItemPresenter>(item: item)
         item.presenter = presenter

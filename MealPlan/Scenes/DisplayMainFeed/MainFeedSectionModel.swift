@@ -68,21 +68,21 @@ struct MainFeedSectionModel: SectionModel {
         guard let state = viewState else { return }
         switch Order(rawValue: indexPath.item) {
         case .account?:
-            let viewModel = ViewModel<MainFeedAccountItemViewModel>()
+            let viewModel = ItemViewModel<MainFeedAccountItemViewModel>()
             viewModel.intent.accept(.initial(account: state.account))
             let presenter = ItemPresenter<MainFeedAccountItemPresenter>(item: item as? MainFeedAccountItem)
             (item as? MainFeedAccountItem)?.presenter = presenter
             (item as? MainFeedAccountItem)?.viewModel = viewModel
             presenter.bindViewModel(viewModel: viewModel, listener: listener)
         case .events?:
-            let viewModel = ViewModel<MainFeedEventsItemViewModel>()
+            let viewModel = ItemViewModel<MainFeedEventsItemViewModel>()
             viewModel.intent.accept(.initial(events: state.events))
             let presenter = ItemPresenter<MainFeedEventsItemPresenter>(item: item as? MainFeedEventsItem)
             (item as? MainFeedEventsItem)?.presenter = presenter
             (item as? MainFeedEventsItem)?.viewModel = viewModel
             presenter.bindViewModel(viewModel: viewModel, listener: listener)
         case .graph?:
-            let viewModel = ViewModel<MainFeedGraphItemViewModel>()
+            let viewModel = ItemViewModel<MainFeedGraphItemViewModel>()
             viewModel.intent.accept(.initial(balances: []))
             let presenter = ItemPresenter<MainFeedGraphItemPresenter>(item: item as? MainFeedGraphItem)
             (item as? MainFeedGraphItem)?.presenter = presenter

@@ -13,14 +13,13 @@ struct CreateAccountViewModel: ViewModelLink {
     typealias Link = CreateAccountViewModelLink
     typealias ViewState = Link.CreateAccountViewState
     typealias ResultType = Link.CreateAccountResult
-    
-    static var serviceHandler: ((ServiceIntent?, CreateAccountViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, CreateAccountViewModelLink.ViewStateType) -> Void)?
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
     static var initialIntent: CreateAccountViewModelLink.CreateAccountIntent?
-    
-    static var intentHandler: (CreateAccountViewModelLink.CreateAccountIntent) -> CreateAccountViewModelLink.CreateAccountResult =
+    static var serviceHandler: ((CreateAccountViewModelLink.CreateAccountIntent, CreateAccountViewModelLink.CreateAccountViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((CreateAccountViewModelLink.CreateAccountIntent, CreateAccountViewModelLink.CreateAccountViewState, NilDelegateType?) -> Void)?
+    static var intentHandler: ((CreateAccountViewModelLink.CreateAccountIntent) -> CreateAccountViewModelLink.CreateAccountResult)? =
     {
         intent in
         switch intent {
@@ -31,7 +30,7 @@ struct CreateAccountViewModel: ViewModelLink {
         default: return ResultType.notSet
         }
     }
-    static var partialResultHandler: (Result) -> CreateAccountViewModelLink.CreateAccountResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> CreateAccountViewModelLink.CreateAccountResult?)?
     
     static func reduce(viewState: CreateAccountViewModelLink.CreateAccountViewState?, result: CreateAccountViewModelLink.CreateAccountResult?) -> CreateAccountViewModelLink.CreateAccountViewState? {
         guard let state = viewState else { return ViewState.init(email: "", password: "")}

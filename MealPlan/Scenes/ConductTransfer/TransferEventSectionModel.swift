@@ -48,7 +48,7 @@ struct TransferEventSectionModel: SectionModel {
     func implementCell<Listener>(for item: UIView, indexPath: IndexPath, listener: Listener) where Listener : ItemListener {
         guard let item = item as? EventItem else { return }
         let event = viewState.pastTransfers[indexPath.item]
-        let viewModel = ViewModel<TransferEventItemViewModel>()
+        let viewModel = ItemViewModel<TransferEventItemViewModel>()
         viewModel.intent.accept(.initial(event: event))
         let presenter = ItemPresenter<TransferEventItemPresenter>(item: item)
         item.viewModel = viewModel

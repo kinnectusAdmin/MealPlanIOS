@@ -10,14 +10,10 @@ import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
 
-struct TransferEventItemViewModel: ViewModelLink {
+struct TransferEventItemViewModel: ItemViewModelLink {
     
     typealias Link = TransferEventItemViewModelLink
     typealias ResultType = Link.ItemResult
-    
-    static var serviceHandler: ((ServiceIntent?, TransferEventItemViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, TransferEventItemViewModelLink.ViewStateType) -> Void)?
     
     static var initialIntent: TransferEventItemViewModelLink.ItemIntent?
     

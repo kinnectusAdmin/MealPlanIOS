@@ -12,7 +12,7 @@ import MealPlanDomain
 
 
 
-struct MainFeedAccountItemViewModel: ViewModelLink {
+struct MainFeedAccountItemViewModel: ItemViewModelLink {
     
     typealias Link = MainFeedAccountItemViewModelLink
     
@@ -29,10 +29,6 @@ struct MainFeedAccountItemViewModel: ViewModelLink {
         _ in
         return nil
     }
-    
-    static var serviceHandler: ((ServiceIntent?, MainFeedAccountItemViewModelLink.ViewStateType) -> Void)? = nil
-    
-    static var delegateHandler: ((DelegateIntent?, MainFeedAccountItemViewModelLink.ViewStateType) -> Void)? = nil
     
     static var initialIntent: MainFeedAccountItemViewModelLink.ItemIntent? = nil
     

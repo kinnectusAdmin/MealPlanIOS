@@ -9,8 +9,8 @@
 import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
-struct OnboardItemViewModel: ViewModelLink {
-    
+struct OnboardItemViewModel: ItemViewModelLink {
+   
     typealias Link = OnboardItemViewModelLink
     typealias ViewState = Link.ViewStateType
     typealias ResultType = Link.ResultType
@@ -25,10 +25,6 @@ struct OnboardItemViewModel: ViewModelLink {
         }
     }
     static var partialResultHandler: (Result) -> OnboardItemViewModelLink.ItemResult? = { _ in return nil}
-    
-    static var serviceHandler: ((ServiceIntent?, OnboardItemViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, OnboardItemViewModelLink.ViewStateType) -> Void)?
     
     static var initialIntent: OnboardItemViewModelLink.ItemIntent? = OnboardItemViewModelLink.IntentType.initial(page: .first)
     

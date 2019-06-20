@@ -13,14 +13,15 @@ struct ConversionViewModel: ViewModelLink {
     
     typealias Link = ConversionViewModelLink
     typealias ResultType = Link.ResultType
+    typealias ServiceType = NilServiceType
+    typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((ServiceIntent?, ConversionViewModelLink.ViewStateType) -> Void)?
-    
-    static var delegateHandler: ((DelegateIntent?, ConversionViewModelLink.ViewStateType) -> Void)?
+    static var serviceHandler: ((ConversionViewModelLink.ConversionIntent, ConversionViewModelLink.ConversionViewState, NilServiceType?) -> Void)?
+    static var delegateHandler: ((ConversionViewModelLink.ConversionIntent, ConversionViewModelLink.ConversionViewState, NilDelegateType?) -> Void)?
     
     static var initialIntent: ConversionViewModelLink.ConversionIntent?
     
-    static var intentHandler: (ConversionViewModelLink.ConversionIntent) -> ConversionViewModelLink.ConversionResult =
+    static var intentHandler: ((ConversionViewModelLink.ConversionIntent) -> ConversionViewModelLink.ConversionResult)? =
     {
         intent in
         switch intent {
@@ -34,7 +35,7 @@ struct ConversionViewModel: ViewModelLink {
         }
     }
     
-    static var partialResultHandler: (Result) -> ConversionViewModelLink.ConversionResult? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> ConversionViewModelLink.ConversionResult?)?
     
     static func reduce(viewState: ConversionViewModelLink.ConversionViewState?, result: ConversionViewModelLink.ConversionResult?) -> ConversionViewModelLink.ConversionViewState? {
         return viewState
