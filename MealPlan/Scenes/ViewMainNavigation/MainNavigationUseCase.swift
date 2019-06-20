@@ -7,7 +7,5 @@
 //
 import Foundation
 protocol MainNavigationUseCase {
-    func didSelectViewHistory()
-    func didSelectViewConversions()
-    func didSelectViewTransfer()
+    
 }

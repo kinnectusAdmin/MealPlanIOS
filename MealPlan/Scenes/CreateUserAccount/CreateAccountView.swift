@@ -28,6 +28,7 @@ class CreateAccountView: UIViewController, CreateAccountViewType {
         setViews()
     }
     func setViews() {
+        title = "CreateAccountView"
         //TODO: Draw layout
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: accountTitle, emailField, emailSeparatingBar, passwordField, passwordSeparatingBar, loginButton, backButton, createButton)

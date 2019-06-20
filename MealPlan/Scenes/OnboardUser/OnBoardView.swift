@@ -22,6 +22,7 @@ class OnboardView: UIViewController, OnboardViewType {
         setViews()
     }
     private func setViews() {
+        title = "OnboardView"
         /// TODO: Draw layout
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: loginButton, appIcon, appTitle, signUpButton,onboardCollection, indicator)

@@ -28,6 +28,7 @@ class LoginView: UIViewController, LoginViewType {
         setViews()
     }
     private func setViews() {
+        title = "LoginView"
         //TODO: Draw layout
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: loginTitle, backButton, signUpButton, loginContainer)

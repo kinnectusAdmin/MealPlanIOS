@@ -14,6 +14,8 @@ struct OnboardViewModel: ViewModelLink {
     typealias Link = OnboardViewModelLink
     typealias ViewState = Link.ViewStateType
     typealias ResultType = Link.ResultType
+    
+    
     static var intentHandler: (OnboardViewModelLink.OnboardIntent) -> OnboardViewModelLink.OnboardResult =
     {
         intent in

@@ -50,6 +50,7 @@ struct CreateAccountViewModelLink: ViewStateIntentLink {
     typealias IntentType = CreateAccountIntent
     typealias ResultType = CreateAccountResult
     
+    
     struct CreateAccountViewState: ViewState {
         let email: String
         let password: String

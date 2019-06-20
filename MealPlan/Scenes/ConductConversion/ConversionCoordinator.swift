@@ -12,11 +12,12 @@ final class ConversionCoordinator: SceneCoordinator {
     typealias Link = ConversionViewModel
     typealias ViewLink = ConversionPresenter
     typealias RouteLink = ConversionRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<ConversionRouter>!
     func controller() -> Controller {
-        return ConversionView()
+        return presenter?.presentation ?? ConversionView()
     }
 }

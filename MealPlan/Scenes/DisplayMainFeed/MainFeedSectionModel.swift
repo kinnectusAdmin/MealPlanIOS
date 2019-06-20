@@ -33,7 +33,9 @@ struct MainFeedSectionModel: SectionModel {
     }
     var viewState: MainFeedViewModelLink.MainFeedViewState!
     
-    func numberOfItems(section: Int) -> Int { return 3}
+    func numberOfItems(section: Int) -> Int {
+        return 3
+    }
     
     func headerSize(path: IndexPath) -> CGSize { return .zero}
     

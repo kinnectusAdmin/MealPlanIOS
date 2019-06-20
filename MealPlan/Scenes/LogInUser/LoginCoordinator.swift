@@ -12,6 +12,7 @@ final class LoginCoordinator: SceneCoordinator {
     typealias Link = LoginViewModel
     typealias ViewLink = LoginPresenter
     typealias RouteLink = LoginRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!

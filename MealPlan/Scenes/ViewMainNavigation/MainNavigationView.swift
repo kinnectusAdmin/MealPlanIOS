@@ -8,9 +8,31 @@
 
 import UIKit
 import CleanModelViewIntent
-protocol MainNavigationViewType: Presentation, Controller {
-    
+
+class MainNavigationView: UIPageViewController, MainNavigationViewType {
+    var welcomeLabel: UILabel = UILabel.labelWith(font: ViewProperties.welcomeFont, txtColor: ViewProperties.welcomeColor, background: ViewProperties.welcomeBackground, alignment: .center, numberOfLines: 0)
+    var navigationView: NavigationView = NavigationView.view()
 }
-class MainNavigationView: UIViewController, MainNavigationViewType {
-    
+extension MainNavigationView {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setViews()
+    }
+    func setViews() {
+        title = "MainNavigationView"
+        view.backgroundColor = UIColor.App.currentScheme.colors.light
+        view.add(views: navigationView, welcomeLabel)
+        navigationView.constrainInView(view: self.view, left: 0, right: 0, bottom: 0)
+        navigationView.setHeightTo(constant: Layout.navigationViewHeight)
+        navigationView.addSubview(welcomeLabel)
+        welcomeLabel.constrainCenterXTo(view: navigationView, constant: 0)
+        welcomeLabel.constrainTopToTop(of: navigationView, constant: Layout.welcomeLabelTopOffset)
+    }
+}
+extension MainNavigationView {
+    func setController(controller: UIViewController?, isForward: Bool) {
+        if let controller = controller {
+            setViewControllers([controller], direction: isForward ? .reverse : .forward, animated: true, completion: nil)
+        }
+    }
 }

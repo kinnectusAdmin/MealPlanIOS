@@ -12,6 +12,7 @@ final class HistoryCoordinator: SceneCoordinator {
     typealias Link = HistoryViewModel
     typealias ViewLink = HistoryPresenter
     typealias RouteLink = HistoryRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!

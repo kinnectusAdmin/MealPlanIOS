@@ -10,7 +10,5 @@ import UIKit
 import Utilities
 import CleanModelViewIntent
 protocol MainFeedViewType: Presentation, Controller {
-    var welcomeLabel: UILabel { get set}
-    var navigationView: NavigationView { get set}
     var mainFeedCollectionView: UXCollectionView<MainFeedSectionModel> { get set}
 }

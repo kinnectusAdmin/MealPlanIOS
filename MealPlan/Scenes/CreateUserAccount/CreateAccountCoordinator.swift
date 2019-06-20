@@ -12,6 +12,7 @@ final class CreateAccountCoordinator: SceneCoordinator {
     typealias Link = CreateAccountViewModel
     typealias ViewLink = CreateAccountPresenter
     typealias RouteLink = CreateAccountRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!

@@ -28,8 +28,5 @@ struct MenuPresenter: PresenterLink {
         view.logoutButton.setAction({
             interactor.accept(.didSelectLogout)
         })
-        view.dismissButton.setAction({
-           
-        })
     }
 }

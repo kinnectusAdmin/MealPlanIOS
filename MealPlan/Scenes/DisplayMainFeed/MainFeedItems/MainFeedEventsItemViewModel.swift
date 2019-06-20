@@ -43,6 +43,8 @@ struct MainFeedEventsItemViewModelLink: ViewStateIntentLink {
     typealias ViewStateType = ItemViewState
     typealias IntentType = ItemIntent
     typealias ResultType = ItemResult
+    
+    
     enum ItemIntent: Intent, ActionIntent {
         case initial(events: [EventType])
     }

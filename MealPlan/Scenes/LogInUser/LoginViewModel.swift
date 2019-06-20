@@ -51,6 +51,7 @@ struct LoginViewModelLink: ViewStateIntentLink {
     typealias IntentType = LoginIntent
     typealias ResultType = LoginResult
     
+    
     struct LoginViewState: ViewState {
         let email: String
         let password: String

@@ -40,6 +40,7 @@ struct HistoryViewModelLink: ViewStateIntentLink {
     typealias IntentType = HistoryIntent
     typealias ResultType = HistoryResult
     
+    
     struct HistoryViewState: ViewState {
         let account: StudentAccount
     }

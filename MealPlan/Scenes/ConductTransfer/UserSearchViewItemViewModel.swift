@@ -48,6 +48,8 @@ struct UserSearchViewItemViewModelLink: ViewStateIntentLink {
     typealias IntentType = ItemIntent
     typealias ResultType = ItemResult
     typealias ViewStateType = ItemViewState
+    
+    
     enum ItemIntent: Intent, ActionIntent, DelegateIntent {
         case initial(user: MealPlanUser)
     }

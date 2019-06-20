@@ -48,6 +48,7 @@ struct ConversionViewModelLink: ViewStateIntentLink {
     typealias IntentType = ConversionIntent
     typealias ResultType = ConversionResult
     
+    
     struct ConversionViewState: ViewState {
         let proposedConversion: ConversionEvent
         let flexAmount: Int

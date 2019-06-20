@@ -12,11 +12,12 @@ final class TransferCoordinator: SceneCoordinator {
     typealias Link = TransferViewModel
     typealias ViewLink = TransferPresenter
     typealias RouteLink = TransferRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<TransferPresenter>!
     var router: Router<TransferRouter>!
     func controller() -> Controller {
-        return TransferView()
+        return presenter?.presentation ?? TransferView()
     }
 }

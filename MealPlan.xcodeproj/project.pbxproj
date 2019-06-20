@@ -132,6 +132,8 @@
 		DAF3A8E722262B0600FFF4E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF3A8E522262B0600FFF4E5 /* LaunchScreen.storyboard */; };
 		DAF3A8F222262B0600FFF4E5 /* MealPlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3A8F122262B0600FFF4E5 /* MealPlanTests.swift */; };
 		DAF3A8FD22262B0600FFF4E5 /* MealPlanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3A8FC22262B0600FFF4E5 /* MealPlanUITests.swift */; };
+		DAF624FC22B81265001C860D /* MainNavigationViewViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF624FB22B81265001C860D /* MainNavigationViewViewProperties.swift */; };
+		DAF6250422B812FD001C860D /* MainNavigationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6250322B812FD001C860D /* MainNavigationViewType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +413,8 @@
 		DAF3A8FC22262B0600FFF4E5 /* MealPlanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanUITests.swift; sourceTree = "<group>"; };
 		DAF3A8FE22262B0600FFF4E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF3AA88222819CB00FFF4E5 /* MealPlanDomain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MealPlanDomain.xcodeproj; path = ../MealPlanDomain/MealPlanDomain.xcodeproj; sourceTree = "<group>"; };
+		DAF624FB22B81265001C860D /* MainNavigationViewViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewViewProperties.swift; sourceTree = "<group>"; };
+		DAF6250322B812FD001C860D /* MainNavigationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -540,6 +544,8 @@
 				DAA04CCB222D64C800DACE77 /* MainNavigationPresenter.swift */,
 				DAA04CCD222D64E100DACE77 /* MainNavigationRouter.swift */,
 				DAA04CD1222D653E00DACE77 /* MainNavigationView.swift */,
+				DAF6250322B812FD001C860D /* MainNavigationViewType.swift */,
+				DAF624FB22B81265001C860D /* MainNavigationViewViewProperties.swift */,
 				DAA04CD3222D654C00DACE77 /* MainNavigationUseCase.swift */,
 			);
 			path = ViewMainNavigation;
@@ -1032,6 +1038,7 @@
 				DAA04CE8222D75CB00DACE77 /* ConversionPresenter.swift in Sources */,
 				DA975502224864C1002D1ADC /* MainFeedEventItemViewProperties.swift in Sources */,
 				DA0F68C022AC8E8200866977 /* UserSeachViewItemPresenter.swift in Sources */,
+				DAF6250422B812FD001C860D /* MainNavigationViewType.swift in Sources */,
 				DAA04CC8222D649400DACE77 /* MainNavigationCoordinator.swift in Sources */,
 				DAA04CEC222D75DB00DACE77 /* ConversionRouter.swift in Sources */,
 				DA0792402231BC4E006A0E66 /* OnboardItemViewModel.swift in Sources */,
@@ -1039,6 +1046,7 @@
 				DA0F68C422AF4DB200866977 /* ConversionViewType.swift in Sources */,
 				DAA04CCE222D64E100DACE77 /* MainNavigationRouter.swift in Sources */,
 				DAA04CE6222D75B200DACE77 /* ConversionViewModel.swift in Sources */,
+				DAF624FC22B81265001C860D /* MainNavigationViewViewProperties.swift in Sources */,
 				DAA04CD6222D6A3600DACE77 /* HistoryRouter.swift in Sources */,
 				DA31110E22A5C65C002F851C /* MainFeedSectionModel.swift in Sources */,
 				DAA04CEE222D75E400DACE77 /* ConversionUseCase.swift in Sources */,

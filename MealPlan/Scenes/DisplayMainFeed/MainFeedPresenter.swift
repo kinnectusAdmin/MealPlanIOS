@@ -13,7 +13,6 @@ struct MainFeedPresenter: PresenterLink {
     typealias Link = MainFeedViewModelLink
     typealias View = MainFeedViewType
     static var action: (MainFeedViewModelLink.ViewStateType?, MainFeedViewModelLink.ViewStateType?, MainFeedViewType) -> Void = { viewState, _, view in
-        view.welcomeLabel.text = "Hey whatsup, \n \(viewState?.user.firstName ?? "")"
         view.mainFeedCollectionView.model.accept(MainFeedSectionModel(viewState: defaultViewState))
     }
     static var interaction: (MainFeedViewType, Box<MainFeedViewModelLink.IntentType?>) -> Void = { view, interactor in

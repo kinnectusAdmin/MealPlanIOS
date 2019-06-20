@@ -19,5 +19,4 @@ protocol MenuViewType: Presentation, Controller {
     var emailLabel: UILabel { get set }
     var legalButton: UXButton { get set }
     var logoutButton: UXButton { get set }
-    var dismissButton: UXButton { get set }
 }

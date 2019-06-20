@@ -56,7 +56,7 @@ struct TransferPresenter: PresenterLink {
             interactor.accept(Link.TransferIntent.didUpdateSearchField(text))
         }
         view.numberPadView.padOutput.bindListener {  output,_ in
-            interactor.accept(Link.TransferIntent.didUpdateTransferAmounts(value: output.value))
+            interactor.accept(Link.TransferIntent.didUpdateTransferAmounts(value: output.rawValue))
         }
     }
 }

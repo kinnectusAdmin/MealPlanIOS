@@ -89,10 +89,31 @@ extension TransferView {
         setViews()
         setGesture()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        displayList()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideList()
+    }
+    private func displayList() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+            self.containerTopConstraint.constant = Layout.containerRestingTopOffset
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    private func hideList() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+            self.containerTopConstraint.constant = Layout.containerOriginTopOffset
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     private func setViews() {
+        title = "TransferView"
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: searchView.render(), titleLabel, localUserAvatarBorder, transacteeAvatarBorder, localUserNameLabel, transacteeNameLabel, balanceLabel, numberPadView.render(), transferControlButton, sendButton, searchButton, eventContainer)
-        //eventContainer.add(views: transferEventCollection)
+        eventContainer.add(views: transferEventCollection)
         titleLabel.constrainInView(view: view, top: Layout.titleTopOffset, left: 0, right: 0)
         localUserAvatarBorder.constrainLeftToLeft(of: view, constant: Layout.avatarEdgeOffset.left)
         localUserAvatarBorder.constrainTopToBottom(of: titleLabel, constant: Layout.avatarEdgeOffset.top)

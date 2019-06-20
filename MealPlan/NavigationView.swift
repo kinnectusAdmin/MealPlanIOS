@@ -11,7 +11,6 @@ import Utilities
 
 class NavigationView: UIView {
     let menuButton = Icons.menuButton
-    let blur = UIView.vibrantContainerView(background: .clear)
     let historyButton = UXButton.button(font: ViewProperties.navigationFont, color: ViewProperties.navigationColor, background: .clear,title: "History")
     let conversionButton = UXButton.button(font: ViewProperties.navigationFont, color: ViewProperties.navigationColor, background: .clear,title: "Conversion")
     let transferButton = UXButton.button(font: ViewProperties.navigationFont, color: ViewProperties.navigationColor, background: .clear,title: "Transfer")
@@ -26,7 +25,6 @@ extension NavigationView {
         layer.insertSublayer(gradient, at: 0)
         
         add(views: menuButton, historyButton, conversionButton, transferButton)
-//        blur.constrainInView(view: self, top: 0, left: 0, right: 0, bottom: 0)
         menuButton.constrainInView(view: self, left: Layout.menuEdgeOffset.left, bottom: Layout.menuEdgeOffset.bottom)
         
         conversionButton.constrainCenterXTo(view: self, constant: 0)

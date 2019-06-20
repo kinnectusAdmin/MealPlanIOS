@@ -8,6 +8,7 @@
 
 import Foundation
 import CleanModelViewIntent
+import MealPlanDomain
 
 struct MainNavigationViewModel: ViewModelLink {
     
@@ -27,7 +28,7 @@ struct MainNavigationViewModel: ViewModelLink {
         case .didSelectConversion:
             return ResultType.selectPage(.conversion)
         case .didSelectHistory:
-            return ResultType.selectPage(.history)
+            return ResultType.selectPage(.mainView)
         case .didSelectTransfer:
             return ResultType.selectPage(.transfer)
         default: return ResultType.notSet
@@ -36,8 +37,13 @@ struct MainNavigationViewModel: ViewModelLink {
     
     static var partialResultHandler: (Result) -> MainNavigationViewModelLink.MainNavigationResult? = { _ in return nil}
     
-    static func reduce(viewState: MainNavigationViewModelLink.MainNavigationViewState?, result: MainNavigationViewModelLink.MainNavigationResult?) -> MainNavigationViewModelLink.MainNavigationViewState? {
-        return viewState
+    static func reduce(viewState: MainNavigationViewModelLink.MainNavigationViewState?, result: MainNavigationViewModelLink.MainNavigationResult?) -> MainNavigationViewModelLink.MainNavigationViewState?
+    {
+        switch result ?? .notSet {
+        case let .selectPage(page):
+            return Link.MainNavigationViewState.init(page: page)
+        default: return viewState
+        }
     }
 }
 struct MainNavigationViewModelLink: ViewStateIntentLink {
@@ -46,8 +52,9 @@ struct MainNavigationViewModelLink: ViewStateIntentLink {
     typealias IntentType = MainNavigationIntent
     typealias ResultType = MainNavigationResult
     
+    
     struct MainNavigationViewState: ViewState {
-        let page: MainNavigationPage
+        let page: Objects.NavigationPage
     }
     enum MainNavigationIntent: Intent, ActionIntent {
         case didSelectHistory
@@ -57,11 +64,6 @@ struct MainNavigationViewModelLink: ViewStateIntentLink {
     }
     enum MainNavigationResult: Result {
         case notSet
-        case selectPage(MainNavigationPage)
-    }
-    enum MainNavigationPage {
-        case history
-        case conversion
-        case transfer
+        case selectPage(Objects.NavigationPage)
     }
 }

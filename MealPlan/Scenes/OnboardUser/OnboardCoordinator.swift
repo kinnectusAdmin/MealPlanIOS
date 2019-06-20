@@ -12,6 +12,7 @@ final class OnboardCoordinator: SceneCoordinator {
     typealias Link = OnboardViewModel
     typealias ViewLink = OnboardPresenter
     typealias RouteLink = OnboardRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!

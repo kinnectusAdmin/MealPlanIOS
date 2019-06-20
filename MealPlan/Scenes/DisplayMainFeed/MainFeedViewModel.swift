@@ -48,6 +48,7 @@ struct MainFeedViewModelLink: ViewStateIntentLink {
     typealias IntentType = MainFeedIntent
     typealias ResultType = MainFeedResult
     
+    
     struct MainFeedViewState: ViewState {
         let events: [EventType]
         let transferEvents: [TransferEvent]

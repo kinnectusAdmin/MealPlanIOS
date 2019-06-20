@@ -8,12 +8,15 @@
 
 import Foundation
 import CleanModelViewIntent
-struct MenuRouter: RouterLink, MenuUseCase {
+struct MenuRouter: RouterLink {
     typealias Link = MenuViewModelLink
 
     static var route: (MenuViewModelLink.MenuViewState?, MenuViewModelLink.MenuIntent, Router<MenuRouter>) -> Void =
     {
         viewState, intent, router in
+        switch intent {
+        default: break
+        }
     }
     static var onDismiss: () -> Void =
     {

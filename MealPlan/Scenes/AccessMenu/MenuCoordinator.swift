@@ -12,11 +12,12 @@ final class MenuCoordinator: SceneCoordinator {
     typealias Link = MenuViewModel
     typealias ViewLink = MenuPresenter
     typealias RouteLink = MenuRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MenuRouter>!
     func controller() -> Controller {
-        return MenuView()
+        return presenter?.presentation ?? MenuView()
     }
 }

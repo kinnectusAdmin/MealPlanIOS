@@ -51,12 +51,12 @@ struct MenuViewModelLink: ViewStateIntentLink {
     typealias IntentType = MenuIntent
     typealias ResultType = MenuResult
     
+    
     enum MenuIntent: Intent, ActionIntent {
         case initial
         case didSelectLegal
         case didSelectInvite
         case didSelectLogout
-        case didDismissMenu
     }
     enum MenuResult: Result {
         case notSet

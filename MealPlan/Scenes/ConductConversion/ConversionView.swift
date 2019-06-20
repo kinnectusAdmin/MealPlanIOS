@@ -11,7 +11,6 @@ import CleanModelViewIntent
 import Utilities
 
 class ConversionView: UIViewController, ConversionViewType {
-    
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
     private let flexTitleLabel: UILabel = UILabel.labelWith(text: "Flex", font: ViewProperties.flexTitleFont, txtColor: ViewProperties.flexTitleColor, background: .clear, alignment: .center)
     private let swipesTitleLabel: UILabel = UILabel.labelWith(text: "Swipes", font: ViewProperties.swipesTitleFont, txtColor: ViewProperties.swipesTitleColor, background: .clear, alignment: .center)
@@ -43,7 +42,28 @@ extension ConversionView {
         setViews()
         setGesture()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        displayList()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideList()
+    }
+    private func displayList() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+            self.containerTopConstraint.constant = Layout.containerRestingTopOffset
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    private func hideList() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+            self.containerTopConstraint.constant = Layout.containerOriginTopOffset
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     private func setViews() {
+        title = "ConversionView"
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: titleLabel, flexTitleLabel, swipesTitleLabel, swipesBalanceLabel, swipesBalanceUnderline, flexBalanceLabel, flexBalanceUnderline, swapConversionButton, initiateConversionButton, numberPadView.render(), eventContainer)
         titleLabel.constrainInView(view: view, top: Layout.titleTopOffset, left: 0, right: 0)

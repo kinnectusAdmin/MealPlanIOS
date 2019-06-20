@@ -15,12 +15,6 @@ struct MainNavigationRouter: RouterLink {
     {
         viewState, intent, router in
         switch intent {
-        case .didSelectHistory:break
-            //TODO: Handle transition to history details
-        case .didSelectConversion:break
-            //TODO: Handle transition to conversions
-        case .didSelectTransfer:break
-            //TODO: handle transition to transfer details
         default: break
         }
     }

@@ -12,11 +12,12 @@ final class MainFeedCoordinator: SceneCoordinator {
     typealias Link = MainFeedViewModel
     typealias ViewLink = MainFeedPresenter
     typealias RouteLink = MainFeedRouter
+    var parentCoordinator: Coordinator?
     var coordinators: [String : Coordinator] = [:]
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MainFeedRouter>!
     func controller() -> Controller {
-        return MainFeedView()
+        return presenter?.presentation ?? MainFeedView()
     }
 }

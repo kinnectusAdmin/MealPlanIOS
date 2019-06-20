@@ -85,6 +85,10 @@ extension NumberPadView {
         //align 0 and backspace to decimal
         numberZero.constrainTopToBottom(of: numberEight, constant: Layout.buttonTopOffset)
         backspace.constrainCenterYTo(view: numberZero, constant: 0)
+        let buttons: [PadButton] = subviews.filter { $0 is PadButton }.compactMap { $0} as? [PadButton] ?? []
+        buttons.forEach { (button) in
+            button.constrainWidth_Height(width: Layout.buttonWidth, height: Layout.buttonHeight)
+        }
     }
     private func bindUIActions() {
         let buttons: [PadButton] = subviews.filter { $0 is PadButton }.compactMap { $0} as? [PadButton] ?? []
@@ -93,7 +97,6 @@ extension NumberPadView {
                 self?.padOutput.accept( button.padOutput)
             })
         }
-        
     }
 }
 extension NumberPadView {
@@ -108,7 +111,9 @@ extension NumberPadView {
         static let background: UIColor = .clear
     }
     struct Layout {
+        static let buttonWidth: CGFloat = 25
+        static let buttonHeight: CGFloat = 25
         static let buttonTopOffset: CGFloat = 10
-        static let numberPadHeight: CGFloat = (4 * PadButton.ViewProperties.padFont.pointSize) + (3 * buttonTopOffset)
+        static let numberPadHeight: CGFloat = (4 * buttonWidth) + (3 * buttonTopOffset)
     }
 }

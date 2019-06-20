@@ -59,7 +59,8 @@ struct TransferViewModel: ViewModelLink {
         case .dismissSearch?:
             return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: .notDisplayed, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
         case let .updateTransferAmounts(value)?:
-            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: String(value), selectedTransactee: state.selectedTransactee)
+            var transferAmount = PadOutput.outputFor(currentInput: state.transferValue, input: PadOutput(rawValue: value) ?? .none)
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: transferAmount, selectedTransactee: state.selectedTransactee)
         case let .requestUser(user)?:
             return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: user)
         case let .updateSearchField(searchText)?:
@@ -69,9 +70,11 @@ struct TransferViewModel: ViewModelLink {
     }
 }
 struct TransferViewModelLink: ViewStateIntentLink {
+    
     typealias ViewStateType  = TransferViewState
     typealias IntentType = TransferIntent
     typealias ResultType = TransferResult
+    
     
     struct TransferViewState: ViewState {
         let transferIntention: TransferMode
@@ -82,6 +85,9 @@ struct TransferViewModelLink: ViewStateIntentLink {
         let searchViewState: DisplayState
         let transferValue: String
         let selectedTransactee: MealPlanUser
+        var transferAmount: Int {
+            return Int(transferValue) ?? 0
+        }
         static var empty: TransferViewState {
             return TransferViewState(transferIntention: .sending, transferType: .swipes, pastTransfers: [], userSearchText: "", userSearchResults: [MealPlanUser.local, MealPlanUser.local, MealPlanUser.local], searchViewState: .notDisplayed, transferValue: "0", selectedTransactee: MealPlanUser.local)
         }
@@ -93,7 +99,7 @@ struct TransferViewModelLink: ViewStateIntentLink {
         case didSelectTransferType(TransferType)
         case didSelectSearch
         case didDismissSearch
-        case didUpdateTransferAmounts(value: Double)
+        case didUpdateTransferAmounts(value: String)
         case didSelectViewUser(MealPlanUser)
         case didSelectRequestUser(MealPlanUser)
         case didUpdateSearchField(String)
@@ -105,7 +111,7 @@ struct TransferViewModelLink: ViewStateIntentLink {
         case updateTransferType(TransferType)
         case showSearch
         case dismissSearch
-        case updateTransferAmounts(value: Double)
+        case updateTransferAmounts(value: String)
         case requestUser(MealPlanUser)
         case updateSearchField(String)
     }

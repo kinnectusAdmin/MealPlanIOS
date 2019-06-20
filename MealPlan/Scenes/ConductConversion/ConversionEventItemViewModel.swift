@@ -39,9 +39,11 @@ struct ConversionEventItemViewModel: ViewModelLink {
     }
 }
 struct ConversionEventItemViewModelLink: ViewStateIntentLink {
+    
     typealias ViewStateType = ItemViewState
     typealias IntentType = ItemIntent
     typealias ResultType = ItemResult
+    
     
     enum ItemIntent: Intent {
         case initial(event: ConversionEvent)
