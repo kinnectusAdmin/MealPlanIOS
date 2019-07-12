@@ -28,9 +28,9 @@ extension MainFeedAccountItem {
     }
     struct Layout {
         static let titleEdgeOffset: EdgeOffsets = (0, 5, 0, 0)
-        static let containerEdgeOffset: EdgeOffsets = (10, 10, -10, 0)
-        static let swipesAccountTypeEdgeOffset: EdgeOffsets = (10, 20, 0, 0)
-        static let flexAccountTypeEdgeOffset: EdgeOffsets = (0, swipesAccountTypeEdgeOffset.top, -10, 0)
+        static let containerEdgeOffset: EdgeOffsets = (20, 10, -20, 0)
+        static let swipesAccountTypeEdgeOffset: EdgeOffsets = (20, 20, 0, 0)
+        static let flexAccountTypeEdgeOffset: EdgeOffsets = (0, swipesAccountTypeEdgeOffset.top, -20, 0)
         static let valueInfoLabelsTopOffset: CGFloat = 10
         static let trendIconTopOffset: CGFloat = 10
         static let trendIconSize: IconSize = .medium

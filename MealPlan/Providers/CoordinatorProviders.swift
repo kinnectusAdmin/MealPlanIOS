@@ -9,18 +9,22 @@
 import Foundation
 import Utilities
 import CleanModelViewIntent
+import MealPlanNetwork
+
 class CoordinatorProvider {
     static func makeOnboardCoordinator() -> OnboardCoordinator {
         return OnboardCoordinator.configure(viewModelDelegate: nil, service: nil)
     }
     static func makeCreateAccountCoordinator() -> CreateAccountCoordinator {
-        return CreateAccountCoordinator.configure(viewModelDelegate: nil, service: nil)
+        let useCase = UseCaseProvider.shared.provideStudentAccountUseCase()
+        return CreateAccountCoordinator.configure(viewModelDelegate: nil, service: useCase)
     }
     static func makeLoginCoordinator() -> LoginCoordinator {
-        return LoginCoordinator.configure(viewModelDelegate: nil, service: nil)
+        let service = UseCaseProvider.shared.provideMealPlanUserUseCase()
+        return LoginCoordinator.configure(viewModelDelegate: nil, service: service)
     }
     static func makeConversionCoordinator(parent: Coordinator? = nil) -> ConversionCoordinator {
-        return ConversionCoordinator.configure(viewModelDelegate: nil, service: nil)
+        return ConversionCoordinator.configure(viewModelDelegate: nil, service: UseCaseProvider.shared.provideEventUseCase())
     }
     static func makeMenuCoordinator(parent: Coordinator? = nil) -> MenuCoordinator {
         return MenuCoordinator.configure(viewModelDelegate: nil, service: nil)
@@ -28,14 +32,12 @@ class CoordinatorProvider {
     static func makeMainNavigationCoordinator(parent: Coordinator? = nil) -> MainNavigationCoordinator {
         return MainNavigationCoordinator.configure(viewModelDelegate: nil, service: nil)
     }
-    static func makeHistoryCoordinator() -> HistoryCoordinator {
-        return HistoryCoordinator.configure(viewModelDelegate: nil, service: nil)
-    }
     static func makeTransferCoordinator(parent: Coordinator? = nil) -> TransferCoordinator {
-        return TransferCoordinator.configure(viewModelDelegate: nil, service: nil)
+        return TransferCoordinator.configure(viewModelDelegate: nil, service: UseCaseProvider.shared.provideEventUseCase())
     }
     static func makeMainFeedCoordinator(parent: Coordinator? = nil) -> MainFeedCoordinator {
-        return MainFeedCoordinator.configure(viewModelDelegate: nil, service: nil)
+       let service = UseCaseProvider.shared.provideMainFeedUseCase()
+        return MainFeedCoordinator.configure(viewModelDelegate: nil, service: service)
     }
     static func provideMainCoordinators() -> [String: Coordinator] {
         let coordinators: [Coordinator] = [makeMainFeedCoordinator(), makeTransferCoordinator(), makeConversionCoordinator(), makeMenuCoordinator()]

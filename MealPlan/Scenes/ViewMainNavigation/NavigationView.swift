@@ -24,8 +24,8 @@ extension NavigationView {
         let gradient = addGradientScreen_Return(frame: CGRect(x: 0, y: -20, width: UIScreen.main.bounds.width, height: Layout.gradientHeight), start: CGPoint(x: 0, y: 0), end: CGPoint(x: 0, y: 1.0), locations: [0.0, 1.0], colors: ViewProperties.gradientColors)
         layer.insertSublayer(gradient, at: 0)
         
-        add(views: menuButton, historyButton, conversionButton, transferButton)
-        menuButton.constrainInView(view: self, left: Layout.menuEdgeOffset.left, bottom: Layout.menuEdgeOffset.bottom)
+        add(views: historyButton, conversionButton, transferButton)
+        //menuButton.constrainInView(view: self, left: Layout.menuEdgeOffset.left, bottom: Layout.menuEdgeOffset.bottom)
         
         conversionButton.constrainCenterXTo(view: self, constant: 0)
         conversionButton.constrainBottomToBottom(of: self, constant: Layout.conversionBottomOffset)

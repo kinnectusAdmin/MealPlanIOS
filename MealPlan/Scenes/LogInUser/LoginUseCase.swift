@@ -10,4 +10,5 @@ import Foundation
 protocol LoginUseCase {
     func didSelectSignUp()
     func didSelectReturn()
+    func didLogin()
 }

@@ -47,7 +47,6 @@ extension MainFeedGraphItem {
         averageLabel.constrainCenterXTo(view: container, constant: 0)
         detailsLabel.constrainBottomToBottom(of: container, constant: Layout.detailsBottomOffset)
         detailsLabel.constrainCenterXTo(view: container, constant: 0)
-        
     }
     
     func setBalances(balances: [Double]) {

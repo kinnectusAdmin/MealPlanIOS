@@ -15,15 +15,18 @@ struct CreateAccountRouter: RouterLink {
     static var route: (CreateAccountViewModelLink.CreateAccountViewState?, CreateAccountViewModelLink.CreateAccountIntent, Router<CreateAccountRouter>) -> Void =
     {
         viewState, intent, router in
+        guard let state = viewState else { return }
         switch intent {
         case .didSelectLogin:
-            //TODO: Handle Login
-            let coordinator = CoordinatorProvider.makeLoginCoordinator()
-            coordinator.pushCoordinator(coordinator)
-            router.controller.present(controller: coordinator.router.controller, animated: true, arrange: nil)
+           (router.coordinator as? CreateAccountUseCase)?.didSelectLogin()
         case .didSelectReturn:
-            //TODO: Handle return
-            router.controller.remove(animated: true, animation: nil)
+            (router.coordinator as? CreateAccountUseCase)?.didSelectReturn()
+        case .didAcknowledgeAlert:
+            switch state.createAccountState {
+            case .signUpSucceeded:
+                (router.coordinator as? CreateAccountUseCase)?.didCreateAccount()
+            default: break
+            }
         default: break
         }
     }

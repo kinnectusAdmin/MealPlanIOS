@@ -39,7 +39,7 @@ class TransferView: UIViewController, TransferViewType {
     
     var searchView: UserSearchViewType = UserSearchView.view()
     
-    lazy var transferEventCollection = UXCollectionView<TransferEventSectionModel>(model: nil, direction: .vertical, frame: self.view.frame)
+    var transferEventCollection = UXCollectionView<TransferEventSectionModel>(model: nil, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
     private let eventContainer: UIView = UIView.containerView(background: .white, radius: Layout.containerRadius, borderColor: ViewProperties.containerBorderColor)
     
@@ -152,7 +152,6 @@ extension TransferView {
         //
         localUserAvatar.imageView.image = AppImages.person.image()
         transacteeAvatar.imageView.image = AppImages.person.image()
-        eventContainer.addSubview(transferEventCollection)
         transferEventCollection.constrainInView(view: eventContainer, left: 0, right: 0, bottom: 0)
         transferEventCollection.constrainTopToBottom(of: containerControlTab, constant: Layout.transferCollectionTopOffset)
         searchView.render().constrainInView(view: view, left: 0, right: 0, bottom: 0)
@@ -174,7 +173,7 @@ extension TransferView {
                 }
             } else {
                 UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerOriginTopOffset + min(0, max(translation, -Layout.containerHeight))
+                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset + min(0, max(translation, -Layout.containerHeight))
                     self.view.layoutIfNeeded()
                 }
             }
@@ -182,7 +181,7 @@ extension TransferView {
         case .ended:
             if  containerTopConstraint.constant > -Layout.containerHeight {
                 UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerOriginTopOffset
+                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset
                     self.view.layoutIfNeeded()
                 }
             }

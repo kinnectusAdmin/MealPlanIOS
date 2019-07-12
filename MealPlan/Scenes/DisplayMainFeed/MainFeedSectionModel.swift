@@ -30,6 +30,7 @@ struct MainFeedSectionModel: SectionModel {
     
     static var actionForViewState: (MainFeedViewModelLink.MainFeedViewState, MainFeedViewModelLink.MainFeedViewState?, UICollectionView) -> Void = {
         viewState, prevViewState, collection in
+        collection.reloadData()
     }
     var viewState: MainFeedViewModelLink.MainFeedViewState!
     

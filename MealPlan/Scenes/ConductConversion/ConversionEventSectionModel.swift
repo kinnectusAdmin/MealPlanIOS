@@ -24,6 +24,7 @@ struct ConversionEventSectionModel: SectionModel {
     static var actionForViewState: (ParentViewState, ParentViewState?, UICollectionView) -> Void =
     {
         viewState, previousViewState, collection in
+        collection.reloadData()
     }
     
     var viewState: ParentViewState!

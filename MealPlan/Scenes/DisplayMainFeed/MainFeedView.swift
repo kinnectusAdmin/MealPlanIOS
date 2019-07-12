@@ -22,6 +22,6 @@ extension MainFeedView {
         title = "MainFeedView"
         view.backgroundColor = ViewProperties.backgroundColor
         view.add(views: mainFeedCollectionView)
-        mainFeedCollectionView.constrainInView(view: self.view, top: 0, left: 0, right: 0, bottom: 0)
+        mainFeedCollectionView.constrainInView(view: self.view, top: 0, left: 0, right: 0, bottom: Layout.collectionBottomOffset)
     }
 }

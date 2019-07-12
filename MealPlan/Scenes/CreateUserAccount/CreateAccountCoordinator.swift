@@ -18,6 +18,19 @@ final class CreateAccountCoordinator: SceneCoordinator {
     var presenter: Presenter<ViewLink>!
     var router: Router<CreateAccountRouter>!
     func controller() -> Controller {
-        return CreateAccountView()
+        return presenter?.presentation ?? CreateAccountView()
     }
+}
+extension CreateAccountCoordinator: CreateAccountUseCase {
+    func didSelectLogin() {
+        Application.shared.presentLogin()
+    }
+    func didCreateAccount() {
+        Application.shared.presentMainNavigation()
+        parentCoordinator?.popCoordinator(CreateAccountCoordinator.identifier)
+    }
+    func didSelectReturn() {
+        controller().remove(animated: true, animation: nil)
+    }
+    
 }

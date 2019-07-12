@@ -26,6 +26,7 @@ struct MainFeedEventsSectionModel: SectionModel {
     
     static var actionForViewState: (MainFeedEventsItemViewModelLink.ItemViewState, MainFeedEventsItemViewModelLink.ItemViewState?, UICollectionView) -> Void = {
         viewState, prevViewState, collection in
+        collection.reloadData()
     }
     var viewState: MainFeedEventsItemViewModelLink.ItemViewState!
     

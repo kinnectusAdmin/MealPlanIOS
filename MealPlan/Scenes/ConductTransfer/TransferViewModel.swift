@@ -9,14 +9,24 @@
 import Foundation
 import CleanModelViewIntent
 import MealPlanDomain
+import MealPlanNetwork
+
 struct TransferViewModel: ViewModelLink {
     
     typealias Link = TransferViewModelLink
     typealias ResultType = Link.TransferResult
-    typealias ServiceType = NilServiceType
+    typealias ServiceType = MealPlanNetwork.EventUseCase
     typealias DelegateType = NilDelegateType
     
-    static var serviceHandler: ((TransferViewModelLink.TransferIntent, TransferViewModelLink.TransferViewState, NilServiceType?) -> Void)?
+    static var serviceHandler: ((TransferViewModelLink.TransferIntent, TransferViewModelLink.TransferViewState, ServiceType?) -> Void)? =
+    {
+        intent, viewState, service in
+        switch intent {
+        case .initial:
+            service?.fetchTransferEvents(userID: MealPlanUser.local.uid)
+        default: break
+        }
+    }
     static var delegateHandler: ((TransferViewModelLink.TransferIntent, TransferViewModelLink.TransferViewState, NilDelegateType?) -> Void)?
     static var initialIntent: TransferViewModelLink.TransferIntent? = .initial
 
@@ -43,7 +53,15 @@ struct TransferViewModel: ViewModelLink {
         default: return ResultType.notSet
         }
     }
-    static var partialResultHandler: ((Result) -> TransferViewModelLink.TransferResult?)? = { _ in return nil}
+    static var partialResultHandler: ((Result) -> TransferViewModelLink.TransferResult?)? =
+    {
+        result in
+        switch result as? MealPlanNetwork.EventNetwork.EventNetworkResult {
+        case let .didFetchTransferEvents(events)?:
+            return ResultType.updateTransferEvents(events)
+        default: return nil
+        }
+    }
     
     static func reduce(viewState: TransferViewModelLink.TransferViewState?, result: TransferViewModelLink.TransferResult?) -> TransferViewModelLink.TransferViewState? {
         let state = viewState ?? Link.TransferViewState.empty
@@ -65,6 +83,8 @@ struct TransferViewModel: ViewModelLink {
             return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: user)
         case let .updateSearchField(searchText)?:
             return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: state.pastTransfers, userSearchText: searchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
+        case let .updateTransferEvents(events)?:
+            return Link.TransferViewState(transferIntention: state.transferIntention, transferType: state.transferType, pastTransfers: events, userSearchText: state.userSearchText, userSearchResults: state.userSearchResults, searchViewState: state.searchViewState, transferValue: state.transferValue, selectedTransactee: state.selectedTransactee)
         default: return viewState
         }
     }
@@ -114,5 +134,6 @@ struct TransferViewModelLink: ViewStateIntentLink {
         case updateTransferAmounts(value: String)
         case requestUser(MealPlanUser)
         case updateSearchField(String)
+        case updateTransferEvents([TransferEvent])
     }
 }

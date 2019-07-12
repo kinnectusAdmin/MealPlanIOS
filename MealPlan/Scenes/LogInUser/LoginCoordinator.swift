@@ -18,6 +18,18 @@ final class LoginCoordinator: SceneCoordinator {
     var presenter: Presenter<ViewLink>!
     var router: Router<LoginRouter>!
     func controller() -> Controller {
-        return LoginView()
+        return presenter?.presentation ?? LoginView()
+    }
+}
+extension LoginCoordinator: LoginUseCase {
+    func didSelectReturn() {
+        Application.shared.presentCreateAccount()
+    }
+    func didSelectSignUp() {
+        Application.shared.presentCreateAccount()
+    }
+    func didLogin() {
+        Application.shared.presentMainNavigation()
+        parentCoordinator?.popCoordinator(LoginCoordinator.identifier)
     }
 }

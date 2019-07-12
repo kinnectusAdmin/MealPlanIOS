@@ -16,8 +16,8 @@ struct TransferEventItemPresenter: ItemPresenterLink {
         = { viewState, _, view in
             guard let state  = viewState else { return }
             view.avatar.loadImageWithURL(url: state.userImage, defaultImage: AppImages.person.image())
-//            view.descriptionLabel.text = state.eventDescription
-//            view.dateLabel.text = state.eventDate
+            view.descriptionLabel.text = state.eventDescription
+            view.dateLabel.text = state.eventDate
     }
     static var interaction: (EventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
         

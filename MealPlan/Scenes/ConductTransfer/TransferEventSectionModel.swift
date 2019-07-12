@@ -24,6 +24,7 @@ struct TransferEventSectionModel: SectionModel {
     static var actionForViewState: (ParentViewState, ParentViewState?, UICollectionView) -> Void =
     {
         viewState, previousViewState, collection in
+        collection.reloadData()
     }
     
     var viewState: ParentViewState!
@@ -59,8 +60,4 @@ struct TransferEventSectionModel: SectionModel {
     func willEndDragging<Listener>(referenceSize: CGSize, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>, listener: Listener) where Listener : ItemListener {
         
     }
-    
-    
-    
-    
 }

@@ -15,9 +15,15 @@ struct LoginRouter: RouterLink {
         viewState, intent, router in
         switch intent {
         case .didSelectReturn:
-            router.controller.remove(animated: true, animation: nil)
+           (router.coordinator as? LoginUseCase)?.didSelectReturn()
         case .didSelectSignUp:
-            router.controller.remove(animated: true, animation: nil)
+           (router.coordinator as? LoginUseCase)?.didSelectSignUp()
+        case .didAcknowledgeAlert:
+            switch viewState?.loginState ?? .none {
+            case .loginSucceeded:
+                (router.coordinator as? LoginUseCase)?.didLogin()
+            default: break
+            }
         default: break
         }
     }

@@ -37,10 +37,49 @@ extension Application {
     /// - Returns: Application
     func configureApp(window: UIWindow?) -> Application {
         self.window = window
-        let coordinator = CoordinatorProvider.makeMainNavigationCoordinator()
+        let coordinator = CoordinatorProvider.makeLoginCoordinator()
         window?.rootViewController = coordinator.router.controller.view()
         window?.makeKeyAndVisible()
-        coordinators[MainNavigationCoordinator.identifier] = coordinator
+        coordinators[coordinator.provideIdentifier()] = coordinator
         return self
+    }
+    /// Presents controller if coordinator exists. Otherwise creates and presents
+    ///
+    /// - Parameter coordinatorType: Coordinators (enum to identify coordinators)
+    private func findAndPush(coordinatorType: Objects.Coordinators) {
+        guard let coordinator = coordinator(type: coordinatorType) else {
+            switch coordinatorType {
+            case .onboard:
+                coordinators.updateValue(CoordinatorProvider.makeOnboardCoordinator(), forKey: coordinatorType.identifier())
+            case .login:
+                coordinators.updateValue(CoordinatorProvider.makeLoginCoordinator(), forKey: coordinatorType.identifier())
+            case .createAccount:
+                coordinators.updateValue(CoordinatorProvider.makeCreateAccountCoordinator(), forKey: coordinatorType.identifier())
+            case .mainNavigation:
+                coordinators.updateValue(CoordinatorProvider.makeMainNavigationCoordinator(), forKey: coordinatorType.identifier())
+            }
+
+            window?.rootViewController = coordinators[coordinatorType.identifier()]?.controller().view()
+            window?.makeKeyAndVisible()
+            return
+        }
+        window?.rootViewController = coordinator.controller().view()
+        window?.makeKeyAndVisible()
+    }
+    /// Find and present main navigation
+    func presentMainNavigation() {
+        findAndPush(coordinatorType: .mainNavigation)
+    }
+    /// Find and present login
+    func presentLogin() {
+        findAndPush(coordinatorType: .login)
+    }
+    /// Find and present create account
+    func presentCreateAccount() {
+       findAndPush(coordinatorType: .createAccount)
+    }
+    /// Find and present onboarding
+    func presentOnboarding() {
+        findAndPush(coordinatorType: .onboard)
     }
 }

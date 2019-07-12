@@ -18,15 +18,9 @@ struct OnboardRouter: RouterLink {
         viewState, intent, router in
         switch intent {
         case .didSelectLogin:
-            //TODO: Handle Login
-            let coordinator = CoordinatorProvider.makeLoginCoordinator()
-            coordinator.pushCoordinator(coordinator)
-            router.controller.present(controller: coordinator.router.controller, animated: true, arrange: nil)
+            (router.coordinator as? OnboardUseCase)?.didSelectLogin()
         case .didSelectSignUp:
-            //TODO: Handle Sign up
-            let coordinator = CoordinatorProvider.makeCreateAccountCoordinator()
-            coordinator.pushCoordinator(coordinator)
-            router.controller.present(controller: coordinator.router.controller, animated: true, arrange: nil)
+            (router.coordinator as? OnboardUseCase)?.didSelectSignUp()
         default: break
         }
     }

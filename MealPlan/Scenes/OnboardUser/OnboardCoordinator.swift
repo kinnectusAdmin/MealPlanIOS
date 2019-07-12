@@ -18,6 +18,14 @@ final class OnboardCoordinator: SceneCoordinator {
     var presenter: Presenter<ViewLink>!
     var router: Router<OnboardRouter>!
     func controller() -> Controller {
-        return OnboardView()
+        return presenter?.presentation ?? OnboardView()
+    }
+}
+extension OnboardCoordinator: OnboardUseCase {
+    func didSelectSignUp() {
+        Application.shared.presentCreateAccount()
+    }
+    func didSelectLogin() {
+        Application.shared.presentLogin()
     }
 }

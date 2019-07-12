@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import CleanModelViewIntent
 import Utilities
-protocol CreateAccountViewType: Presentation, Controller {
+protocol CreateAccountViewType: Presentation, Controller, Alerting {
     var emailField: UXTextField { get set}
     var passwordField: UXTextField { get set}
     var loginButton: UXButton { get set}

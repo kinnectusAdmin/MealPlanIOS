@@ -17,17 +17,31 @@ class CreateAccountView: UIViewController, CreateAccountViewType {
     var loginButton = UXButton.button(font: ViewProperties.loginButtonFont, color: ViewProperties.loginButtonTitleColor, title: ViewProperties.loginButtonTitle)
     var createButton = UXButton.button(font: ViewProperties.createButtonFont, color: ViewProperties.createButtonTitleColor, background: ViewProperties.createButtonColor, title: ViewProperties.createButtonTitle, radius: Layout.createButtonRadius)
     var backButton = Icons.backButton
-    ///
+    var alertScreen: UIView = UIView.containerView(background: ViewProperties.alertScreenColor)
     private let accountTitle: UILabel = UILabel.labelWith( text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: ViewProperties.titleBackground, alignment: .center)
     private let emailSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
     private let passwordSeparatingBar: UIView = UIView.containerView(background: ViewProperties.separationBarColor)
     private let backgroundImage: UIImageView = Backgrounds.backgroundImage()
-    
+}
+extension CreateAccountView {
+    func showAlert(message: String) {
+        let alertContainer = UIView.containerView(background: .white, radius: 10, borderWidth: 1.0, borderColor: .black)
+        let alertLabel = UILabel.labelWith(text: message, font: UIFont.App.currentFont.fonts.small, txtColor: UIColor.App.currentScheme.colors.dark, background: .clear, alignment: .center)
+        alertScreen.add(views: alertContainer, alertLabel)
+        alertLabel.constrainCenterToCenter(of: alertScreen)
+        alertContainer.constrainCenterToCenter(of: alertScreen)
+        let height = message.rectForText(width: UIScreen.main.bounds.width, textSize: 20).height
+        alertContainer.constrainWidth_Height(width: 250, height: height)
+        view.add(views: alertScreen)
+        alertScreen.constrainInView(view: view, top: 0, left: 0, right: 0, bottom: 0)
+    }
+}
+extension CreateAccountView {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
     }
-    func setViews() {
+    private func setViews() {
         title = "CreateAccountView"
         //TODO: Draw layout
         view.backgroundColor = ViewProperties.backgroundColor

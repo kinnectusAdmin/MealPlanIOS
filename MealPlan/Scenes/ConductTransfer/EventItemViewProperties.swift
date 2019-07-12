@@ -23,7 +23,7 @@ extension EventItem {
         static let avatarRadius: CGFloat = avatarSize*0.5
         static let avatarLeftOffset: CGFloat = 20
         static let descriptionLeftOffset: CGFloat = 10
-        static let descriptionWidth: CGFloat = 150
+        static let descriptionWidth: CGFloat = 200
         static let dateRightOffset: CGFloat = -10
     }
 }

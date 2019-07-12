@@ -26,7 +26,7 @@ class ConversionView: UIViewController, ConversionViewType {
     
     var numberPadView: NumberPadViewType = NumberPadView.view()
 
-    lazy var conversionEventCollection = UXCollectionView<ConversionEventSectionModel>(model: nil, direction: .vertical, frame: self.view.frame)
+    var conversionEventCollection = UXCollectionView<ConversionEventSectionModel>(model: nil, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
     private let eventContainer: UIView = UIView.containerView(background: .white, radius: Layout.containerRadius, borderColor: ViewProperties.containerBorderColor)
     
@@ -115,7 +115,7 @@ extension ConversionView {
                 }
             } else {
                 UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerOriginTopOffset + min(0, max(translation, -Layout.containerHeight))
+                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset + min(0, max(translation, -Layout.containerHeight))
                     self.view.layoutIfNeeded()
                 }
             }

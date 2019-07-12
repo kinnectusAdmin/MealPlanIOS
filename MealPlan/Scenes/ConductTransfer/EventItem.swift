@@ -24,9 +24,9 @@ class EventItem: UICollectionViewCell, EventItemType {
 
     var avatar: UXImage = UXImage.image(mode: .scaleAspectFill, radius: Layout.avatarRadius)
     
-    var descriptionLabel: UILabel = UILabel.labelWith(text: "Transfer to Janay", font: ViewProperties.descriptionFont, txtColor: ViewProperties.descriptionColor)
+    var descriptionLabel: UILabel = UILabel.labelWith(text: "poj", font: ViewProperties.descriptionFont, txtColor: ViewProperties.descriptionColor)
     
-    var dateLabel: UILabel = UILabel.labelWith(text: "3/2", font: ViewProperties.dateFont, txtColor: ViewProperties.dateColor)
+    var dateLabel: UILabel = UILabel.labelWith(text: ";lkj", font: ViewProperties.dateFont, txtColor: ViewProperties.dateColor)
 }
 extension EventItem {
     override func layoutSubviews() {

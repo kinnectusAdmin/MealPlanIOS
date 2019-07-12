@@ -33,13 +33,14 @@ extension CreateAccountView {
         static let loginButtonTitle: String = "Log In"
         static let loginButtonFont: UIFont = UIFont.App.currentFont.fonts.tiny
         static let loginButtonTitleColor: UIColor = UIColor.App.currentScheme.colors.dark
+        static let alertScreenColor: UIColor = UIColor.App.currentScheme.colors.dark.withAlphaComponent(0.6)
     }
     struct Layout {
         static let createButtonHeight: CGFloat = 50
         static let createButtonRadius: CGFloat = 25
         static let separationBarHeight: CGFloat = 1
-        static let loginButtonEdgeOffset: EdgeOffsets = (0, 10, -10, 0)
-        static let backButtonEdgeOffset: EdgeOffsets = (10, 10, 0, 0)
+        static let loginButtonEdgeOffset: EdgeOffsets = (0, 20, -20, 0)
+        static let backButtonEdgeOffset: EdgeOffsets = (20, 20, 0, 0)
         static let accountTitleTopOffset: CGFloat = 50
         static let emailEdgeOffset: EdgeOffsets = (10, 50, -10, 0)
         static let emailBarTopOffset: CGFloat = 10

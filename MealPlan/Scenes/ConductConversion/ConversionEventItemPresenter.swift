@@ -13,7 +13,9 @@ struct ConversionEventItemPresenter: ItemPresenterLink {
     typealias Link = ConversionEventItemViewModelLink
     typealias View = EventItemType
     static var action: (Link.ViewStateType?, Link.ViewStateType?, EventItemType) -> Void = { viewState, _, view in
-      
+        guard let state  = viewState else { return }
+        view.descriptionLabel.text = state.eventDescription
+        view.dateLabel.text = state.eventDate
     }
     static var interaction: (EventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
         

@@ -16,7 +16,7 @@ struct TransferPresenter: PresenterLink {
     static var action: (Link.ViewStateType?, Link.ViewStateType?, View) -> Void =
     {
         state, _, view in
-        let state = state as? Link.TransferViewState ?? Link.TransferViewState.empty
+        let state = state ?? Link.TransferViewState.empty
         view.balanceLabel.text = state.transferValue
             view.localUserAvatar.loadImageWithURL(url: MealPlanUser.local.imageURL, defaultImage: AppImages.person.image())
             view.transacteeAvatar.loadImageWithURL(url: "", defaultImage: AppImages.person.image())
@@ -36,6 +36,7 @@ struct TransferPresenter: PresenterLink {
             view.sendButton.updateAttributedTitle(title: "Send")
         }
         view.searchView.searchCollection.model.accept(UserSearchViewSectionModel(viewState: state))
+        view.transferEventCollection.model.accept(TransferEventSectionModel(viewState: state))
     }
     static var interaction: (TransferViewType, Box<Link.IntentType?>) -> Void =
     {

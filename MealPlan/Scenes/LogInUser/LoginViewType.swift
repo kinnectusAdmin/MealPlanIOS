@@ -9,9 +9,10 @@
 import Foundation
 import CleanModelViewIntent
 import Utilities
-protocol LoginViewType: Presentation, Controller {
+protocol LoginViewType: Presentation, Controller, Alerting {
     var backButton: UXButton { get set}
     var emailField: UXTextField { get set}
+    var passwordField: UXTextField { get set }
     var loginButton: UXButton { get set}
     var signUpButton: UXButton {get set}
 }

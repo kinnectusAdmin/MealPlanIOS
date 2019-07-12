@@ -41,7 +41,7 @@ struct ConversionEventItemViewModelLink: ViewStateIntentLink {
     typealias ResultType = ItemResult
     
     
-    enum ItemIntent: Intent {
+    enum ItemIntent: Intent, ActionIntent {
         case initial(event: ConversionEvent)
     }
     enum ItemResult: Result {

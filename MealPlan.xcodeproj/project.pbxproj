@@ -75,18 +75,12 @@
 		DAA04CB5222CA0C700DACE77 /* MainFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CB4222CA0C700DACE77 /* MainFeedRouter.swift */; };
 		DAA04CB7222CA0CE00DACE77 /* MainFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CB6222CA0CE00DACE77 /* MainFeedView.swift */; };
 		DAA04CB9222CA0F500DACE77 /* MainFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CB8222CA0F500DACE77 /* MainFeedUseCase.swift */; };
-		DAA04CBB222CA68000DACE77 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CBA222CA68000DACE77 /* HistoryCoordinator.swift */; };
-		DAA04CBD222CA68800DACE77 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CBC222CA68800DACE77 /* HistoryViewModel.swift */; };
-		DAA04CBF222CA69100DACE77 /* HIstoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CBE222CA69100DACE77 /* HIstoryPresenter.swift */; };
-		DAA04CC1222CA6A000DACE77 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CC0222CA6A000DACE77 /* HistoryView.swift */; };
-		DAA04CC3222CA6A600DACE77 /* HistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CC2222CA6A600DACE77 /* HistoryUseCase.swift */; };
 		DAA04CC8222D649400DACE77 /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CC7222D649400DACE77 /* MainNavigationCoordinator.swift */; };
 		DAA04CCA222D64A700DACE77 /* MainNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CC9222D64A700DACE77 /* MainNavigationViewModel.swift */; };
 		DAA04CCC222D64C800DACE77 /* MainNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CCB222D64C800DACE77 /* MainNavigationPresenter.swift */; };
 		DAA04CCE222D64E100DACE77 /* MainNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CCD222D64E100DACE77 /* MainNavigationRouter.swift */; };
 		DAA04CD2222D653E00DACE77 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CD1222D653E00DACE77 /* MainNavigationView.swift */; };
 		DAA04CD4222D654C00DACE77 /* MainNavigationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CD3222D654C00DACE77 /* MainNavigationUseCase.swift */; };
-		DAA04CD6222D6A3600DACE77 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CD5222D6A3600DACE77 /* HistoryRouter.swift */; };
 		DAA04CD8222D6B1900DACE77 /* TransferCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CD7222D6B1900DACE77 /* TransferCoordinator.swift */; };
 		DAA04CDA222D6B2000DACE77 /* TransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CD9222D6B2000DACE77 /* TransferViewModel.swift */; };
 		DAA04CDC222D6B2800DACE77 /* TransferPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA04CDB222D6B2800DACE77 /* TransferPresenter.swift */; };
@@ -350,18 +344,12 @@
 		DAA04CB4222CA0C700DACE77 /* MainFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedRouter.swift; sourceTree = "<group>"; };
 		DAA04CB6222CA0CE00DACE77 /* MainFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedView.swift; sourceTree = "<group>"; };
 		DAA04CB8222CA0F500DACE77 /* MainFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedUseCase.swift; sourceTree = "<group>"; };
-		DAA04CBA222CA68000DACE77 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
-		DAA04CBC222CA68800DACE77 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		DAA04CBE222CA69100DACE77 /* HIstoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryPresenter.swift; sourceTree = "<group>"; };
-		DAA04CC0222CA6A000DACE77 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		DAA04CC2222CA6A600DACE77 /* HistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCase.swift; sourceTree = "<group>"; };
 		DAA04CC7222D649400DACE77 /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
 		DAA04CC9222D64A700DACE77 /* MainNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewModel.swift; sourceTree = "<group>"; };
 		DAA04CCB222D64C800DACE77 /* MainNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationPresenter.swift; sourceTree = "<group>"; };
 		DAA04CCD222D64E100DACE77 /* MainNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationRouter.swift; sourceTree = "<group>"; };
 		DAA04CD1222D653E00DACE77 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
 		DAA04CD3222D654C00DACE77 /* MainNavigationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationUseCase.swift; sourceTree = "<group>"; };
-		DAA04CD5222D6A3600DACE77 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
 		DAA04CD7222D6B1900DACE77 /* TransferCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoordinator.swift; sourceTree = "<group>"; };
 		DAA04CD9222D6B2000DACE77 /* TransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewModel.swift; sourceTree = "<group>"; };
 		DAA04CDB222D6B2800DACE77 /* TransferPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferPresenter.swift; sourceTree = "<group>"; };
@@ -544,6 +532,7 @@
 				DAA04CCB222D64C800DACE77 /* MainNavigationPresenter.swift */,
 				DAA04CCD222D64E100DACE77 /* MainNavigationRouter.swift */,
 				DAA04CD1222D653E00DACE77 /* MainNavigationView.swift */,
+				DAEB07632291DF1300415220 /* NavigationView.swift */,
 				DAF6250322B812FD001C860D /* MainNavigationViewType.swift */,
 				DAF624FB22B81265001C860D /* MainNavigationViewViewProperties.swift */,
 				DAA04CD3222D654C00DACE77 /* MainNavigationUseCase.swift */,
@@ -602,7 +591,6 @@
 				DAF3A91422262ED100FFF4E5 /* Scenes */,
 				DA0C7E1C2242F0A1006C26BD /* Resources */,
 				DAF3A8E822262B0600FFF4E5 /* Info.plist */,
-				DAEB07632291DF1300415220 /* NavigationView.swift */,
 			);
 			path = MealPlan;
 			sourceTree = "<group>";
@@ -691,19 +679,6 @@
 			path = DisplayMainFeed;
 			sourceTree = "<group>";
 		};
-		DAF3A91022262D1000FFF4E5 /* ReviewHistory */ = {
-			isa = PBXGroup;
-			children = (
-				DAA04CBA222CA68000DACE77 /* HistoryCoordinator.swift */,
-				DAA04CBC222CA68800DACE77 /* HistoryViewModel.swift */,
-				DAA04CBE222CA69100DACE77 /* HIstoryPresenter.swift */,
-				DAA04CC0222CA6A000DACE77 /* HistoryView.swift */,
-				DAA04CD5222D6A3600DACE77 /* HistoryRouter.swift */,
-				DAA04CC2222CA6A600DACE77 /* HistoryUseCase.swift */,
-			);
-			path = ReviewHistory;
-			sourceTree = "<group>";
-		};
 		DAF3A91122262D3F00FFF4E5 /* ConductTransfer */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,7 +747,6 @@
 				DAF3A91322262D7700FFF4E5 /* AccessMenu */,
 				DAF3A91222262D4A00FFF4E5 /* ConductConversion */,
 				DAF3A91122262D3F00FFF4E5 /* ConductTransfer */,
-				DAF3A91022262D1000FFF4E5 /* ReviewHistory */,
 				DAF3A90F22262CE300FFF4E5 /* DisplayMainFeed */,
 				DAF3A90E22262C8B00FFF4E5 /* CreateUserAccount */,
 				DAF3A90D22262C4400FFF4E5 /* LogInUser */,
@@ -1032,7 +1006,6 @@
 				DAA04CFA222D761F00DACE77 /* MenuUseCase.swift in Sources */,
 				DAA04C95222C8CBB00DACE77 /* Application.swift in Sources */,
 				DAA04CF8222D761600DACE77 /* MenuRouter.swift in Sources */,
-				DAA04CBB222CA68000DACE77 /* HistoryCoordinator.swift in Sources */,
 				DAB1B23622AC462B00A8FD5F /* NumberPadView.swift in Sources */,
 				DA0B087922A73C6B001F180D /* EventItem.swift in Sources */,
 				DAA04CE8222D75CB00DACE77 /* ConversionPresenter.swift in Sources */,
@@ -1047,7 +1020,6 @@
 				DAA04CCE222D64E100DACE77 /* MainNavigationRouter.swift in Sources */,
 				DAA04CE6222D75B200DACE77 /* ConversionViewModel.swift in Sources */,
 				DAF624FC22B81265001C860D /* MainNavigationViewViewProperties.swift in Sources */,
-				DAA04CD6222D6A3600DACE77 /* HistoryRouter.swift in Sources */,
 				DA31110E22A5C65C002F851C /* MainFeedSectionModel.swift in Sources */,
 				DAA04CEE222D75E400DACE77 /* ConversionUseCase.swift in Sources */,
 				DAB1B23422AC0C4900A8FD5F /* TransferViewViewProperties.swift in Sources */,
@@ -1064,7 +1036,6 @@
 				DAB1B21522A9D36D00A8FD5F /* MainFeedAccountItemPresenter.swift in Sources */,
 				DAEB07602291DD6B00415220 /* CreateAccountViewType.swift in Sources */,
 				DA0B087122A738E1001F180D /* TransferEventItemViewModel.swift in Sources */,
-				DAA04CBD222CA68800DACE77 /* HistoryViewModel.swift in Sources */,
 				DAEB075E2291DD3D00415220 /* LoginViewType.swift in Sources */,
 				DA07924A2231BE3B006A0E66 /* OnboardItemPresenter.swift in Sources */,
 				DAEB07642291DF1300415220 /* NavigationView.swift in Sources */,
@@ -1074,7 +1045,6 @@
 				DA97551B22490A50002D1ADC /* MainFeedGraphItem.swift in Sources */,
 				DA0CB23D2229BB9D009C23FB /* OnBoardView.swift in Sources */,
 				DAA04C9D222C956000DACE77 /* CreateAccountView.swift in Sources */,
-				DAA04CC3222CA6A600DACE77 /* HistoryUseCase.swift in Sources */,
 				DA0CB2392229BB80009C23FB /* OnboardViewModel.swift in Sources */,
 				DAB1B22622AA9BF800A8FD5F /* EventItemViewProperties.swift in Sources */,
 				DAA04CF0222D75F000DACE77 /* MenuCoordinator.swift in Sources */,
@@ -1089,7 +1059,6 @@
 				DAA04CAD222C9CE500DACE77 /* LoginUseCase.swift in Sources */,
 				DA0F68BA22AC8E5700866977 /* UserSearchViewSectionModel.swift in Sources */,
 				DAB1B21C22A9FAF600A8FD5F /* MainFeedGraphItemPresenter.swift in Sources */,
-				DAA04CC1222CA6A000DACE77 /* HistoryView.swift in Sources */,
 				DAA04CCA222D64A700DACE77 /* MainNavigationViewModel.swift in Sources */,
 				DAB1B22422AA13F300A8FD5F /* MainFeedGraphItemViewProperties.swift in Sources */,
 				DA07923622304E40006A0E66 /* CreateAccountViewProperties.swift in Sources */,
@@ -1108,7 +1077,6 @@
 				DA9754FA22472509002D1ADC /* MainFeedEventItem.swift in Sources */,
 				DAA04CA7222C9CCE00DACE77 /* LoginPresenter.swift in Sources */,
 				DAA04CEA222D75D500DACE77 /* ConversionView.swift in Sources */,
-				DAA04CBF222CA69100DACE77 /* HIstoryPresenter.swift in Sources */,
 				DA0B087B22A75296001F180D /* MainFeedEventsSectionModel.swift in Sources */,
 				DAA04C91222C633B00DACE77 /* OnboardUseCase.swift in Sources */,
 				DAA04CF6222D760C00DACE77 /* MenuView.swift in Sources */,

@@ -35,6 +35,7 @@ extension LoginView {
         static let signUpButtonColor: UIColor = UIColor.App.currentScheme.colors.dark
         static let signUpButtonBackground: UIColor = .clear
         static let signUpButtonTitle: String = "Sign Up"
+        static let alertScreenColor: UIColor = UIColor.App.currentScheme.colors.dark.withAlphaComponent(0.6)
     }
     struct Layout {
         static let separationBarHeight: CGFloat = 1

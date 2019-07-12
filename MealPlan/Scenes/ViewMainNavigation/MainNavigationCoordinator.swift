@@ -19,15 +19,17 @@ final class MainNavigationCoordinator: NSObject, SceneCoordinator {
     var viewModel: MVIViewModelType!
     var presenter: Presenter<ViewLink>!
     var router: Router<MainNavigationRouter>!
-    private lazy var navigationController: UIPageViewController = {
-        let controller = MainNavigationView(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        controller.setViewControllers([fetch(identifier: MainFeedCoordinator.identifier)!.controller().view()], direction: .forward, animated: false, completion: nil)
-        controller.delegate = self
-        controller.dataSource = self
-        return controller
-    }()
     func controller() -> Controller {
-        return presenter?.presentation ?? navigationController
+        if let presentation  = presenter?.presentation {
+            return presentation
+        } else {
+            let controller = MainNavigationView(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+            controller.setViewControllers([fetch(identifier: MainFeedCoordinator.identifier)!.controller().view()], direction: .forward, animated: false, completion: nil)
+            controller.delegate = self
+            controller.dataSource = self
+            presenter?.presentation = controller
+            return controller
+        }
     }
 }
 extension MainNavigationCoordinator {

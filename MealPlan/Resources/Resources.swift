@@ -9,6 +9,7 @@
 import UIKit
 import Utilities
 import MealPlanDomain
+
 enum Backgrounds: String {
     case topography = "topography"
     case swirlPattern = "swirl_pattern"
@@ -254,3 +255,24 @@ fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Ke
     return input.rawValue
 }
 
+protocol Alerting {
+    var alertScreen: UIView { get set }
+    func showAlert(message: String)
+    func dismissAlert()
+}
+extension Alerting where Self: UIViewController {
+    mutating func showAlert(message: String) {
+        let alertContainer = UIView.containerView(background: .white, radius: 10, borderWidth: 1.0, borderColor: .black)
+        let alertLabel = UILabel.labelWith(text: message, font: UIFont.App.currentFont.fonts.small, txtColor: UIColor.App.currentScheme.colors.dark, background: .clear, alignment: .center)
+        alertScreen.add(views: alertContainer, alertLabel)
+        alertLabel.constrainCenterToCenter(of: alertScreen)
+        alertContainer.constrainCenterToCenter(of: alertScreen)
+        let height = message.rectForText(width: UIScreen.main.bounds.width, textSize: 20).height
+        alertContainer.constrainWidth_Height(width: 250, height: height)
+        view.add(views: alertScreen)
+        alertScreen.constrainInView(view: view, top: 0, left: 0, right: 0, bottom: 0)
+    }
+    func dismissAlert() {
+        alertScreen.removeFromSuperview()
+    }
+}

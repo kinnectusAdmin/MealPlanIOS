@@ -11,8 +11,21 @@ import CleanModelViewIntent
 struct CreateAccountPresenter: PresenterLink {
     typealias Link = CreateAccountViewModelLink
     typealias View = CreateAccountViewType
-    static var action: (Link.ViewStateType?, Link.ViewStateType?, CreateAccountViewType) -> Void = { state, _, view in
-    
+    static var action: (Link.ViewStateType?, Link.ViewStateType?, CreateAccountViewType) -> Void =
+    { state, _, view in
+        guard let state = state else { return }
+        switch state.createAccountState {
+        case .loading:
+            break
+        default: break
+        }
+        switch state.alertState {
+        case let .alert(message):
+            view.showAlert(message: message)
+        case .dismiss:
+            view.dismissAlert()
+        default: break
+        }
     }
     static var interaction: (CreateAccountViewType, Box<Link.IntentType?>) -> Void = { view, interactor in
         view.emailField.textValue.bindListener { text, _ in
@@ -29,6 +42,9 @@ struct CreateAccountPresenter: PresenterLink {
         })
         view.loginButton.setAction({
             interactor.accept(Link.IntentType.didSelectLogin)
+        })
+        view.alertScreen.addTapGestureRecognizer(action: {
+            interactor.accept(Link.IntentType.didAcknowledgeAlert)
         })
     }
 }
