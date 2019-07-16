@@ -29,7 +29,7 @@ class MainFeedGraphItem: UICollectionViewCell, MainFeedGraphItemType {
     
     var titleLabel: UILabel = UILabel.labelWith(font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
     
-    private lazy var container: UIView = UIView.container(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingGradientScreen(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: Layout.containerHeight), start: CGPoint(x: 0, y: 0), end: CGPoint(x: 0, y: 1.0), locations: [0.0, 0.25, 0.5], colors: ViewProperties.containerColors).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
+    private lazy var container: UIView = UIView.containerView(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingGradientScreen(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: Layout.containerHeight), start: CGPoint(x: 0, y: 0), end: CGPoint(x: 0, y: 1.0), locations: [0.0, 0.25, 0.5], colors: ViewProperties.containerColors).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
 }
 extension MainFeedGraphItem {
     override func layoutSubviews() {

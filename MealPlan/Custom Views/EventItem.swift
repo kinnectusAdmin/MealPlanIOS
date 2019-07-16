@@ -1,5 +1,5 @@
 //
-//  TransferEventItem.swift
+//  EventItem.swift
 //  MealPlan
 //
 //  Created by blakerogers on 6/4/19.

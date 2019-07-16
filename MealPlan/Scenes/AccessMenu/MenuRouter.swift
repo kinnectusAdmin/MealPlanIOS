@@ -15,6 +15,8 @@ struct MenuRouter: RouterLink {
     {
         viewState, intent, router in
         switch intent {
+        case .didSelectLogout:
+           (router.coordinator as? MenuUseCase)?.logout()
         default: break
         }
     }

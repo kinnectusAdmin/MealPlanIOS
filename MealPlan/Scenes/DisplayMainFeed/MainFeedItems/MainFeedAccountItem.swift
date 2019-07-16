@@ -32,7 +32,7 @@ class MainFeedAccountItem: UICollectionViewCell, MainFeedAccountItemType {
     var flexReceivedLabel: UILabel = valueLabel()
     var flexConvertedLabel: UILabel = valueLabel()
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
-    private let container: UIView = UIView.container(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
+    private let container: UIView = UIView.containerView(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
     private let swipesAccountLabel = UILabel.labelWith(text: "Swipes", font: ViewProperties.accountTypeFont, txtColor: ViewProperties.accoutTypeColor, background: .clear)
     private let flexAccountLabel = UILabel.labelWith(text: "Flex", font: ViewProperties.accountTypeFont, txtColor: ViewProperties.accoutTypeColor, background: .clear)
     private let trendIcon: UILabel = Icons.trendIcon(Layout.trendIconSize, ViewProperties.trendIconColor)

@@ -37,7 +37,7 @@ extension Application {
     /// - Returns: Application
     func configureApp(window: UIWindow?) -> Application {
         self.window = window
-        let coordinator = CoordinatorProvider.makeLoginCoordinator()
+        let coordinator = CoordinatorProvider.makeOnboardCoordinator()
         window?.rootViewController = coordinator.router.controller.view()
         window?.makeKeyAndVisible()
         coordinators[coordinator.provideIdentifier()] = coordinator
@@ -80,6 +80,10 @@ extension Application {
     }
     /// Find and present onboarding
     func presentOnboarding() {
+        findAndPush(coordinatorType: .onboard)
+    }
+    func logout() {
+        coordinators.removeAll()
         findAndPush(coordinatorType: .onboard)
     }
 }

@@ -24,6 +24,8 @@ struct ConversionViewModel: ViewModelLink {
         switch intent {
         case .initial:
             service?.fetchConversionEvents(userID: MealPlanUser.local.uid)
+        case .didVerifyConversionRequest:
+            service?.recordConversion(conversion: viewState.proposedConversion)
         default: break
         }
     }
@@ -35,12 +37,18 @@ struct ConversionViewModel: ViewModelLink {
     {
         intent in
         switch intent {
-        case let .didUpdateFlexAmount(amount):
-            return ResultType.updateFlexAmount(amount)
-        case let .didUpdateSwipeAmount(amount):
-            return ResultType.updateSwipeAmount(amount)
+        case let .didUpdateAmount(amount):
+            return ResultType.updateConversionAmount(amount)
         case .didSwitchConversionMode:
             return ResultType.switchConversionMode
+        case .didInitiateConversion:
+            return ResultType.verifyConversion
+        case .didDeclineConversion:
+            return ResultType.dismissConversionRequest
+        case .didVerifyConversionRequest:
+            return ResultType.beginConversion
+        case .didAcknowledgeAlert:
+            return ResultType.acknowledgeAlert
         default: return ResultType.notSet
         }
     }
@@ -51,6 +59,10 @@ struct ConversionViewModel: ViewModelLink {
         switch result as? MealPlanNetwork.EventNetwork.EventNetworkResult {
         case let .didFetchConversionEvents(events)?:
             return ResultType.updateConversionEvents(events)
+        case .didRecordConversion?:
+            return ResultType.conversionSuceeded
+        case .recordConversionFailure?:
+            return ResultType.conversionFailed
         default: return nil
         }
     }
@@ -59,20 +71,40 @@ struct ConversionViewModel: ViewModelLink {
         guard let state = viewState else { return Link.ViewStateType.empty}
         switch result {
         case .initial?:
-            return Link.ViewStateType.init(proposedConversion: ConversionEvent.empty, flexAmount: 0, swipeAmount: 0, conversionMode: .swipesToFlex, pastConversions: [])
-        case let .updateFlexAmount(amount)?:
-            return Link.ViewStateType.init(proposedConversion: state.proposedConversion, flexAmount: amount, swipeAmount: state.swipeAmount, conversionMode: state.conversionMode, pastConversions: state.pastConversions)
-        case let .updateSwipeAmount(amount)?:
-            return Link.ViewStateType.init(proposedConversion: state.proposedConversion, flexAmount: state.flexAmount, swipeAmount: amount, conversionMode: state.conversionMode, pastConversions: state.pastConversions)
+            return Link.ViewStateType.init(conversionMode: .swipesToFlex(amount: 0), pastConversions: [], conversionRequestState: .notDisplayed, conversionResultState: .notSet)
+        case let .updateConversionAmount(amount)?:
+            switch state.conversionMode {
+            case .flexToSwipes:
+                let conversionAmount = PadOutput.outputFor(currentInput: state.flexText, input: PadOutput(rawValue: amount) ?? .none)
+                return Link.ViewStateType.init( conversionMode: .flexToSwipes(amount: Int(conversionAmount) ?? 0), pastConversions: state.pastConversions, conversionRequestState: state.conversionRequestState, conversionResultState: state.conversionResultState)
+            case .swipesToFlex:
+                let conversionAmount = PadOutput.outputFor(currentInput: state.swipeText, input: PadOutput(rawValue: amount) ?? .none)
+                return Link.ViewStateType.init( conversionMode: .swipesToFlex(amount: Int(conversionAmount) ?? 0), pastConversions: state.pastConversions, conversionRequestState: state.conversionRequestState, conversionResultState: state.conversionResultState)
+            }
+        
         case let .updateConversionEvents(events)?:
-            return Link.ViewStateType.init(proposedConversion: state.proposedConversion, flexAmount: state.flexAmount, swipeAmount: state.swipeAmount, conversionMode: state.conversionMode, pastConversions: events)
+            return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: events, conversionRequestState: state.conversionRequestState, conversionResultState: state.conversionResultState)
         case .switchConversionMode?:
-            return Link.ViewStateType.init(proposedConversion: state.proposedConversion, flexAmount: state.flexAmount, swipeAmount: state.swipeAmount, conversionMode: state.conversionMode.alternate, pastConversions: state.pastConversions)
+            return Link.ViewStateType.init( conversionMode: state.conversionMode.alternate, pastConversions: state.pastConversions, conversionRequestState: state.conversionRequestState, conversionResultState: state.conversionResultState)
+        case .verifyConversion?:
+            if state.conversionMode.amount > 0 && state.conversionMode.amountForConversion() > 0 {
+                return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .display, conversionResultState: .notSet)
+            } else {
+                return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .error(message: "Invalid Conversion Amount: \n Must be between 1 to 10 swipes / flex points"))
+            }
+        case .beginConversion?:
+            return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .loading)
+        case .conversionSuceeded?:
+            return Link.ViewStateType.init( conversionMode: .swipesToFlex(amount: 0), pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .success)
+        case .conversionFailed?:
+            return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .error(message: "Could not complete Conversion"))
+        case .dismissConversionRequest?:
+            return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .notSet)
+        case .acknowledgeAlert?:
+            return Link.ViewStateType.init( conversionMode: state.conversionMode, pastConversions: state.pastConversions, conversionRequestState: .notDisplayed, conversionResultState: .notSet)
         default: return viewState
         }
     }
-    
-    
 }
 struct ConversionViewModelLink: ViewStateIntentLink {
     
@@ -82,37 +114,93 @@ struct ConversionViewModelLink: ViewStateIntentLink {
     
     
     struct ConversionViewState: ViewState {
-        let proposedConversion: ConversionEvent
-        let flexAmount: Int
-        let swipeAmount: Int
         let conversionMode: ConversionMode
         let pastConversions: [ConversionEvent]
-        var flexText: String { return "\(flexAmount)"}
-        var swipeText: String { return "\(swipeAmount)"}
-        static let empty: ConversionViewState = ConversionViewState(proposedConversion: ConversionEvent.empty, flexAmount: 0, swipeAmount: 0, conversionMode: .swipesToFlex, pastConversions: [])
+        let conversionRequestState: DisplayState
+        let conversionResultState: ResultState
+        var flexText: String {
+            switch conversionMode {
+            case let .flexToSwipes:
+                return conversionMode.value
+            case let .swipesToFlex:
+                return "\(conversionMode.amountForConversion())"
+            }
+        }
+        var swipeText: String {
+            switch conversionMode {
+            case let .flexToSwipes:
+                return "\(conversionMode.amountForConversion())"
+            case let .swipesToFlex:
+                return conversionMode.value
+            }
+        }
+        var proposedConversion: ConversionEvent {
+            switch conversionMode {
+            case let .flexToSwipes(amount):
+                 return ConversionEvent(value: amount , description: "Converted \(amount) Flex Points", monetaryType: .flexPoints)
+            case let .swipesToFlex(amount):
+                 return ConversionEvent(value: amount, description: "Converted \(amount) Swipes", monetaryType: .swipes)
+            }
+        }
+        static let empty: ConversionViewState = ConversionViewState(conversionMode: .swipesToFlex(amount: 0), pastConversions: [], conversionRequestState: .notDisplayed, conversionResultState: .notSet)
     }
     enum ConversionIntent: Intent, ActionIntent, ServiceIntent {
         case initial
-        case didUpdateFlexAmount(Int)
-        case didUpdateSwipeAmount(Int)
+        case didUpdateAmount(String)
         case didSwitchConversionMode
         case didInitiateConversion
+        case didVerifyConversionRequest
+        case didDeclineConversion
+        case didAcknowledgeAlert
     }
     enum ConversionResult: Result {
         case notSet
         case initial
-        case updateFlexAmount(Int)
-        case updateSwipeAmount(Int)
+        case updateConversionAmount(String)
         case updateConversionEvents([ConversionEvent])
         case switchConversionMode
+        case verifyConversion
+        case beginConversion
+        case dismissConversionRequest
+        case conversionSuceeded
+        case conversionFailed
+        case acknowledgeAlert
     }
     enum ConversionMode {
-        case flexToSwipes
-        case swipesToFlex
+        case flexToSwipes(amount: Int)
+        case swipesToFlex(amount: Int)
         var alternate: ConversionMode {
             switch self {
-            case .flexToSwipes: return .swipesToFlex
-            case .swipesToFlex: return .flexToSwipes
+            case let .flexToSwipes(amount):
+                return .swipesToFlex(amount: amountForConversion())
+            case let .swipesToFlex(amount):
+                return .flexToSwipes(amount: amountForConversion())
+            }
+        }
+        func amountForConversion() -> Int {
+            switch self {
+            case let .flexToSwipes(amount):
+                return amount/8
+            case let .swipesToFlex(amount):
+                return amount*8
+            }
+        }
+        var amount: Int {
+            switch self {
+            case let .flexToSwipes(amount):
+                return amount
+                
+            case let .swipesToFlex(amount):
+                return amount
+            }
+        }
+        var value: String {
+            switch self {
+            case let .flexToSwipes(amount):
+                return "\(amount)"
+
+            case let .swipesToFlex(amount):
+                return "\(amount)"
             }
         }
     }

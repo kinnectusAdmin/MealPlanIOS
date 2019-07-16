@@ -22,8 +22,8 @@ extension EventItem {
         static let avatarSize: CGFloat = 40
         static let avatarRadius: CGFloat = avatarSize*0.5
         static let avatarLeftOffset: CGFloat = 20
-        static let descriptionLeftOffset: CGFloat = 10
+        static let descriptionLeftOffset: CGFloat = 20
         static let descriptionWidth: CGFloat = 200
-        static let dateRightOffset: CGFloat = -10
+        static let dateRightOffset: CGFloat = -20
     }
 }

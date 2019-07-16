@@ -44,6 +44,7 @@
 		DA0F68C622AF4E7A00866977 /* ConversionEventSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C522AF4E7A00866977 /* ConversionEventSectionModel.swift */; };
 		DA0F68C822AF5C4B00866977 /* ConversionViewViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F68C722AF5C4B00866977 /* ConversionViewViewProperties.swift */; };
 		DA31110E22A5C65C002F851C /* MainFeedSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31110D22A5C65C002F851C /* MainFeedSectionModel.swift */; };
+		DA3C0AA322DBF6F40065A803 /* AlertingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3C0AA222DBF6F40065A803 /* AlertingView.swift */; };
 		DA9754F822471F0C002D1ADC /* MainFeedViewProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754F722471F0C002D1ADC /* MainFeedViewProperties.swift */; };
 		DA9754FA22472509002D1ADC /* MainFeedEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754F922472509002D1ADC /* MainFeedEventItem.swift */; };
 		DA9754FC22472545002D1ADC /* MainFeedEventsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9754FB22472545002D1ADC /* MainFeedEventsItemViewModel.swift */; };
@@ -121,6 +122,7 @@
 		DAEB07602291DD6B00415220 /* CreateAccountViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB075F2291DD6B00415220 /* CreateAccountViewType.swift */; };
 		DAEB07622291DE7000415220 /* MainFeedViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB07612291DE7000415220 /* MainFeedViewType.swift */; };
 		DAEB07642291DF1300415220 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEB07632291DF1300415220 /* NavigationView.swift */; };
+		DAF2129622D92D9A000A8AC4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF2129522D92D9A000A8AC4 /* Utilities.swift */; };
 		DAF3A8DD22262B0400FFF4E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3A8DC22262B0400FFF4E5 /* AppDelegate.swift */; };
 		DAF3A8E422262B0600FFF4E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF3A8E322262B0600FFF4E5 /* Assets.xcassets */; };
 		DAF3A8E722262B0600FFF4E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF3A8E522262B0600FFF4E5 /* LaunchScreen.storyboard */; };
@@ -314,6 +316,7 @@
 		DA0F68C722AF5C4B00866977 /* ConversionViewViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewViewProperties.swift; sourceTree = "<group>"; };
 		DA1107A02242955A00171899 /* CleanModelViewIntent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CleanModelViewIntent.xcodeproj; path = ../CleanModelViewIntent/CleanModelViewIntent.xcodeproj; sourceTree = "<group>"; };
 		DA31110D22A5C65C002F851C /* MainFeedSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedSectionModel.swift; sourceTree = "<group>"; };
+		DA3C0AA222DBF6F40065A803 /* AlertingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertingView.swift; sourceTree = "<group>"; };
 		DA9754F722471F0C002D1ADC /* MainFeedViewProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedViewProperties.swift; sourceTree = "<group>"; };
 		DA9754F922472509002D1ADC /* MainFeedEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventItem.swift; sourceTree = "<group>"; };
 		DA9754FB22472545002D1ADC /* MainFeedEventsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedEventsItemViewModel.swift; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 		DAEB075F2291DD6B00415220 /* CreateAccountViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewType.swift; sourceTree = "<group>"; };
 		DAEB07612291DE7000415220 /* MainFeedViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedViewType.swift; sourceTree = "<group>"; };
 		DAEB07632291DF1300415220 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		DAF2129522D92D9A000A8AC4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		DAF3A8D922262B0400FFF4E5 /* MealPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF3A8DC22262B0400FFF4E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF3A8E322262B0600FFF4E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -556,6 +560,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DAF2128D22D92D06000A8AC4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA0B087822A73C6B001F180D /* EventItem.swift */,
+				DAB1B22522AA9BF800A8FD5F /* EventItemViewProperties.swift */,
+				DAB1B23522AC462B00A8FD5F /* NumberPadView.swift */,
+				DA0F68AD22AC7A6B00866977 /* PadButton.swift */,
+				DA0F68B722AC8B6500866977 /* UserSearchView.swift */,
+				DA3C0AA222DBF6F40065A803 /* AlertingView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		DAF2129422D92D89000A8AC4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DAF2129522D92D9A000A8AC4 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		DAF3A8D022262B0400FFF4E5 = {
 			isa = PBXGroup;
 			children = (
@@ -586,9 +611,11 @@
 		DAF3A8DB22262B0400FFF4E5 /* MealPlan */ = {
 			isa = PBXGroup;
 			children = (
+				DAF2129422D92D89000A8AC4 /* Utilities */,
 				DAA04C93222C8CB300DACE77 /* Application */,
 				DAA04C92222C8CA000DACE77 /* Providers */,
 				DAF3A91422262ED100FFF4E5 /* Scenes */,
+				DAF2128D22D92D06000A8AC4 /* Custom Views */,
 				DA0C7E1C2242F0A1006C26BD /* Resources */,
 				DAF3A8E822262B0600FFF4E5 /* Info.plist */,
 			);
@@ -690,15 +717,10 @@
 				DAB1B23322AC0C4900A8FD5F /* TransferViewViewProperties.swift */,
 				DAA04CE1222D6B4E00DACE77 /* TransferRouter.swift */,
 				DAA04CDF222D6B4100DACE77 /* TransferUseCase.swift */,
-				DA0B087822A73C6B001F180D /* EventItem.swift */,
-				DAB1B22522AA9BF800A8FD5F /* EventItemViewProperties.swift */,
 				DA0B087022A738E1001F180D /* TransferEventItemViewModel.swift */,
 				DA0B087222A73B20001F180D /* TransferEventItemPresenter.swift */,
 				DAB1B22722AA9E0A00A8FD5F /* TransferIndicationView.swift */,
 				DAB1B22922AAAF3300A8FD5F /* TransferEventSectionModel.swift */,
-				DAB1B23522AC462B00A8FD5F /* NumberPadView.swift */,
-				DA0F68AD22AC7A6B00866977 /* PadButton.swift */,
-				DA0F68B722AC8B6500866977 /* UserSearchView.swift */,
 				DA0F68B922AC8E5700866977 /* UserSearchViewSectionModel.swift */,
 				DA0F68BB22AC8E6A00866977 /* UserSearchViewItem.swift */,
 				DA0F68BD22AC8E7600866977 /* UserSearchViewItemViewModel.swift */,
@@ -1003,6 +1025,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF2129622D92D9A000A8AC4 /* Utilities.swift in Sources */,
 				DAA04CFA222D761F00DACE77 /* MenuUseCase.swift in Sources */,
 				DAA04C95222C8CBB00DACE77 /* Application.swift in Sources */,
 				DAA04CF8222D761600DACE77 /* MenuRouter.swift in Sources */,
@@ -1076,6 +1099,7 @@
 				DA0F68C222AF2FC600866977 /* TransferViewType.swift in Sources */,
 				DA9754FA22472509002D1ADC /* MainFeedEventItem.swift in Sources */,
 				DAA04CA7222C9CCE00DACE77 /* LoginPresenter.swift in Sources */,
+				DA3C0AA322DBF6F40065A803 /* AlertingView.swift in Sources */,
 				DAA04CEA222D75D500DACE77 /* ConversionView.swift in Sources */,
 				DA0B087B22A75296001F180D /* MainFeedEventsSectionModel.swift in Sources */,
 				DAA04C91222C633B00DACE77 /* OnboardUseCase.swift in Sources */,
@@ -1309,6 +1333,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MealPlan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1316,7 +1341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = blake.MealPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1333,6 +1358,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MealPlan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1340,7 +1366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = blake.MealPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -16,7 +16,6 @@ struct OnboardItemPresenter: ItemPresenterLink {
     static var action: (OnboardItemViewModelLink.ItemViewState?, OnboardItemViewModelLink.ItemViewState?, OnboardItemView) -> Void =
     {
         viewState, previousViewState, view in
-        print(viewState)
         guard let viewState = viewState else {return}
         view.featureLabel.text = viewState.page.content
     }

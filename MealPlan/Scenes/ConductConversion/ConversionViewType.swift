@@ -10,7 +10,7 @@ import UIKit
 import CleanModelViewIntent
 import Utilities
 
-protocol ConversionViewType: Presentation, Controller {
+protocol ConversionViewType: Presentation, Controller, Alerting, Loading {
     var flexBalanceLabel: UILabel { get set }
     var swipesBalanceLabel: UILabel { get set }
     var swapConversionButton: UXButton { get set }

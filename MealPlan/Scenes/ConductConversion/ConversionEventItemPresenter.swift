@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MealPlanDomain
 import CleanModelViewIntent
 
 struct ConversionEventItemPresenter: ItemPresenterLink {
@@ -16,6 +17,7 @@ struct ConversionEventItemPresenter: ItemPresenterLink {
         guard let state  = viewState else { return }
         view.descriptionLabel.text = state.eventDescription
         view.dateLabel.text = state.eventDate
+        view.avatar.loadImageWithURL(url: MealPlanUser.local.imageURL, defaultImage: AppImages.person.image())
     }
     static var interaction: (EventItemType, Box<Link.IntentType?>) -> Void = { item, interactor in
         

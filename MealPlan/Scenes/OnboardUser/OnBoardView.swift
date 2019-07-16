@@ -25,9 +25,9 @@ class OnboardView: UIViewController, OnboardViewType {
         title = "OnboardView"
         /// TODO: Draw layout
         view.backgroundColor = ViewProperties.backgroundColor
-        view.add(views: loginButton, appIcon, appTitle, signUpButton,onboardCollection, indicator)
-        loginButton.constrainInView(view: self.view, top: Layout.loginButtonEdgeOffset, right: -Layout.loginButtonEdgeOffset)
-        appTitle.constrainInView(view: self.view, top: Layout.appTitleTopOffset)
+        view.add(views: appIcon, appTitle, signUpButton, onboardCollection, indicator, loginButton)
+        constrainSubViewSafely(subView: loginButton, top: Layout.loginButtonEdgeOffset, right: -Layout.loginButtonEdgeOffset)
+        constrainSubViewSafely(subView: appTitle, top: Layout.appTitleTopOffset)
         appTitle.setXTo(con: self.view.x(), by: 0)
         appIcon.setWidth_Height(width: Layout.appIconWidthHeight, height: Layout.appIconWidthHeight)
         appIcon.setTopTo(con: appTitle.bottom(), by: Layout.appIconTopOffset)

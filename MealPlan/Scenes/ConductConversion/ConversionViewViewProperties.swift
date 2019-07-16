@@ -45,10 +45,6 @@ extension ConversionView {
         static let sendButtonTopOffset: CGFloat = 70
         static let controlBarSize: WidthHeight = (30, 4)
         static let controlBarTopOffset: CGFloat = 8
-        static let containerHeight: CGFloat = UIScreen.main.bounds.height-50
-        static let containerOriginTopOffset: CGFloat = 0
-        static let containerRestingTopOffset: CGFloat = -100
-        static let containerRadius: CGFloat = 20
         static let sendRadius: CGFloat = Layout.sendButtonSize.height*0.5
         static let searchButtonEdgeOffset: EdgeOffsets = (0, 0, -8, -8)
         static let conversionCollectionTopOffset: CGFloat = 16

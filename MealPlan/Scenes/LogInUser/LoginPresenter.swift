@@ -20,9 +20,9 @@ struct LoginPresenter: PresenterLink {
         }
         switch state.alertState {
         case let .alert(message):
-            view.showAlert(message: message)
+            view.alertScreen.showAlert(message: message)
         case .dismiss:
-            view.dismissAlert()
+            view.alertScreen.dismissAlert()
         default: break
         }
     }

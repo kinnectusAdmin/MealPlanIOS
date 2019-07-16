@@ -21,3 +21,8 @@ final class MenuCoordinator: SceneCoordinator {
         return presenter?.presentation ?? MenuView()
     }
 }
+extension MenuCoordinator: MenuUseCase {
+    func logout() {
+        Application.shared.logout()
+    }
+}

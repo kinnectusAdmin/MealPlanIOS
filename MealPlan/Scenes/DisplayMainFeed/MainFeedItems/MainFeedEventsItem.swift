@@ -17,7 +17,7 @@ class MainFeedEventsItem: UICollectionViewCell, MainFeedEventsItemType {
     var viewModel: MVIViewModelType!
     var presenter: PresenterType!
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
-    private let container: UIView = UIView.container(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
+    private let container: UIView = UIView.containerView(background: ViewProperties.containerBackgroundColor, radius: ViewProperties.contentRadius).addingShadow(2, dy: 2, color: ViewProperties.containerShadowColor, radius: 4.0, opacity: 0.6)
     var eventsCollection = UXCollectionView<MainFeedEventsSectionModel>(model: MainFeedEventsSectionModel(viewState: nil), direction: .vertical, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
 }
 extension MainFeedEventsItem {

@@ -43,7 +43,7 @@ extension LoginView {
         static let loginButtonHeight: CGFloat = 50
         static let loginContainerRadius: CGFloat = 15
         static let signUpButtonEdgeOffset: EdgeOffsets = (0, 10, -10, 0)
-        static let backButtonEdgeOffset: CGFloat = 10
+        static let backButtonEdgeOffset: CGFloat = 20
         static let loginTitleHeight: CGFloat = 50
         static let loginTitleEdgeOffset: EdgeOffsets = (0, 50, 0, 0)
         static let loginContainerEdgeOffset: EdgeOffsets = (0, 100, 0, 0)
@@ -53,6 +53,6 @@ extension LoginView {
         static let passwordTopOffset: CGFloat = 20
         static let passwordEdgeOffset: EdgeOffsets = (10, 0, -10, 0)
         static let passwordBarTopOffset: CGFloat = 20
-        static let loginButtonEdgeOffset: EdgeOffsets = (50, 0, -50, -10)
+        static let loginButtonEdgeOffset: EdgeOffsets = (0, 20, -20, -20)
     }
 }

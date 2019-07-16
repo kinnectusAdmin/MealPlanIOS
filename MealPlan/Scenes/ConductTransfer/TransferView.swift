@@ -13,11 +13,13 @@ import MealPlanDomain
 
 class TransferView: UIViewController, TransferViewType {
     
+    var alertScreen: AlertingView = AlertingView.containerView(background: .clear, alpha: 0)
+    
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
     
-    private let localUserAvatarBorder: UIView = avatarBorder(colors: ViewProperties.sendingBorderColors)
+    var localUserAvatarBorder: UIView = avatarBorder(colors: ViewProperties.sendingBorderColors)
     
-    private let transacteeAvatarBorder: UIView = avatarBorder(colors: ViewProperties.receivingBorderColors)
+    var transacteeAvatarBorder: UIView = avatarBorder(colors: ViewProperties.receivingBorderColors)
     
     var localUserAvatar: UXImage = UXImage.image(mode: .scaleAspectFill, radius: Layout.avatarRadius)
     
@@ -29,7 +31,7 @@ class TransferView: UIViewController, TransferViewType {
     
     var transacteeNameLabel: UILabel = UILabel.labelWith(text: "@some name", font: ViewProperties.nameFont, txtColor: ViewProperties.nameColor, background: .clear, alignment: .center)
     
-    var transferControlButton: UXButton = Icons.transferControlButton
+    var transferControlButton: UXButton = UXButton.icon(icon: .exchange, size: .medium, tint: UIColor.App.currentScheme.colors.dark)
 
     var searchButton: UXButton = Icons.searchButton
     
@@ -41,47 +43,13 @@ class TransferView: UIViewController, TransferViewType {
     
     var transferEventCollection = UXCollectionView<TransferEventSectionModel>(model: nil, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
-    private let eventContainer: UIView = UIView.containerView(background: .white, radius: Layout.containerRadius, borderColor: ViewProperties.containerBorderColor)
+    var eventContainer: UIView = UIView.containerView(background: .white, radius: SlidingContainerLayout.containerRadius, borderColor: ViewProperties.containerBorderColor)
     
-    private let containerControlTab: UIView = UIView.container(background: ViewProperties.containerControlBarColor, radius: 4)
+    private let containerControlTab: UIView = UIView.containerView(background: ViewProperties.containerControlBarColor, radius: 4)
     
-    private var containerTopConstraint = NSLayoutConstraint()
+    var containerTopConstraint = NSLayoutConstraint()
     
-    private var containerPanGesture: UIPanGestureRecognizer!
-    
-    func updateTransferDirection(transfer: TransferMode) {
-        switch transfer {
-        case .requesting:
-            UIView.animate(withDuration: 0.25) {
-                self.localUserAvatarBorder.backgroundColor = ViewProperties.receivingBorderColors.outter
-                self.localUserAvatarBorder.subviews.first?.backgroundColor = ViewProperties.receivingBorderColors.inner
-                self.transacteeAvatarBorder.backgroundColor = ViewProperties.sendingBorderColors.outter
-                self.transacteeAvatarBorder.subviews.first?.backgroundColor = ViewProperties.sendingBorderColors.inner
-            }
-        case .sending:
-            UIView.animate(withDuration: 0.25) {
-                self.localUserAvatarBorder.backgroundColor = ViewProperties.sendingBorderColors.outter
-                self.localUserAvatarBorder.subviews.first?.backgroundColor = ViewProperties.sendingBorderColors.inner
-                self.transacteeAvatarBorder.backgroundColor = ViewProperties.receivingBorderColors.outter
-                self.transacteeAvatarBorder.subviews.first?.backgroundColor = ViewProperties.receivingBorderColors.inner
-            }
-        }
-    }
-    func presentHideSearchView(present: Bool) {
-        let alpha: CGFloat = present ? 0.0 : 1.0
-        UIView.animate(withDuration: 0.25) {
-            self.numberPadView.render().alpha = alpha
-            self.localUserAvatarBorder.alpha = alpha
-            self.transacteeAvatarBorder.alpha = alpha
-            self.balanceLabel.alpha = alpha
-            self.localUserNameLabel.alpha = alpha
-            self.transacteeNameLabel.alpha = alpha
-            self.transferControlButton.alpha = alpha
-            self.sendButton.alpha = alpha
-            self.searchButton.alpha = alpha
-            self.searchView.render().alpha = present ? 1.0 : 0.0
-        }
-    }
+    var containerPanGesture: UIPanGestureRecognizer!
 }
 extension TransferView {
     override func viewDidLoad() {
@@ -97,24 +65,12 @@ extension TransferView {
         super.viewWillDisappear(animated)
         hideList()
     }
-    private func displayList() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-            self.containerTopConstraint.constant = Layout.containerRestingTopOffset
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    private func hideList() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-            self.containerTopConstraint.constant = Layout.containerOriginTopOffset
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
     private func setViews() {
         title = "TransferView"
         view.backgroundColor = ViewProperties.backgroundColor
-        view.add(views: searchView.render(), titleLabel, localUserAvatarBorder, transacteeAvatarBorder, localUserNameLabel, transacteeNameLabel, balanceLabel, numberPadView.render(), transferControlButton, sendButton, searchButton, eventContainer)
+        view.add(views: searchView.render(), titleLabel, localUserAvatarBorder, transacteeAvatarBorder, localUserNameLabel, transacteeNameLabel, balanceLabel, numberPadView.render(), transferControlButton, sendButton, searchButton, eventContainer, alertScreen)
         eventContainer.add(views: transferEventCollection)
-        titleLabel.constrainInView(view: view, top: Layout.titleTopOffset, left: 0, right: 0)
+        constrainSubViewSafely(subView: titleLabel, top: Layout.titleTopOffset, left: 0, right: 0)
         localUserAvatarBorder.constrainLeftToLeft(of: view, constant: Layout.avatarEdgeOffset.left)
         localUserAvatarBorder.constrainTopToBottom(of: titleLabel, constant: Layout.avatarEdgeOffset.top)
         transacteeAvatarBorder.constrainRightToRight(of: view, constant: Layout.avatarEdgeOffset.right)
@@ -143,8 +99,8 @@ extension TransferView {
         sendButton.constrainWidth_Height(width: Layout.sendButtonSize.width, height: Layout.sendButtonSize.height)
         sendButton.constrainTopToBottom(of: numberPadView.render(), constant: Layout.sendButtonTopOffset)
         eventContainer.constrainInView(view: view, left: 0, right: 0)
-        eventContainer.constrainViewHeight(to: Layout.containerHeight)
-        containerTopConstraint = eventContainer.returnConstrainTopToBottom(of: view, constant: Layout.containerOriginTopOffset)
+        eventContainer.constrainViewHeight(to: SlidingContainerLayout.containerHeight)
+        containerTopConstraint = eventContainer.returnConstrainTopToBottom(of: view, constant: SlidingContainerLayout.containerOriginTopOffset)
         eventContainer.add(views: containerControlTab)
         containerControlTab.constrainTopToTop(of: eventContainer, constant: Layout.controlBarTopOffset)
         containerControlTab.constrainWidth_Height(width: Layout.controlBarSize.width, height: Layout.controlBarSize.height)
@@ -156,37 +112,7 @@ extension TransferView {
         transferEventCollection.constrainTopToBottom(of: containerControlTab, constant: Layout.transferCollectionTopOffset)
         searchView.render().constrainInView(view: view, left: 0, right: 0, bottom: 0)
         searchView.render().constrainTopToBottom(of: titleLabel, constant: Layout.searchViewTopOffset)
-        
-    }
-    private func setGesture() {
-        containerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(TransferView.panGesture(_:)))
-        eventContainer.addGestureRecognizer(containerPanGesture)
-    }
-    @objc func panGesture(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: eventContainer).y
-        switch gesture.state {
-        case .changed:
-            if translation <= -Layout.containerHeight*0.5 {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = -Layout.containerHeight
-                    self.view.layoutIfNeeded()
-                }
-            } else {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset + min(0, max(translation, -Layout.containerHeight))
-                    self.view.layoutIfNeeded()
-                }
-            }
-            
-        case .ended:
-            if  containerTopConstraint.constant > -Layout.containerHeight {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset
-                    self.view.layoutIfNeeded()
-                }
-            }
-        default: break
-        }
+        alertScreen.constrainInView(view: view, top: 0, left: 0, right: 0, bottom: 0)
     }
 }
 extension TransferView {

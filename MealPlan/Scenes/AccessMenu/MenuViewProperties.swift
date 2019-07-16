@@ -28,7 +28,7 @@ extension MenuView {
         static let containerOffsetLimit: CGFloat = -containerHeight+50
         static let profileImageSize: CGFloat = 100
         static let profileImageRadius: CGFloat = profileImageSize*0.5
-        static let imageTopOffset: CGFloat = 50
+        static let imageTopOffset: CGFloat = 200
         static let nameTopOffset: CGFloat = 50
         static let infoTopOffset: CGFloat = 20
         static let logoutBottomOffset: CGFloat = -100

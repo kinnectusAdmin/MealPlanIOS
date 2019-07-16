@@ -10,12 +10,22 @@ import UIKit
 import CleanModelViewIntent
 import Utilities
 
-class ConversionView: UIViewController, ConversionViewType {
+class ConversionView: UIViewController, ConversionViewType, SlidingContainer {
+    
+    var alertScreen: AlertingView = AlertingView.containerView(background: .clear, alpha: 0)
+
+    var acknowledgeAlertButton: UXButton! = Icons.dismissButton
+    
     private let titleLabel: UILabel = UILabel.labelWith(text: ViewProperties.title, font: ViewProperties.titleFont, txtColor: ViewProperties.titleColor, background: .clear, alignment: .center)
+    
     private let flexTitleLabel: UILabel = UILabel.labelWith(text: "Flex", font: ViewProperties.flexTitleFont, txtColor: ViewProperties.flexTitleColor, background: .clear, alignment: .center)
+    
     private let swipesTitleLabel: UILabel = UILabel.labelWith(text: "Swipes", font: ViewProperties.swipesTitleFont, txtColor: ViewProperties.swipesTitleColor, background: .clear, alignment: .center)
-    private let flexBalanceUnderline: UIView = UIView.container(background: ViewProperties.underlineColor)
-    private let swipesBalanceUnderline: UIView = UIView.container(background: ViewProperties.underlineColor)
+    
+    private let flexBalanceUnderline: UIView = UIView.containerView(background: ViewProperties.underlineColor)
+    
+    private let swipesBalanceUnderline: UIView = UIView.containerView(background: ViewProperties.underlineColor)
+    
     var flexBalanceLabel: UILabel = UILabel.labelWith(text: "+0", font: ViewProperties.balanceFont, txtColor: ViewProperties.balanceColor, background: .clear, alignment: .center)
     
     var swipesBalanceLabel: UILabel = UILabel.labelWith(text: "+0", font: ViewProperties.balanceFont, txtColor: ViewProperties.balanceColor, background: .clear, alignment: .center)
@@ -28,13 +38,13 @@ class ConversionView: UIViewController, ConversionViewType {
 
     var conversionEventCollection = UXCollectionView<ConversionEventSectionModel>(model: nil, frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
-    private let eventContainer: UIView = UIView.containerView(background: .white, radius: Layout.containerRadius, borderColor: ViewProperties.containerBorderColor)
+    var eventContainer: UIView = UIView.containerView(background: .white, radius: SlidingContainerLayout.containerRadius, borderColor: ViewProperties.containerBorderColor)
     
-    private let containerControlTab: UIView = UIView.container(background: ViewProperties.containerControlBarColor, radius: 4)
+    private let containerControlTab: UIView = UIView.containerView(background: ViewProperties.containerControlBarColor, radius: 4)
     
-    private var containerTopConstraint = NSLayoutConstraint()
+    var containerTopConstraint = NSLayoutConstraint()
     
-    private var containerPanGesture: UIPanGestureRecognizer!
+    var containerPanGesture: UIPanGestureRecognizer!
 }
 extension ConversionView {
     override func viewDidLoad() {
@@ -50,23 +60,11 @@ extension ConversionView {
         super.viewWillDisappear(animated)
         hideList()
     }
-    private func displayList() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-            self.containerTopConstraint.constant = Layout.containerRestingTopOffset
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    private func hideList() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-            self.containerTopConstraint.constant = Layout.containerOriginTopOffset
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
     private func setViews() {
         title = "ConversionView"
         view.backgroundColor = ViewProperties.backgroundColor
-        view.add(views: titleLabel, flexTitleLabel, swipesTitleLabel, swipesBalanceLabel, swipesBalanceUnderline, flexBalanceLabel, flexBalanceUnderline, swapConversionButton, initiateConversionButton, numberPadView.render(), eventContainer)
-        titleLabel.constrainInView(view: view, top: Layout.titleTopOffset, left: 0, right: 0)
+        view.add(views: titleLabel, flexTitleLabel, swipesTitleLabel, swipesBalanceLabel, swipesBalanceUnderline, flexBalanceLabel, flexBalanceUnderline, swapConversionButton, initiateConversionButton, numberPadView.render(), eventContainer, alertScreen)
+        constrainSubViewSafely(subView: titleLabel, top: Layout.titleTopOffset, left: 0, right: 0)
         flexTitleLabel.constrainTopToBottom(of: titleLabel, constant: Layout.flexTitleTopOffset)
         flexTitleLabel.constrainCenterXTo(view: flexBalanceLabel, constant: 0)
         swipesTitleLabel.constrainTopToTop(of: flexTitleLabel, constant: 0)
@@ -90,8 +88,8 @@ extension ConversionView {
         initiateConversionButton.constrainTopToBottom(of: numberPadView.render(), constant: Layout.conversionButtonTopOffset)
         initiateConversionButton.constrainWidth_Height(width: Layout.conversionSize.width, height: Layout.conversionSize.height)
         eventContainer.constrainInView(view: view, left: 0, right: 0)
-        eventContainer.constrainViewHeight(to: Layout.containerHeight)
-        containerTopConstraint = eventContainer.returnConstrainTopToBottom(of: view, constant: Layout.containerOriginTopOffset)
+        eventContainer.constrainViewHeight(to: SlidingContainerLayout.containerHeight)
+        containerTopConstraint = eventContainer.returnConstrainTopToBottom(of: view, constant: SlidingContainerLayout.containerOriginTopOffset)
         eventContainer.add(views: containerControlTab)
         containerControlTab.constrainTopToTop(of: eventContainer, constant: Layout.controlBarTopOffset)
         containerControlTab.constrainWidth_Height(width: Layout.controlBarSize.width, height: Layout.controlBarSize.height)
@@ -99,35 +97,6 @@ extension ConversionView {
         eventContainer.add(views: containerControlTab, conversionEventCollection)
         conversionEventCollection.constrainInView(view: eventContainer, left: 0, right: 0, bottom: 0)
         conversionEventCollection.constrainTopToBottom(of: containerControlTab, constant: Layout.conversionCollectionTopOffset)
-    }
-    private func setGesture() {
-        containerPanGesture = UIPanGestureRecognizer(target: self, action: #selector(ConversionView.panGesture(_:)))
-        eventContainer.addGestureRecognizer(containerPanGesture)
-    }
-    @objc func panGesture(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: eventContainer).y
-        switch gesture.state {
-        case .changed:
-            if translation <= -Layout.containerHeight*0.5 {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = -Layout.containerHeight
-                    self.view.layoutIfNeeded()
-                }
-            } else {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerRestingTopOffset + min(0, max(translation, -Layout.containerHeight))
-                    self.view.layoutIfNeeded()
-                }
-            }
-            
-        case .ended:
-            if  containerTopConstraint.constant > -Layout.containerHeight {
-                UIView.animate(withDuration: 0.25) {
-                    self.containerTopConstraint.constant = Layout.containerOriginTopOffset
-                    self.view.layoutIfNeeded()
-                }
-            }
-        default: break
-        }
+        alertScreen.constrainInView(view: view, top: 0, left: 0, right: 0, bottom: 0)
     }
 }

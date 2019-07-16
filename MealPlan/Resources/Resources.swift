@@ -29,7 +29,7 @@ enum Backgrounds: String {
         return .burgers
     }
     static func backgroundImage() -> UIImageView {
-        let screen = UIView.container().addingGradientScreen(frame: UIScreen.main.bounds, start: .zero, end: CGPoint(x: 0, y: 1.0), locations: [0.0, 0.33, 0.99], colors: UIColor.App.currentScheme.gradient.map{ $0.cgColor}).withAlpha(0.8)
+        let screen = UIView.containerView().addingGradientScreen(frame: UIScreen.main.bounds, start: .zero, end: CGPoint(x: 0, y: 1.0), locations: [0.0, 0.33, 0.99], colors: UIColor.App.currentScheme.gradient.map{ $0.cgColor}).withAlpha(0.8)
         let image = UIImageView.image(image: Backgrounds.current.image, mode: .scaleAspectFill).withScreen(view: screen)
         return image
     }
@@ -117,12 +117,21 @@ extension UIColor {
     }
 }
 struct Icons {
+    
     static let dropDownButton: UXButton = UXButton.icon(icon: .downOpenBig, size: IconSize.normal, tint: UIColor.App.currentScheme.colors.dark)
+    
     static let backButton: UXButton = UXButton.icon(icon: .leftOpenBig, size: .normal, tint: UIColor.App.currentScheme.colors.dark)
+    
     static let menuButton: UXButton = UXButton.icon(icon: .cog, size: .medium, tint: UIColor.App.currentScheme.colors.dark)
+    
     static let backLabelButton: UILabel = FontelloIcons.leftOpenBig.iconLabel(size: .normal, tint: .white)
+    
     static let transferControlButton: UXButton = UXButton.icon(icon: .exchange, size: .medium, tint: UIColor.App.currentScheme.colors.dark)
+    
     static let searchButton: UXButton = UXButton.icon(icon: .search, size: .small, tint: UIColor.App.currentScheme.colors.dark)
+    
+    static let dismissButton: UXButton = UXButton.icon(icon: .minus, size: .small, tint: UIColor.App.currentScheme.colors.dark)
+    
     static func iconForTrend(trend: Objects.BalanceTrendType) -> UIImage {
         switch trend {
         case .conversion:
@@ -256,23 +265,36 @@ fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Ke
 }
 
 protocol Alerting {
-    var alertScreen: UIView { get set }
-    func showAlert(message: String)
-    func dismissAlert()
+    var alertScreen: AlertingView { get set }
 }
-extension Alerting where Self: UIViewController {
-    mutating func showAlert(message: String) {
-        let alertContainer = UIView.containerView(background: .white, radius: 10, borderWidth: 1.0, borderColor: .black)
-        let alertLabel = UILabel.labelWith(text: message, font: UIFont.App.currentFont.fonts.small, txtColor: UIColor.App.currentScheme.colors.dark, background: .clear, alignment: .center)
-        alertScreen.add(views: alertContainer, alertLabel)
-        alertLabel.constrainCenterToCenter(of: alertScreen)
-        alertContainer.constrainCenterToCenter(of: alertScreen)
-        let height = message.rectForText(width: UIScreen.main.bounds.width, textSize: 20).height
-        alertContainer.constrainWidth_Height(width: 250, height: height)
-        view.add(views: alertScreen)
-        alertScreen.constrainInView(view: view, top: 0, left: 0, right: 0, bottom: 0)
+protocol Loading {
+    func loading()
+    func dismissLoading()
+    func animateIndicator(indicator: UIView)
+}
+extension Loading where Self: UIViewController {
+    func loading() {
+        let loadingScreen = UIView.vibrantContainerView(background: .clear)
+        loadingScreen.alpha = 999
+        let loadingIndicator = UIView.containerView(background: .white, radius: 30)
+        loadingIndicator.tag = 998
+        loadingScreen.add(views: loadingIndicator)
+        loadingIndicator.constrainWidth_Height(width: 60, height: 60)
+        loadingIndicator.constrainCenterToCenter(of: loadingScreen)
+        view.addSubview(loadingScreen)
+        animateIndicator(indicator: loadingIndicator)
     }
-    func dismissAlert() {
-        alertScreen.removeFromSuperview()
+    func animateIndicator(indicator: UIView) {
+        guard indicator.tintColor == .blue else { return }
+        UIView.setAnimationRepeatAutoreverses(true)
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [], animations: {
+            indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }) { (_) in
+            self.animateIndicator(indicator: indicator)
+        }
+    }
+    func dismissLoading() {
+        view.viewWithTag(998)?.tintColor = .clear
+        view.viewWithTag(999)?.removeFromSuperview()
     }
 }

@@ -35,7 +35,7 @@ extension OnboardView {
         static let signUpButtonRadius: CGFloat = 25
         static let signUpButtonHeight: CGFloat = 50
         static let signUpButtonEdgeOffset: CGFloat = 10
-        static let loginButtonEdgeOffset: CGFloat = 10
+        static let loginButtonEdgeOffset: CGFloat = 20
         static let appTitleTopOffset: CGFloat = 100
         static let collectionBottomOffset: CGFloat = -100
         static let collectionTopOffset: CGFloat = 10
